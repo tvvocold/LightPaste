@@ -99,7 +99,6 @@ body {
 
 .panel-header {
 	padding: 5px;
-	border-bottom: 2px solid #CCCCCC;
 	position: relative;
 }
 
@@ -119,7 +118,6 @@ body {
 .panel-footer {
 	padding: 5px;
 	text-align: center;
-	border-top: 2px solid #CCCCCC;
 	padding-bottom: 0px;
 }
 
