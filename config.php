@@ -1,0 +1,9 @@
+<?php
+
+	$CONFIG_DATABASE_HOST = "localhost";
+	$CONFIG_DATABASE_USER = "root";
+	$CONFIG_DATABASE_PASSWORD = "";
+	$CONFIG_DATABASE_NAME = "lightpaste";
+	$CONFIG_DATABASE_PORT = "3600";
+	
+?>

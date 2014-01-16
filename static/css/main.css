@@ -1,0 +1,139 @@
+body {
+	font-family: Arial;
+}
+
+#container { 
+	position: absolute;
+}
+
+#content {
+	padding: 5px;
+}
+
+#header {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	font-size: 22px;
+	font-weight: bold;
+	background-color: #FFBA6B;
+	color: #FFFFFF;
+}
+
+#header-content {
+	padding: 5px;
+}
+
+#header-content a {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+#options-panel {
+	position: absolute;
+	top: 55px;
+	right: 10px;
+	background-color: #FFBA6B;
+	z-index: 10000;
+	padding: 5px;
+	font-size: 12px;
+}
+
+#options-panel a {
+	color: #000000;
+	text-decoration: none;
+}
+
+#options-panel select {
+	display: block;
+	margin-bottom: 5px;
+}
+
+#options-panel input[type="submit"] {
+	display: block;
+	width: 100%;
+}
+
+.options-panel-row {
+	border-bottom: 2px solid #FFA238;
+	padding: 5px;
+}
+
+.options-panel-key {
+	width: 80px;
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+.options-panel-value {
+	display: inline-block;
+	word-wrap: break-word;
+	width: 110px;
+	vertical-align: middle;
+}
+
+#optionspanel-toggle-button {
+	position: absolute;
+	top: 55px;
+	right: 30px;
+	z-index: 9999;
+	font-size: 12px;
+	display: none;
+	background-color: #FFBA6B;
+	color: #000000;
+	padding: 5px;
+	width: 100px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.panel {
+	display: none;
+	position: absolute;
+	background-color: #FFFFFF;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.30);
+	padding: 5px;
+}
+
+.panel-header {
+	padding: 5px;
+	border-bottom: 2px solid #CCCCCC;
+	position: relative;
+}
+
+.panel-content {
+	padding: 5px;
+}
+
+.panel-button {
+	padding: 5px;
+	display: inline-block;
+	background-color: #F2F2F2;
+	color: #000000;
+	text-decoration: none;
+	min-width: 100px;
+}
+
+.panel-footer {
+	padding: 5px;
+	text-align: center;
+	border-top: 2px solid #CCCCCC;
+	padding-bottom: 0px;
+}
+
+#error-panel {
+	width: 700px;
+}
+
+#background {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	opacity: 0.70;
+	background-color: #FFFFFF;
+}

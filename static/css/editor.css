@@ -1,0 +1,26 @@
+.cm-s-lightpaste { line-height: 1em; font-size: 14px; }
+
+.cm-s-lightpaste span.cm-comment { color: #008000; }
+.cm-s-lightpaste span.cm-keyword { line-height: 1em; font-weight: bold; color: #0000FF; }
+.cm-s-lightpaste span.cm-string { color: #808080; }
+.cm-s-lightpaste span.cm-literalstring { color: #95004A; }
+.cm-s-lightpaste span.cm-builtin { line-height: 1em; font-weight: bold; color: #0080C0; }
+.cm-s-lightpaste span.cm-special { line-height: 1em; font-weight: bold; color: #0aa; }
+.cm-s-lightpaste span.cm-variable { color: black; }
+.cm-s-lightpaste span.cm-number, .cm-s-lightpaste span.cm-atom { color: #FF751A; }
+.cm-s-lightpaste span.cm-meta {color: #555;}
+.cm-s-lightpaste span.cm-link { color: #3a3; }
+
+.cm-s-lightpaste .CodeMirror-activeline-background {
+  background-color: #E0EAFF !important;
+}
+
+.CodeMirror {overflow-y: hidden;}
+.CodeMirror-scroll { overflow: auto; overflow-y: hidden; position: relative; outline: none; height: 100%; }
+.CodeMirror-gutters{ background-color: #FFFFFF !important; border-right: none !important; padding-right: 10px;}
+
+div.CodeMirror span.CodeMirror-matchingbracket{ color: #FF0000 !important; font-weight: bold; }
+div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #000000;}
+div.CodeMirror-linenumber.CodeMirror-gutter-elt { cursor: pointer; }
+div.CodeMirror-linenumber.CodeMirror-gutter-elt:target { color: #FF0000; font-weight: bold; }
+
