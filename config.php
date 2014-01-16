@@ -1,5 +1,7 @@
 <?php
 
+	$CONFIG_VERSION = "0.1";
+	
 	$CONFIG_DATABASE_HOST = "localhost";
 	$CONFIG_DATABASE_USER = "root";
 	$CONFIG_DATABASE_PASSWORD = "";
