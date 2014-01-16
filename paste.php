@@ -11,7 +11,7 @@
 		}
 		if(trim($_POST["code"]) == "") {
 			$_SESSION["lightpaste_error"] = "No paste data specified.";
-			header("location: ../");
+			header("location: .");
 			exit();
 		}
 		$result = db::insertPaste($_POST["code"], $language);
