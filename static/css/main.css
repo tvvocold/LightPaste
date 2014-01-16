@@ -101,6 +101,7 @@ body {
 .panel-header {
 	padding: 5px;
 	position: relative;
+	font-weight: bold;
 }
 
 .panel-content {
