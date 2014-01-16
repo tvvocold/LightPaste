@@ -49,6 +49,7 @@
 		<div id="header">
 			<div id="header-content">
 				<a href=".">Light Paste</a>
+				<a style="position: absolute; right: 10px; bottom: 5px; font-size: 14px;" href="#" onclick="toggleCenterPanel('about-panel');">About</a>
 			</div>
 		</div>
 		<a href="#" id="optionspanel-toggle-button" onclick="toggleOptionsPanel();">Show Menu</a>
@@ -92,10 +93,45 @@
 		<form action="paste.php" method="post" id="paste_form">
 			<textarea id="code" name="code"><?php echo $paste_code; ?></textarea>
 		</form>
-		<?php if(isset($_SESSION["lightpaste_error"])) { ?>
 		<div id="background"></div>
+		<div class="panel" id="about-panel">
+			<div class="panel-header" style="background: #FFE38F;">
+				Light Paste - Version <?php echo $CONFIG_VERSION; ?>
+			</div>
+			<div class="panel-content">
+				<div style="background: #f2f2f2; padding: 5px; margin: 10px; margin-bottom: 0px;">
+					<strong>zlib/libpng License</strong><br/>
+					Copyright (c) 2014 Kenny Shields <br/> <br/>
+
+					This software is provided 'as-is', without any express or implied warranty. 
+					In no event will the authors be held liable for any damages arising from the use of this software.
+					
+					<br/> <br/>
+
+					Permission is granted to anyone to use this software for any purpose, 
+					including commercial applications, and to alter it and redistribute it freely, 
+					subject to the following restrictions:
+					
+					<ol>
+						<li>The origin of this software must not be misrepresented; 
+						you must not claim that you wrote the original software. 
+						If you use this software in a product, an acknowledgment in 
+						the product documentation would be appreciated but is not required.</li>
+						<br/>
+						<li>Altered source versions must be plainly marked as such, and must 
+						not be misrepresented as being the original software.</li>
+						<br/>
+						<li>This notice may not be removed or altered from any source distribution.</li>
+					</ol>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<a href="#" class="panel-button" onclick="toggleCenterPanel('about-panel');">Close</a>
+			</div>
+		</div>
+		<?php if(isset($_SESSION["lightpaste_error"])) { ?>
 		<div class="panel" id="error-panel">
-			<div class="panel-header">
+			<div class="panel-header" style="background: #ff0000;">
 				Error
 			</div>
 			<div class="panel-content">
