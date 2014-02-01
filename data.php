@@ -45,6 +45,14 @@
 			"mode_js_files" => array(
 				"lua/lua.js"
 			)
+		),
+		"javascript" => array(
+			"name" => "JavaScript",
+			"mode" => "",
+			"mode" => "javascript",
+			"mode_js_files" => array(
+				"javascript/javascript.js"
+			)
 		)
 	);
 
