@@ -47,6 +47,13 @@
 			"mode_js_files" => array(
 				"javascript/javascript.js"
 			)
+		),
+		"java" => array(
+			"name" => "Java",
+			"mode" => "text/x-java",
+			"mode_js_files" => array(
+				"clike/clike.js"
+			)
 		)
 	);
 
