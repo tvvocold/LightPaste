@@ -54,6 +54,13 @@
 			"mode_js_files" => array(
 				"clike/clike.js"
 			)
+		),
+		"ruby" => array(
+			"name" => "Ruby",
+			"mode" => "text/x-ruby",
+			"mode_js_files" => array(
+				"ruby/ruby.js"
+			)
 		)
 	);
 
