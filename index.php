@@ -34,7 +34,6 @@
 		<link rel="StyleSheet" href="static/css/main.css" />
 		<link rel="StyleSheet" href="static/css/editor.css" />
 		<link rel="StyleSheet" href="static/js/codemirror-3.20/lib/codemirror.css" />
-		<link rel="StyleSheet" href="static/js/codemirror-3.20/theme/ambiance.css" />
 		<script type="text/javascript" src="static/js/codemirror-3.20/lib/codemirror.js"></script>
 		<script type="text/javascript" src="static/js/codemirror-3.20/addon/edit/matchbrackets.js"></script>
 		<?php if(isset($language_files)) {
