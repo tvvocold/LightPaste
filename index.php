@@ -58,16 +58,16 @@
 		<div id="options-panel">
 			<?php if(isset($paste_data) and $paste_data) { ?>
 			<div class="options-panel-row">
-				<span class="options-panel-key">Language:</span> <span class="options-panel-value"><?php echo $language_name; ?></span>
+				<span class="options-panel-key">Language</span> <span class="options-panel-value"><?php echo $language_name; ?></span>
 			</div>
 			<div class="options-panel-row">
-				<span class="options-panel-key">Posted:</span> <span class="options-panel-value"><?php echo $paste_time; ?></span>
+				<span class="options-panel-key">Posted</span> <span class="options-panel-value"><?php echo $paste_time; ?></span>
 			</div>
 			<div class="options-panel-row">
-				<span class="options-panel-key">MD5:</span> <span class="options-panel-value"><?php echo $paste_md5; ?></span>
+				<span class="options-panel-key">MD5</span> <span class="options-panel-value"><?php echo $paste_md5; ?></span>
 			</div>
 			<div class="options-panel-row">
-				<span class="options-panel-key">SHA1:</span> <span class="options-panel-value"><?php echo $paste_sha1; ?></span>
+				<span class="options-panel-key">SHA1</span> <span class="options-panel-value"><?php echo $paste_sha1; ?></span>
 			</div>
 			<div class="options-panel-row" style="border-bottom: none; text-align: center;">
 				<a href="#" onclick="toggleOptionsPanel();">Hide Menu</a>
