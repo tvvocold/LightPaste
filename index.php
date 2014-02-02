@@ -94,7 +94,7 @@
 		</form>
 		<div id="background"></div>
 		<div class="panel" id="about-panel">
-			<div class="panel-header" style="background: #FFE38F;">
+			<div class="panel-header" style="background: #4D79FF;">
 				Light Paste - Version <?php echo $CONFIG_VERSION; ?>
 			</div>
 			<div class="panel-content">
