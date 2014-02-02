@@ -53,7 +53,7 @@
 		<div id="header">
 			<div id="header-content">
 				<a href=".">Light Paste</a>
-				<a style="position: absolute; right: 10px; bottom: 5px; font-size: 14px;" href="#" onclick="toggleCenterPanel('about-panel');">About</a>
+				<a style="margin-left: 5px; font-size: 14px;" href="#" onclick="toggleCenterPanel('about-panel');">About</a>
 			</div>
 		</div>
 		<a href="#" id="optionspanel-toggle-button" onclick="toggleOptionsPanel();">Show Menu</a>
