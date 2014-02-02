@@ -4,10 +4,12 @@
 	
 	$language_mode = "none";
 	$paste_code = "";
+	$read_only = "false";
 	
 	if(isset($_GET["id"])) {
 		$paste_data = db::getPaste($_GET["id"]);
 		if(gettype($paste_data) == "array") {
+			$read_only = "true";
 			$paste_code = htmlspecialchars($paste_data["code"]);
 			$paste_language = $paste_data["language"];
 			$paste_time = date("M d, Y", $paste_data["time"]);
@@ -168,7 +170,7 @@
 				matchBrackets: true,
 				gutter: true,
 				lineNumbers: true,
-				readOnly: false,
+				readOnly: <?php echo $read_only; ?>,
 				indentUnit: 4,
 				/*
 				extraKeys: {
