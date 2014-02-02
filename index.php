@@ -18,6 +18,9 @@
 				$language_name = $language_data["name"];
 				$language_files = $language_data["mode_js_files"];
 				$language_mode = $language_data["mode"];
+				if(isset($language_data["mode_complex"])) {
+					$language_mode_complex = $language_data["mode_complex"];
+				}
 			} else {
 				$language_name = "None";
 			}
@@ -82,7 +85,11 @@
 								$data_files .= "$file";
 							}
 						}
-						echo "<option value=\"$key\" data-files=\"$data_files\" data-mode=\"$value[mode]\">$value[name]</option>";
+						if(isset($value["mode_complex"])) {
+							echo "<option value=\"$key\" data-files=\"$data_files\" data-mode=\"$value[mode]\" data-modecomplex=\"$value[mode_complex]\">$value[name]</option>";
+						}  else {
+							echo "<option value=\"$key\" data-files=\"$data_files\" data-mode=\"$value[mode]\">$value[name]</option>";
+						}
 					}
 				?>
 			</select>
@@ -148,12 +155,16 @@
 		<?php } ?>
 		<script type="text/javascript">
 			$("#languages").change(function() {
-				toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"));
+				if($(this).find(":selected").data("modecomplex")) {
+					toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"), $(this).find(":selected").data("modecomplex"));
+				} else {
+					toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"));
+				}
 			});
 			var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
 				tabMode: "indent",
 				theme: "lightpaste",
-				mode: "<?php echo $language_mode; ?>",
+				mode: <?php if(isset($language_mode_complex)) { echo $language_mode_complex; } else { echo '"' . $language_mode . '"'; } ?>,
 				matchBrackets: true,
 				gutter: true,
 				lineNumbers: true,

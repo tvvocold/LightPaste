@@ -48,14 +48,19 @@ function toggleCenterPanel(id)
 	}
 }
 
-function toggleLanguage(files, mode)
+function toggleLanguage(files, mode, mode_complex)
 {
 	var data = files.split(";");
 	if(!modes_loaded[mode]) {
 		for(i=0; i < data.length; i++) {
 			if(i == (data.length - 1)) {
 				$.getScript("static/js/codemirror-3.20/mode/" + data[i], function() {
-					editor.setOption("mode", mode);
+					if(mode_complex) {
+						editor.setOption("mode", eval(mode_complex));
+						alert(mode_complex);
+					} else {
+						editor.setOption("mode", mode);
+					}
 					editor_mode = mode;
 					modes_loaded[mode] = true;
 				});
@@ -64,7 +69,11 @@ function toggleLanguage(files, mode)
 			}
 		}
 	} else {
-		editor.setOption("mode", mode);
+		if(mode_complex) {
+			editor.setOption("mode", mode_complex);
+		} else {
+			editor.setOption("mode", mode);
+		}
 		editor_mode = mode;
 	}
 }
