@@ -56,8 +56,7 @@ function toggleLanguage(files, mode, mode_complex)
 			if(i == (data.length - 1)) {
 				$.getScript("static/js/codemirror-3.20/mode/" + data[i], function() {
 					if(mode_complex) {
-						editor.setOption("mode", eval(mode_complex));
-						alert(mode_complex);
+						editor.setOption("mode", mode_complex);
 					} else {
 						editor.setOption("mode", mode);
 					}

@@ -86,7 +86,7 @@
 							}
 						}
 						if(isset($value["mode_complex"])) {
-							echo "<option value=\"$key\" data-files=\"$data_files\" data-mode=\"$value[mode]\" data-modecomplex=\"$value[mode_complex]\">$value[name]</option>";
+							echo "<option value=\"$key\" data-files=\"$data_files\" data-mode=\"$value[mode]\" data-modecomplex=$value[mode_complex]>$value[name]</option>";
 						}  else {
 							echo "<option value=\"$key\" data-files=\"$data_files\" data-mode=\"$value[mode]\">$value[name]</option>";
 						}
