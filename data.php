@@ -61,6 +61,14 @@
 			"mode_js_files" => array(
 				"ruby/ruby.js"
 			)
+		),
+		"html" => array(
+			"name" => "HTML",
+			"mode" => "html",
+			"mode_complex" => "{name: 'xml', htmlMode: true}",
+			"mode_js_files" => array(
+				"xml/xml.js"
+			)
 		)
 	);
 
