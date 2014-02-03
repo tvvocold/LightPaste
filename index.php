@@ -56,6 +56,7 @@
 				<a style="margin-left: 5px; font-size: 14px;" href="#" onclick="toggleCenterPanel('about-panel');">About</a>
 			</div>
 		</div>
+		<div id="toolbar"><img src="static/images/icons/silk/page_paste.png"></div>
 		<a href="#" id="optionspanel-toggle-button" onclick="toggleOptionsPanel();">Show Menu</a>
 		<div id="options-panel">
 			<?php if(isset($paste_data) and $paste_data) { ?>
@@ -184,15 +185,15 @@
 				*/
 			});
 			editor.on("change", function() {
-				positionOptionsPanel();
+				<?php if(isset($paste_language)) { echo "positionOptionsPanel(true);"; } else { echo "positionOptionsPanel();"; } ?>
 			});
 			$(document).ready(function() { 
 				resizeEditor(); 
-				positionOptionsPanel(); 
+				<?php if(isset($paste_language)) { echo "positionOptionsPanel(true);"; } else { echo "positionOptionsPanel();"; } ?>
 			});
 			$(window).resize(function() { 
 				resizeEditor(); 
-				positionOptionsPanel(); 
+				<?php if(isset($paste_language)) { echo "positionOptionsPanel(true);"; } else { echo "positionOptionsPanel();"; } ?>
 			});
 		</script>
 	</body>

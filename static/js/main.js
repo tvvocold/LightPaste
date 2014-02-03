@@ -12,16 +12,26 @@ function resizeEditor()
 	editor.setSize(width, (height - header_height));
 }
 
-function positionOptionsPanel()
+function positionOptionsPanel(show_toolbar)
 {
+	var toolbar = $("#toolbar");
 	var panel = $("#options-panel");
 	var button = $("#optionspanel-toggle-button");
-	panel.css("top", ($("#header").height() + 8) + "px")
-	button.css("top", ($("#header").height() + 8) + "px")
+	var top_margin = 8;
+	if(show_toolbar) {
+		toolbar.show();
+		toolbar.css("top", ($("#header").height() + top_margin) + "px");
+		toolbar.css("right", "24px");
+		top_margin = 45;
+	}
+	panel.css("top", ($("#header").height() + top_margin) + "px")
+	button.css("top", ($("#header").height() + top_margin) + "px")
 	if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
+		toolbar.css("right", "24px");
 		panel.css("right", "24px");
 		button.css("right", "24px");
 	} else {
+		toolbar.css("right", "5px");
 		panel.css("right", "5px");
 		button.css("right", "5px");
 	}
