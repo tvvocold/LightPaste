@@ -84,6 +84,15 @@ body {
 	vertical-align: middle;
 }
 
+.options-panel-value a {
+	color: #3366FF !important;
+}
+
+.options-panel-value a:hover {
+	text-decoration: underline !important;
+}
+
+
 #optionspanel-toggle-button {
 	width: 200px;
 	position: absolute;

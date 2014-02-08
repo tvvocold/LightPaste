@@ -3,6 +3,7 @@
 	require("core.php");
 	
 	$language_mode = "none";
+	$language_website = false;
 	$paste_code = "";
 	$read_only = "false";
 	
@@ -18,6 +19,7 @@
 			if($paste_language != "") {
 				$language_data = $DATA_LANGUAGES[$paste_language];
 				$language_name = $language_data["name"];
+				$language_website = $language_data["website"];
 				$language_files = $language_data["mode_js_files"];
 				$language_mode = $language_data["mode"];
 				if(isset($language_data["mode_complex"])) {
@@ -76,7 +78,12 @@
 		<div id="options-panel">
 			<?php if(isset($paste_data) and $paste_data) { ?>
 			<div class="options-panel-row">
-				<span class="options-panel-key">Language</span> <span class="options-panel-value"><?php echo $language_name; ?></span>
+				<span class="options-panel-key">Language</span>
+				<?php if($language_website) { ?>
+				<span class="options-panel-value"><a href="<?php echo $language_website; ?>"><?php echo $language_name; ?></a></span>
+				<?php } else { ?>
+				<span class="options-panel-value"><?php echo $language_name; ?></span>
+				<?php } ?>
 			</div>
 			<div class="options-panel-row">
 				<span class="options-panel-key">Posted</span> <span class="options-panel-value"><?php echo $paste_time; ?></span>
