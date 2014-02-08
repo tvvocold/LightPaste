@@ -119,6 +119,14 @@
 			"mode_js_files" => array(
 				"go/go.js"
 			)
+		),
+		"markdown" => array(
+			"name" => "Markdown",
+			"mode" => "markdown",
+			"mode_js_files" => array(
+				"xml/xml.js",
+				"markdown/markdown.js"
+			)
 		)
 	);
 
