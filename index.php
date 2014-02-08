@@ -25,18 +25,22 @@
 				if(isset($language_data["mode_complex"])) {
 					$language_mode_complex = $language_data["mode_complex"];
 				}
-				if(isset($_GET["mode"]) and $_GET["mode"] == "copy") {
-					$_SESSION["lightpaste_code"] = $paste_code;
+			} else {
+				$language_name = "None";
+			}
+			if(isset($_GET["mode"]) and $_GET["mode"] == "copy") {
+				$_SESSION["lightpaste_code"] = $paste_code;
+				if($language_mode != "none") {
 					$_SESSION["lightpaste_mode"] = $language_mode;
-					$_SESSION["lightpaste_files"] = $language_files;
+					if(isset($language_files)) {
+						$_SESSION["lightpaste_files"] = $language_files;
+					}
 					if(isset($language_mode_complex)) {
 						$_SESSION["lightpaste_mode_complex"] = $language_mode_complex;
 					}
-					header("location: .");
-					exit();
 				}
-			} else {
-				$language_name = "None";
+				header("location: .");
+				exit();
 			}
 		}
 	} else {
