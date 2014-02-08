@@ -112,6 +112,13 @@
 			"mode_js_files" => array(
 				"sql/sql.js"
 			)
+		),
+		"go" => array(
+			"name" => "Go",
+			"mode" => "text/x-go",
+			"mode_js_files" => array(
+				"go/go.js"
+			)
 		)
 	);
 
