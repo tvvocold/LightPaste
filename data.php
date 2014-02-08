@@ -77,6 +77,13 @@
 			"mode_js_files" => array(
 				"python/python.js"
 			)
+		),
+		"css" => array(
+			"name" => "CSS",
+			"mode" => "text/css",
+			"mode_js_files" => array(
+				"css/css.js"
+			)
 		)
 	);
 
