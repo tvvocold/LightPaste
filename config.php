@@ -8,4 +8,6 @@
 	$CONFIG_DATABASE_NAME = "lightpaste";
 	$CONFIG_DATABASE_PORT = "3600";
 	
+	$CONFIG_VIEWCOUNT_DELAY = 10;
+	
 ?>

@@ -90,7 +90,7 @@
 		=======================================================*/
 		static function getPaste($access_id)
 		{
-			$rows = self::query("SELECT code, language, time, md5, sha1 FROM pastes WHERE access_id = ?", array($access_id));
+			$rows = self::query("SELECT code, language, time, views, md5, sha1 FROM pastes WHERE access_id = ?", array($access_id));
 			if(count($rows) == 1) {
 				return $rows[0];
 			} else {
@@ -99,6 +99,22 @@
 			}
 		}
 		
+		static function countView($paste_id)
+		{
+			global $CONFIG_VIEWCOUNT_DELAY;
+			$paste = self::getPaste($paste_id);
+			$time = time();
+			self::query("DELETE FROM viewlogs WHERE ? > time + ?;", array($time, $CONFIG_VIEWCOUNT_DELAY));
+			if(gettype($paste) == "array") {
+				$hash = hash("sha256", $paste_id . $_SERVER["REMOTE_ADDR"]);
+				$logrows = self::query("SELECT time FROM viewlogs WHERE hash = ?;", array($hash));
+				if(count($logrows) == 1) {
+					return;
+				}
+				self::query("UPDATE pastes SET views = views + 1 WHERE access_id = ?;", array($paste_id));
+				self::query("INSERT INTO viewlogs (hash, time) VALUES(?, ?);", array($hash, $time));
+			}
+		}
 	}
 	
 ?>

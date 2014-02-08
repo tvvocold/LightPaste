@@ -8,12 +8,16 @@
 	$read_only = "false";
 	
 	if(isset($_GET["id"])) {
+		if(!isset($_GET["mode"])) {
+			db::countView($_GET["id"]);
+		}
 		$paste_data = db::getPaste($_GET["id"]);
 		if(gettype($paste_data) == "array") {
 			$read_only = "true";
 			$paste_code = htmlspecialchars($paste_data["code"]);
 			$paste_language = $paste_data["language"];
 			$paste_time = date("M d, Y", $paste_data["time"]);
+			$paste_views = number_format($paste_data["views"]);
 			$paste_md5 = $paste_data["md5"];
 			$paste_sha1 = $paste_data["sha1"];
 			if($paste_language != "") {
@@ -91,6 +95,9 @@
 			</div>
 			<div class="options-panel-row">
 				<span class="options-panel-key">Posted</span> <span class="options-panel-value"><?php echo $paste_time; ?></span>
+			</div>
+			<div class="options-panel-row">
+				<span class="options-panel-key">Views</span> <span class="options-panel-value"><?php echo $paste_views; ?></span>
 			</div>
 			<div class="options-panel-row">
 				<span class="options-panel-key">MD5</span> <span class="options-panel-value"><?php echo $paste_md5; ?></span>
