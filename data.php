@@ -105,6 +105,13 @@
 			"mode_js_files" => array(
 				"sql/sql.js"
 			)
+		),
+		"MySQL" => array(
+			"name" => "MySQL",
+			"mode" => "text/x-mysql",
+			"mode_js_files" => array(
+				"sql/sql.js"
+			)
 		)
 	);
 
