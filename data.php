@@ -91,6 +91,13 @@
 			"mode_js_files" => array(
 				"css/css.js"
 			)
+		),
+		"less" => array(
+			"name" => "LESS",
+			"mode" => "text/x-less",
+			"mode_js_files" => array(
+				"css/css.js"
+			)
 		)
 	);
 
