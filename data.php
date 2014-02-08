@@ -84,6 +84,13 @@
 			"mode_js_files" => array(
 				"css/css.js"
 			)
+		),
+		"scss" => array(
+			"name" => "SCSS",
+			"mode" => "text/x-scss",
+			"mode_js_files" => array(
+				"css/css.js"
+			)
 		)
 	);
 
