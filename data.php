@@ -70,11 +70,12 @@
 				"xml/xml.js"
 			)
 		),
-		"perl" => array(
-			"name" => "Perl",
-			"mode" => "text/x-perl",
+		"python" => array(
+			"name" => "Python",
+			"mode" => "",
+			"mode_complex" => json_encode(array("name" => "python", "version" => 2, "singleLineStringErrors" => false)),
 			"mode_js_files" => array(
-				"perl/perl.js"
+				"python/python.js"
 			)
 		)
 	);
