@@ -20,6 +20,7 @@
 			$paste_views = number_format($paste_data["views"]);
 			$paste_md5 = $paste_data["md5"];
 			$paste_sha1 = $paste_data["sha1"];
+			$paste_size = util::formatDataSize(strlen($paste_code));
 			if($paste_language != "") {
 				$language_data = $DATA_LANGUAGES[$paste_language];
 				$language_name = $language_data["name"];
@@ -98,6 +99,9 @@
 			</div>
 			<div class="options-panel-row">
 				<span class="options-panel-key">Views</span> <span class="options-panel-value"><?php echo $paste_views; ?></span>
+			</div>
+			<div class="options-panel-row">
+				<span class="options-panel-key">Size</span> <span class="options-panel-value"><?php echo $paste_size; ?></span>
 			</div>
 			<div class="options-panel-row">
 				<span class="options-panel-key">MD5</span> <span class="options-panel-value"><?php echo $paste_md5; ?></span>
