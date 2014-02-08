@@ -38,13 +38,13 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="StyleSheet" href="static/css/main.css" />
 		<link rel="StyleSheet" href="static/css/editor.css" />
-		<link rel="StyleSheet" href="static/js/codemirror-3.20/lib/codemirror.css" />
-		<script type="text/javascript" src="static/js/codemirror-3.20/lib/codemirror.js"></script>
-		<script type="text/javascript" src="static/js/codemirror-3.20/addon/edit/matchbrackets.js"></script>
+		<link rel="StyleSheet" href="static/js/codemirror-3.21/lib/codemirror.css" />
+		<script type="text/javascript" src="static/js/codemirror-3.21/lib/codemirror.js"></script>
+		<script type="text/javascript" src="static/js/codemirror-3.21/addon/edit/matchbrackets.js"></script>
 		<?php if(isset($language_files)) {
 			foreach($language_files as $value) {
 		?>
-		<script type="text/javascript" src="static/js/codemirror-3.20/mode/<?php echo $value; ?>"></script>
+		<script type="text/javascript" src="static/js/codemirror-3.21/mode/<?php echo $value; ?>"></script>
 		<?php } } ?>
 		<script type="text/javascript" src="static/js/main.js"></script>
 		<script type="text/javascript" src="static/js/jquery-1.10.2.min.js"></script>
