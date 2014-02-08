@@ -69,6 +69,13 @@
 			"mode_js_files" => array(
 				"xml/xml.js"
 			)
+		),
+		"perl" => array(
+			"name" => "Perl",
+			"mode" => "text/x-perl",
+			"mode_js_files" => array(
+				"perl/perl.js"
+			)
 		)
 	);
 
