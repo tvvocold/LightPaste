@@ -98,6 +98,13 @@
 			"mode_js_files" => array(
 				"css/css.js"
 			)
+		),
+		"SQL" => array(
+			"name" => "SQL",
+			"mode" => "text/x-sql",
+			"mode_js_files" => array(
+				"sql/sql.js"
+			)
 		)
 	);
 
