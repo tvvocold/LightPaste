@@ -64,7 +64,7 @@ function toggleLanguage(files, mode, mode_complex)
 	if(!modes_loaded[mode]) {
 		for(i=0; i < data.length; i++) {
 			if(i == (data.length - 1)) {
-				$.getScript("static/js/codemirror-3.20/mode/" + data[i], function() {
+				$.getScript("static/js/codemirror-3.21/mode/" + data[i], function() {
 					if(mode_complex) {
 						editor.setOption("mode", mode_complex);
 					} else {
@@ -74,7 +74,7 @@ function toggleLanguage(files, mode, mode_complex)
 					modes_loaded[mode] = true;
 				});
 			} else {
-				$.getScript("static/js/codemirror-3.20/mode/" + data[i]);
+				$.getScript("static/js/codemirror-3.21/mode/" + data[i]);
 			}
 		}
 	} else {
