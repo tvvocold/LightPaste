@@ -23,9 +23,24 @@
 				if(isset($language_data["mode_complex"])) {
 					$language_mode_complex = $language_data["mode_complex"];
 				}
+				if(isset($_GET["mode"]) and $_GET["mode"] == "copy") {
+					$_SESSION["lightpaste_code"] = $paste_code;
+					$_SESSION["lightpaste_mode"] = $language_mode;
+					$_SESSION["lightpaste_files"] = $language_files;
+					if(isset($language_mode_complex)) {
+						$_SESSION["lightpaste_mode_complex"] = $language_mode_complex;
+					}
+					header("location: .");
+					exit();
+				}
 			} else {
 				$language_name = "None";
 			}
+		}
+	} else {
+		if(isset($_SESSION["lightpaste_code"])) {
+			$paste_code = $_SESSION["lightpaste_code"];
+			unset($_SESSION["lightpaste_code"]);
 		}
 	}
 	
@@ -56,7 +71,7 @@
 				<a style="margin-left: 5px; font-size: 14px;" href="#" onclick="toggleCenterPanel('about-panel');">About</a>
 			</div>
 		</div>
-		<div id="toolbar"><img src="static/images/icons/silk/page_paste.png"></div>
+		<div id="toolbar"><a href="?id=<?php if(isset($_GET["id"])) { echo $_GET["id"]; } ?>&mode=copy"><img src="static/images/icons/silk/page_paste.png"></a></div>
 		<a href="#" id="optionspanel-toggle-button" onclick="toggleOptionsPanel();">Show Menu</a>
 		<div id="options-panel">
 			<?php if(isset($paste_data) and $paste_data) { ?>
@@ -195,6 +210,19 @@
 				resizeEditor(); 
 				<?php if(isset($paste_language)) { echo "positionOptionsPanel(true);"; } else { echo "positionOptionsPanel();"; } ?>
 			});
+			<?php
+				if(isset($_SESSION["lightpaste_mode"])) {
+					$files = implode(";", $_SESSION["lightpaste_files"]);
+					if(isset($_SESSION["lightpaste_mode_complex"])) {
+						echo "toggleLanguage('$files', '$_SESSION[lightpaste_mode]', $_SESSION[lightpaste_mode_complex]);";
+						unset($_SESSION["lightpaste_mode_complex"]);
+					} else {
+						echo "toggleLanguage('$files', '$_SESSION[lightpaste_mode]')";
+					}
+					unset($_SESSION["lightpaste_files"]);
+					unset($_SESSION["lightpaste_mode"]);
+				}
+			?>
 		</script>
 	</body>
 </html>
