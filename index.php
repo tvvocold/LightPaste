@@ -151,11 +151,11 @@
 		</form>
 		<div id="background"></div>
 		<div class="panel" id="about-panel">
-			<div class="panel-header" style="background: #4D79FF;">
+			<div class="panel-header" style="color: #000000;">
 				Light Paste - Version <?php echo $CONFIG_VERSION; ?>
 			</div>
 			<div class="panel-content">
-				<div style="background: #f2f2f2; padding: 5px; margin: 10px; margin-bottom: 0px;">
+				<div style="background: #f2f2f2; padding: 5px; margin: 10px; margin-bottom: 0px; font-size: 14px;">
 					<strong>zlib/libpng License</strong><br/>
 					Copyright (c) 2014 Kenny Shields <br/> <br/>
 
