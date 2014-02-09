@@ -65,6 +65,12 @@ body {
 	width: 100%;
 }
 
+#options-panel input[type="text"] {
+	width: 100%;
+	border: none;
+	background: none;
+}
+
 .options-panel-row {
 	border-bottom: 1px dotted #CCCCCC;
 	padding: 5px;

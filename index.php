@@ -105,19 +105,24 @@
 				<?php } ?>
 			</div>
 			<div class="options-panel-row">
-				<span class="options-panel-key">Posted</span> <span class="options-panel-value"><?php echo $paste_time; ?></span>
+				<span class="options-panel-key">Posted</span> 
+				<span class="options-panel-value"><?php echo $paste_time; ?></span>
 			</div>
 			<div class="options-panel-row">
-				<span class="options-panel-key">Views</span> <span class="options-panel-value"><?php echo $paste_views; ?></span>
+				<span class="options-panel-key">Views</span> 
+				<span class="options-panel-value"><?php echo $paste_views; ?></span>
 			</div>
 			<div class="options-panel-row">
-				<span class="options-panel-key">Size</span> <span class="options-panel-value"><?php echo $paste_size; ?></span>
+				<span class="options-panel-key">Size</span> 
+				<span class="options-panel-value"><?php echo $paste_size; ?></span>
 			</div>
 			<div class="options-panel-row">
-				<span class="options-panel-key">MD5</span> <span class="options-panel-value"><?php echo $paste_md5; ?></span>
+				<span class="options-panel-key">MD5</span> 
+				<span class="options-panel-value"><input type="text" readonly="readonly" value="<?php echo $paste_md5; ?>"></span>
 			</div>
 			<div class="options-panel-row">
-				<span class="options-panel-key">SHA1</span> <span class="options-panel-value"><?php echo $paste_sha1; ?></span>
+				<span class="options-panel-key">SHA1</span> 
+				<span class="options-panel-value"><input type="text" readonly="readonly" value="<?php echo $paste_sha1; ?>"></span>
 			</div>
 			<div class="options-panel-row" style="border-bottom: none; text-align: center;">
 				<a href="#" onclick="toggleOptionsPanel();">Hide Menu</a>
