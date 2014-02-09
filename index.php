@@ -177,6 +177,8 @@
 				<select id="tabsize_selector" style="width: 135px;">
 					<?php for($i=1; $i < 31; $i++) { echo "<option value=\"$i\">$i</option>"; } ?>
 				</select>
+				<label for="blinkrate_editor">Cursor blink rate (ms)</label>
+				<input type="text" id="blinkrate_editor" style="width: 68px; margin-left: 5px;">
 			</div>
 		</div>
 		<?php } ?>
@@ -299,6 +301,10 @@
 			});
 			$("#tabsize_selector").change(function() {
 				editor.setOption("tabSize", parseInt($(this).find(":selected").text()));
+			});
+			$("#blinkrate_editor").keyup(function() {
+				console.log(parseInt($(this).val()));
+				editor.setOption("cursorBlinkRate", parseInt($(this).val()));
 			});
 			<?php
 				if(isset($_SESSION["lightpaste_mode"])) {
