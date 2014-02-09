@@ -131,7 +131,8 @@
 			<div class="options-panel-row" style="font-weight: bold; margin-bottom: 5px; padding-top: 0px;">
 				Paste Options
 			</div>
-			<select id="languages" name="language" form="paste_form">
+			<label for="languages">Language</label>
+			<select id="languages" name="language" form="paste_form" style="width: 136px;">
 				<option value="none">None</option>
 				<?php
 					foreach($DATA_LANGUAGES as $key=>$value) {
@@ -166,7 +167,7 @@
 				<label for="smartindent_checkbox">Smart indent</label>
 				<br/>
 				<label for="tabsize_selector">Tab size</label>
-				<select id="tabsize_selector" style="width: 135px; display: inline-block; margin-left: 5px;">
+				<select id="tabsize_selector" style="width: 135px;">
 					<?php for($i=1; $i < 31; $i++) { echo "<option value=\"$i\">$i</option>"; } ?>
 				</select>
 			</div>

@@ -55,9 +55,9 @@ body {
 }
 
 #options-panel select {
-	display: block;
+	display: inline-block;
 	margin-bottom: 5px;
-	width: 100%;
+	margin-left: 5px;
 }
 
 #options-panel input[type="submit"] {
