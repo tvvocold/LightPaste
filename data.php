@@ -144,6 +144,14 @@
 				"xml/xml.js",
 				"markdown/markdown.js"
 			)
+		),
+		"yaml" => array(
+			"name" => "YAML",
+			"website" => "http://www.yaml.org/",
+			"mode" => "text/x-yaml",
+			"mode_js_files" => array(
+				"yaml/yaml.js"
+			)
 		)
 	);
 
