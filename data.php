@@ -152,6 +152,14 @@
 			"mode_js_files" => array(
 				"yaml/yaml.js"
 			)
+		),
+		"coffeescript" => array(
+			"name" => "CoffeeScript",
+			"website" => "http://coffeescript.org/",
+			"mode" => "text/x-coffeescript",
+			"mode_js_files" => array(
+				"coffeescript/coffeescript.js"
+			)
 		)
 	);
 
