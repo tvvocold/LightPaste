@@ -128,6 +128,9 @@
 				<a href="#" onclick="toggleOptionsPanel();">Hide Menu</a>
 			</div>
 			<?php } else { ?>
+			<div class="options-panel-row" style="font-weight: bold; margin-bottom: 5px; padding-top: 0px;">
+				Paste Options
+			</div>
 			<select id="languages" name="language" form="paste_form">
 				<option value="none">None</option>
 				<?php
@@ -149,6 +152,24 @@
 				?>
 			</select>
 			<input type="submit" value="Post" form="paste_form" />
+			<div class="options-panel-row" style="font-weight: bold; margin-bottom: 5px;">
+				Editor Options
+			</div>
+			<div class="options-panel-row" style="border-bottom: none;">
+				<input type="checkbox" id="linenumbers_checkbox" >
+				<label for="linenumbers_checkbox">Line numbers</label>
+				<br/>
+				<input type="checkbox" id="wordwrap_checkbox" >
+				<label for="wordwrap_checkbox">Word wrap</label>
+				<br/>
+				<input type="checkbox" id="smartindent_checkbox" style="margin-bottom: 10px;">
+				<label for="smartindent_checkbox">Smart indent</label>
+				<br/>
+				<label for="tabsize_selector">Tab size</label>
+				<select id="tabsize_selector" style="width: 135px; display: inline-block; margin-left: 5px;">
+					<?php for($i=1; $i < 31; $i++) { echo "<option value=\"$i\">$i</option>"; } ?>
+				</select>
+			</div>
 			<?php } ?>
 		</div>
 		<form action="paste.php" method="post" id="paste_form">
@@ -209,13 +230,6 @@
 		</script>
 		<?php } ?>
 		<script type="text/javascript">
-			$("#languages").change(function() {
-				if($(this).find(":selected").data("modecomplex")) {
-					toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"), $(this).find(":selected").data("modecomplex"));
-				} else {
-					toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"));
-				}
-			});
 			var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
 				tabMode: "indent",
 				theme: "lightpaste",
@@ -246,6 +260,37 @@
 			$(window).resize(function() { 
 				resizeEditor(); 
 				<?php if(isset($paste_language)) { echo "positionOptionsPanel(true);"; } else { echo "positionOptionsPanel();"; } ?>
+			});
+			$("#languages").change(function() {
+				if($(this).find(":selected").data("modecomplex")) {
+					toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"), $(this).find(":selected").data("modecomplex"));
+				} else {
+					toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"));
+				}
+			});
+			$("#linenumbers_checkbox").change(function() {
+				if($(this).is(":checked")) {
+					editor.setOption("lineNumbers", true);
+				} else {
+					editor.setOption("lineNumbers", false);
+				}
+			});
+			$("#wordwrap_checkbox").change(function() {
+				if($(this).is(":checked")) {
+					editor.setOption("lineWrapping", true);
+				} else {
+					editor.setOption("lineWrapping", false);
+				}
+			});
+			$("#smartindent_checkbox").change(function() {
+				if($(this).is(":checked")) {
+					editor.setOption("smartIndent", true);
+				} else {
+					editor.setOption("smartIndent", false);
+				}
+			});
+			$("#tabsize_selector").change(function() {
+				editor.setOption("tabSize", parseInt($(this).find(":selected").text()));
 			});
 			<?php
 				if(isset($_SESSION["lightpaste_mode"])) {
