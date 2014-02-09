@@ -12,28 +12,41 @@ function resizeEditor()
 	editor.setSize(width, (height - header_height));
 }
 
-function positionOptionsPanel(show_toolbar)
+function positionPanels()
 {
-	var toolbar = $("#toolbar");
-	var panel = $("#options-panel");
-	var button = $("#optionspanel-toggle-button");
+	var paste_options_panel = $("#paste-options");
 	var top_margin = 10;
-	if(show_toolbar) {
+	if(paste_options_panel.length > 0) {
+		var editor_options_panel = $("#editor-options");
+		paste_options_panel.css("top", ($("#header").height() + top_margin) + "px");
+		top_margin = top_margin + paste_options_panel.height() + 18;
+		editor_options_panel.css("top", ($("#header").height() + top_margin) + "px");
+		if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
+			paste_options_panel.css("right", "25px");
+			editor_options_panel.css("right", "25px");
+		} else {
+			paste_options_panel.css("right", "10px");
+			editor_options_panel.css("right", "10px");
+		}
+	} else {
+		var toolbar = $("#toolbar");
 		toolbar.show();
 		toolbar.css("top", ($("#header").height() + top_margin) + "px");
 		toolbar.css("right", "24px");
 		top_margin = 48;
-	}
-	panel.css("top", ($("#header").height() + top_margin) + "px")
-	button.css("top", ($("#header").height() + top_margin) + "px")
-	if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
-		toolbar.css("right", "25px");
-		panel.css("right", "25px");
-		button.css("right", "25px");
-	} else {
-		toolbar.css("right", "10px");
-		panel.css("right", "10px");
-		button.css("right", "10px");
+		var paste_info_panel = $("#paste-info");
+		var button = $("#pasteinfo-toggle-button");
+		paste_info_panel.css("top", ($("#header").height() + top_margin) + "px");
+		button.css("top", ($("#header").height() + top_margin) + "px")
+		if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
+			toolbar.css("right", "25px");
+			paste_info_panel.css("right", "25px");
+			button.css("right", "25px");
+		} else {
+			toolbar.css("right", "10px");
+			paste_info_panel.css("right", "10px");
+			button.css("right", "10px");
+		}
 	}
 }
 
@@ -87,10 +100,10 @@ function toggleLanguage(files, mode, mode_complex)
 	}
 }
 
-function toggleOptionsPanel()
+function togglePasteInfo()
 {
-	var panel = $("#options-panel");
-	var button = $("#optionspanel-toggle-button");
+	var panel = $("#paste-info");
+	var button = $("#pasteinfo-toggle-button");
 	if(panel.is(":hidden")) {
 		panel.show();
 		button.hide();

@@ -92,43 +92,45 @@
 			<a href="?id=<?php echo $_GET["id"]; ?>&mode=copy"><img src="static/images/icons/silk/page_paste.png"></a>
 			<a href="?id=<?php echo $_GET["id"]; ?>&mode=raw"><img src="static/images/icons/silk/page_white.png"></a>
 		</div>
-		<?php } ?>
-		<a href="#" id="optionspanel-toggle-button" onclick="toggleOptionsPanel();">Show Menu</a>
-		<div id="options-panel">
-			<?php if(isset($paste_data) and $paste_data) { ?>
-			<div class="options-panel-row">
-				<span class="options-panel-key">Language</span>
+		<?php }
+			if(isset($paste_data) and $paste_data) { ?>
+		<a href="#" id="pasteinfo-toggle-button" onclick="togglePasteInfo();">Show Menu</a>
+		<div class="data-panel" id="paste-info">
+			<div class="data-panel-row">
+				<span class="data-panel-key">Language</span>
 				<?php if($language_website) { ?>
-				<span class="options-panel-value"><a href="<?php echo $language_website; ?>"><?php echo $language_name; ?></a></span>
+				<span class="data-panel-value"><a href="<?php echo $language_website; ?>"><?php echo $language_name; ?></a></span>
 				<?php } else { ?>
-				<span class="options-panel-value"><?php echo $language_name; ?></span>
+				<span class="data-panel-value"><?php echo $language_name; ?></span>
 				<?php } ?>
 			</div>
-			<div class="options-panel-row">
-				<span class="options-panel-key">Posted</span> 
-				<span class="options-panel-value"><?php echo $paste_time; ?></span>
+			<div class="data-panel-row">
+				<span class="data-panel-key">Posted</span> 
+				<span class="data-panel-value"><?php echo $paste_time; ?></span>
 			</div>
-			<div class="options-panel-row">
-				<span class="options-panel-key">Views</span> 
-				<span class="options-panel-value"><?php echo $paste_views; ?></span>
+			<div class="data-panel-row">
+				<span class="data-panel-key">Views</span> 
+				<span class="data-panel-value"><?php echo $paste_views; ?></span>
 			</div>
-			<div class="options-panel-row">
-				<span class="options-panel-key">Size</span> 
-				<span class="options-panel-value"><?php echo $paste_size; ?></span>
+			<div class="data-panel-row">
+				<span class="data-panel-key">Size</span> 
+				<span class="data-panel-value"><?php echo $paste_size; ?></span>
 			</div>
-			<div class="options-panel-row">
-				<span class="options-panel-key">MD5</span> 
-				<span class="options-panel-value"><input type="text" readonly="readonly" value="<?php echo $paste_md5; ?>"></span>
+			<div class="data-panel-row">
+				<span class="data-panel-key">MD5</span> 
+				<span class="data-panel-value"><input type="text" readonly="readonly" value="<?php echo $paste_md5; ?>"></span>
 			</div>
-			<div class="options-panel-row">
-				<span class="options-panel-key">SHA1</span> 
-				<span class="options-panel-value"><input type="text" readonly="readonly" value="<?php echo $paste_sha1; ?>"></span>
+			<div class="data-panel-row">
+				<span class="data-panel-key">SHA1</span> 
+				<span class="data-panel-value"><input type="text" readonly="readonly" value="<?php echo $paste_sha1; ?>"></span>
 			</div>
-			<div class="options-panel-row" style="border-bottom: none; text-align: center;">
-				<a href="#" onclick="toggleOptionsPanel();">Hide Menu</a>
+			<div class="data-panel-row" style="border-bottom: none; text-align: center;">
+				<a href="#" onclick="togglePasteInfo();">Hide Menu</a>
 			</div>
-			<?php } else { ?>
-			<div class="options-panel-row" style="font-weight: bold; margin-bottom: 5px; padding-top: 0px;">
+		</div>
+		<?php } else { ?>
+		<div class="options-panel" id="paste-options">
+			<div class="options-panel-header">
 				Paste Options
 			</div>
 			<label for="languages">Language</label>
@@ -153,7 +155,9 @@
 				?>
 			</select>
 			<input type="submit" value="Post" form="paste_form" />
-			<div class="options-panel-row" style="font-weight: bold; margin-bottom: 5px;">
+		</div>
+		<div class="options-panel" id="editor-options">
+			<div class="options-panel-header">
 				Editor Options
 			</div>
 			<div class="options-panel-row" style="border-bottom: none;">
@@ -171,8 +175,8 @@
 					<?php for($i=1; $i < 31; $i++) { echo "<option value=\"$i\">$i</option>"; } ?>
 				</select>
 			</div>
-			<?php } ?>
 		</div>
+		<?php } ?>
 		<form action="paste.php" method="post" id="paste_form">
 			<textarea id="code" name="code"><?php echo $paste_code; ?></textarea>
 		</form>
@@ -252,15 +256,15 @@
 				*/
 			});
 			editor.on("change", function() {
-				<?php if(isset($paste_language)) { echo "positionOptionsPanel(true);"; } else { echo "positionOptionsPanel();"; } ?>
+				positionPanels();
 			});
 			$(document).ready(function() { 
 				resizeEditor(); 
-				<?php if(isset($paste_language)) { echo "positionOptionsPanel(true);"; } else { echo "positionOptionsPanel();"; } ?>
+				positionPanels();
 			});
 			$(window).resize(function() { 
 				resizeEditor(); 
-				<?php if(isset($paste_language)) { echo "positionOptionsPanel(true);"; } else { echo "positionOptionsPanel();"; } ?>
+				positionPanels();
 			});
 			$("#languages").change(function() {
 				if($(this).find(":selected").data("modecomplex")) {
