@@ -66,7 +66,7 @@ body {
 }
 
 .options-panel-row {
-	border-bottom: 2px solid #CCCCCC;
+	border-bottom: 1px dotted #CCCCCC;
 	padding: 5px;
 }
 
