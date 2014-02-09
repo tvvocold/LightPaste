@@ -13,6 +13,11 @@
 		}
 		$paste_data = db::getPaste($_GET["id"]);
 		if(gettype($paste_data) == "array") {
+			if(isset($_GET["mode"]) and $_GET["mode"] == "raw") {
+				header("Content-Type: text/plain; charset=utf-8");
+				echo $paste_data["code"];
+				exit();
+			}
 			$read_only = "true";
 			$paste_code = htmlspecialchars($paste_data["code"]);
 			$paste_language = $paste_data["language"];
@@ -82,7 +87,10 @@
 				<a style="margin-left: 5px; font-size: 14px;" href="#" onclick="toggleCenterPanel('about-panel');">About</a>
 			</div>
 		</div>
-		<div id="toolbar"><a href="?id=<?php if(isset($_GET["id"])) { echo $_GET["id"]; } ?>&mode=copy"><img src="static/images/icons/silk/page_paste.png"></a></div>
+		<div id="toolbar">
+			<a href="?id=<?php if(isset($_GET["id"])) { echo $_GET["id"]; } ?>&mode=copy"><img src="static/images/icons/silk/page_paste.png"></a>
+			<a href="?id=<?php if(isset($_GET["id"])) { echo $_GET["id"]; } ?>&mode=raw"><img src="static/images/icons/silk/page_white.png"></a>
+		</div>
 		<a href="#" id="optionspanel-toggle-button" onclick="toggleOptionsPanel();">Show Menu</a>
 		<div id="options-panel">
 			<?php if(isset($paste_data) and $paste_data) { ?>
