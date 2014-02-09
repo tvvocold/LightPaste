@@ -154,6 +154,9 @@
 					}
 				?>
 			</select>
+			<br/>
+			<input type="checkbox" id="pasteprivate_checkbox" name="private" form="paste_form" >
+			<label for="pasteprivate_checkbox">Private</label>
 			<input type="submit" value="Post" form="paste_form" />
 		</div>
 		<div class="options-panel" id="editor-options">

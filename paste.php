@@ -14,7 +14,12 @@
 			header("location: .");
 			exit();
 		}
-		$result = db::insertPaste($_POST["code"], $language);
+		if(isset($_POST["private"])) {
+			$private = 1;
+		} else {
+			$private = 0;
+		}
+		$result = db::insertPaste($_POST["code"], $language, $private);
 		if(gettype($result) == "string") {
 			header("location: .?id=$result");
 		} else {

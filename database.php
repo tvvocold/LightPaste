@@ -42,7 +42,7 @@
 			func: insertPaste($paste_code, $paste_language)
 			desc: inserts a new paste into the database
 		=======================================================*/
-		static function insertPaste($paste_code, $paste_language)
+		static function insertPaste($paste_code, $paste_language, $paste_private)
 		{
 			// create an access id for the new paste
 			$id_query_rows = self::query("SELECT MAX(id) as id FROM pastes;");
@@ -53,12 +53,14 @@
 			$paste_sha1 = sha1($paste_code);
 			// insert the new paste into the database using a prepared statement
 			self::query("INSERT INTO pastes(access_id, code, 
-			time, language, md5, sha1) VALUES(?, ?, UNIX_TIMESTAMP(), ?, ?, ?)", array(
+			time, language, md5, sha1, private) 
+			VALUES(?, ?, UNIX_TIMESTAMP(), ?, ?, ?, ?)", array(
 					$paste_access_id, 
 					$paste_code, 
 					$paste_language,
 					$paste_md5,
-					$paste_sha1
+					$paste_sha1,
+					$paste_private
 				)
 			);
 			return $paste_access_id;
