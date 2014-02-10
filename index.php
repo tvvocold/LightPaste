@@ -60,6 +60,41 @@
 		}
 	}
 	
+	if(isset($_COOKIE["editor_line_numbers"])) {
+		if($_COOKIE["editor_line_numbers"] == 1) {
+			$editor_line_numbers = true;
+		}
+	} else {
+		$editor_line_numbers = true;
+	} 
+	if(isset($_COOKIE["editor_line_wrapping"])) {
+		if($_COOKIE["editor_line_wrapping"] == 1) {
+			$editor_line_wrapping = true;
+		}
+	} else {
+		$editor_line_wrapping = false;
+	}
+	if(isset($_COOKIE["editor_smart_indent"])) {
+		if($_COOKIE["editor_smart_indent"] == 1) {
+			$editor_smart_indent = true;
+		}
+	} else {
+		$editor_smart_indent = true;
+	}
+	if(isset($_COOKIE["editor_tab_size"])) {
+		$editor_tab_size = intval($_COOKIE["editor_tab_size"]);
+	} else {
+		$editor_tab_size = 4;
+	}
+	if(isset($_COOKIE["editor_cursor_blinkrate"])) {
+		$editor_cursor_blinkrate = $_COOKIE["editor_cursor_blinkrate"];
+		if($editor_cursor_blinkrate > 1000) {
+			$editor_cursor_blinkrate = 1000;
+		}
+	} else {
+		$editor_cursor_blinkrate = 530;
+	}
+	
 ?>
 
 <!doctype html>
@@ -164,21 +199,30 @@
 				Editor Options
 			</div>
 			<div class="options-panel-row" style="border-bottom: none;">
-				<input type="checkbox" id="linenumbers_checkbox" >
+				<input type="checkbox" <?php if(isset($editor_line_numbers)) { echo "checked=\"checked\""; } ?> id="linenumbers_checkbox" >
 				<label for="linenumbers_checkbox">Line numbers</label>
 				<br/>
-				<input type="checkbox" id="wordwrap_checkbox" >
+				<input type="checkbox" <?php if(isset($editor_line_wrapping)) { echo "checked=\"checked\""; } ?> id="wordwrap_checkbox" >
 				<label for="wordwrap_checkbox">Word wrap</label>
 				<br/>
-				<input type="checkbox" id="smartindent_checkbox" style="margin-bottom: 10px;">
+				<input type="checkbox" <?php if(isset($editor_smart_indent)) { echo "checked=\"checked\""; } ?> id="smartindent_checkbox" style="margin-bottom: 10px;">
 				<label for="smartindent_checkbox">Smart indent</label>
 				<br/>
 				<label for="tabsize_selector">Tab size</label>
-				<select id="tabsize_selector" style="width: 135px;">
-					<?php for($i=1; $i < 31; $i++) { echo "<option value=\"$i\">$i</option>"; } ?>
+				<select id="tabsize_selector" style="width: 147px;">
+					<?php 
+						for($i=1; $i < 31; $i++) {
+							if($editor_tab_size == $i) {
+								echo "<option value=\"$i\" selected=\"selected\">$i</option>";
+							} else {
+								echo "<option value=\"$i\">$i</option>";
+							}
+						}
+					?>
 				</select>
+				<br/>
 				<label for="blinkrate_editor">Cursor blink rate (ms)</label>
-				<input type="text" id="blinkrate_editor" style="width: 68px; margin-left: 5px;">
+				<input type="text" id="blinkrate_editor" value="<?php echo $editor_cursor_blinkrate; ?>" style="width: 68px; margin-left: 5px;">
 			</div>
 		</div>
 		<?php } ?>
@@ -245,8 +289,11 @@
 				theme: "lightpaste",
 				mode: <?php if(isset($language_mode_complex)) { echo $language_mode_complex; } else { echo '"' . $language_mode . '"'; } ?>,
 				matchBrackets: true,
-				gutter: true,
-				lineNumbers: true,
+				lineNumbers: <?php if(isset($editor_line_numbers)) { echo "true"; } else { echo "false"; } ?>,
+				lineWrapping: <?php if(isset($editor_line_wrapping)) { echo "true"; } else { echo "false"; } ?>,
+				smartIndent: <?php if(isset($editor_smart_indent)) { echo "true"; } else { echo "false"; } ?>,
+				tabSize: <?php if(isset($editor_tab_size)) { echo $editor_tab_size; } else { echo 4; } ?>,
+				cursorBlinkRate: <?php if(isset($editor_cursor_blinkrate)) { echo $editor_cursor_blinkrate; } else { echo "530"; } ?>,
 				readOnly: <?php echo $read_only; ?>,
 				indentUnit: 4,
 				/*
@@ -281,30 +328,39 @@
 			$("#linenumbers_checkbox").change(function() {
 				if($(this).is(":checked")) {
 					editor.setOption("lineNumbers", true);
+					document.cookie = "editor_line_numbers=1; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
 				} else {
 					editor.setOption("lineNumbers", false);
+					document.cookie = "editor_line_numbers=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
 				}
 			});
 			$("#wordwrap_checkbox").change(function() {
 				if($(this).is(":checked")) {
 					editor.setOption("lineWrapping", true);
+					document.cookie = "editor_line_wrapping=1; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
 				} else {
 					editor.setOption("lineWrapping", false);
+					document.cookie = "editor_line_wrapping=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
 				}
 			});
 			$("#smartindent_checkbox").change(function() {
 				if($(this).is(":checked")) {
 					editor.setOption("smartIndent", true);
+					document.cookie = "editor_smart_indent=1; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
 				} else {
 					editor.setOption("smartIndent", false);
+					document.cookie = "editor_smart_indent=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
 				}
 			});
 			$("#tabsize_selector").change(function() {
-				editor.setOption("tabSize", parseInt($(this).find(":selected").text()));
+				var tabsize = $(this).find(":selected").text();
+				editor.setOption("tabSize", parseInt(tabsize));
+				document.cookie = "editor_tab_size=" + tabsize + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
 			});
 			$("#blinkrate_editor").keyup(function() {
-				console.log(parseInt($(this).val()));
-				editor.setOption("cursorBlinkRate", parseInt($(this).val()));
+				var blinkrate = $(this).val();
+				editor.setOption("cursorBlinkRate", parseInt(blinkrate));
+				document.cookie = "editor_cursor_blinkrate=" + blinkrate + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
 			});
 			<?php
 				if(isset($_SESSION["lightpaste_mode"])) {
