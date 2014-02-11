@@ -160,6 +160,14 @@
 			"mode_js_files" => array(
 				"coffeescript/coffeescript.js"
 			)
+		),
+		"apl" => array(
+			"name" => "APL",
+			"website" => "http://en.wikipedia.org/wiki/APL_%28programming_language%29",
+			"mode" => "text/apl",
+			"mode_js_files" => array(
+				"apl/apl.js"
+			)
 		)
 	);
 
