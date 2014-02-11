@@ -58,7 +58,7 @@
 				$f3->set("language_name", $language_data["name"]);
 				$f3->set("editor_mode_files", $language_data["mode_js_files"]);
 				if(isset($language_data["mode_complex"])) {
-					$f3->set("editor_mode", $language_data["mode_complex"]);
+					$f3->set("editor_mode", str_replace('"', "'", $language_data["mode_complex"]));
 				} else {
 					$f3->set("editor_mode", "'$language_data[mode]'");
 				}
