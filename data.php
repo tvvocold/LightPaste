@@ -217,6 +217,14 @@
 			"mode_js_files" => array(
 				"ecl/ecl.js"
 			)
+		),
+		"eiffel" => array(
+			"name" => "Eiffel",
+			"website" => "http://en.wikipedia.org/wiki/Eiffel_%28programming_language%29",
+			"mode" => "text/x-eiffel",
+			"mode_js_files" => array(
+				"eiffel/eiffel.js"
+			)
 		)
 	);
 
