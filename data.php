@@ -257,6 +257,14 @@
 			"mode_js_files" => array(
 				"groovy/groovy.js"
 			)
+		),
+		"haskell" => array(
+			"name" => "Haskell",
+			"website" => "http://www.haskell.org/",
+			"mode" => "text/x-haskell",
+			"mode_js_files" => array(
+				"haskell/haskell.js"
+			)
 		)
 	);
 
