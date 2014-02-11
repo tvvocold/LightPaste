@@ -233,6 +233,14 @@
 			"mode_js_files" => array(
 				"erlang/erlang.js"
 			)
+		),
+		"fortran" => array(
+			"name" => "Fortran",
+			"website" => "http://en.wikipedia.org/wiki/Fortran",
+			"mode" => "text/x-fortran",
+			"mode_js_files" => array(
+				"fortran/fortran.js"
+			)
 		)
 	);
 
