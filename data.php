@@ -225,6 +225,14 @@
 			"mode_js_files" => array(
 				"eiffel/eiffel.js"
 			)
+		),
+		"erlang" => array(
+			"name" => "Erlang",
+			"website" => "http://www.erlang.org/",
+			"mode" => "text/x-erlang",
+			"mode_js_files" => array(
+				"erlang/erlang.js"
+			)
 		)
 	);
 
