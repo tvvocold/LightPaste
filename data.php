@@ -176,6 +176,14 @@
 			"mode_js_files" => array(
 				"clojure/clojure.js"
 			)
+		),
+		"cobol" => array(
+			"name" => "COBOL",
+			"website" => "http://en.wikipedia.org/wiki/COBOL",
+			"mode" => "text/x-cobol",
+			"mode_js_files" => array(
+				"cobol/cobol.js"
+			)
 		)
 	);
 
