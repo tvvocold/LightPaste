@@ -249,6 +249,14 @@
 			"mode_js_files" => array(
 				"mllike/mllike.js"
 			)
+		),
+		"groovy" => array(
+			"name" => "Groovy",
+			"website" => "http://groovy.codehaus.org/",
+			"mode" => "text/x-groovy",
+			"mode_js_files" => array(
+				"groovy/groovy.js"
+			)
 		)
 	);
 
