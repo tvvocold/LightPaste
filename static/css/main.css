@@ -53,7 +53,14 @@ body {
 	border-bottom: 1px dotted #CCCCCC;
 	padding: 5px;
 	padding-top: 0px;
-	margin-bottom: 5px;
+	margin-bottom: 0px;
+	position: relative;
+}
+
+.options-panel-header a {
+	position: absolute;
+	top: 0px;
+	right: 0px;
 }
 
 .options-panel select {
@@ -79,6 +86,20 @@ body {
 	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
 }
 
+.data-panel-header {
+	font-weight: bold;
+	border-bottom: 1px dotted #CCCCCC;
+	padding: 5px;
+	padding-top: 0px;
+	position: relative;
+}
+
+.data-panel-header a {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
 .data-panel a {
 	color: #000000;
 	text-decoration: none;
@@ -99,7 +120,6 @@ body {
 	width: 70px;
 	display: inline-block;
 	vertical-align: middle;
-	font-weight: bold;
 }
 
 .data-panel-value {

@@ -1,0 +1,11 @@
+editor.on("change", function() {
+	positionPanels();
+});
+$(document).ready(function() { 
+	resizeEditor(); 
+	positionPanels();
+});
+$(window).resize(function() { 
+	resizeEditor(); 
+	positionPanels();
+});

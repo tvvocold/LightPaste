@@ -14,38 +14,45 @@ function resizeEditor()
 
 function positionPanels()
 {
+	var toolbar = $("#toolbar");
 	var paste_options_panel = $("#paste-options");
-	var top_margin = 10;
-	if(paste_options_panel.length > 0) {
-		var editor_options_panel = $("#editor-options");
-		paste_options_panel.css("top", ($("#header").height() + top_margin) + "px");
-		top_margin = top_margin + paste_options_panel.height() + 18;
-		editor_options_panel.css("top", ($("#header").height() + top_margin) + "px");
-		if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
-			paste_options_panel.css("right", "25px");
-			editor_options_panel.css("right", "25px");
-		} else {
-			paste_options_panel.css("right", "10px");
-			editor_options_panel.css("right", "10px");
-		}
-	} else {
-		var toolbar = $("#toolbar");
-		toolbar.show();
-		toolbar.css("top", ($("#header").height() + top_margin) + "px");
-		toolbar.css("right", "24px");
-		top_margin = 48;
-		var paste_info_panel = $("#paste-info");
-		var button = $("#pasteinfo-toggle-button");
-		paste_info_panel.css("top", ($("#header").height() + top_margin) + "px");
-		button.css("top", ($("#header").height() + top_margin) + "px")
+	var editor_options_panel = $("#editor-options");
+	var paste_info_panel = $("#paste-info");
+	var top_margin = $("#header").height() + 10;
+	if(toolbar.length > 0) {
+		toolbar.css("top", top_margin + "px");
+		top_margin = top_margin + toolbar.height() + 18;
 		if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
 			toolbar.css("right", "25px");
-			paste_info_panel.css("right", "25px");
-			button.css("right", "25px");
 		} else {
 			toolbar.css("right", "10px");
+		}
+	}
+	if(paste_options_panel.length > 0) {
+		paste_options_panel.css("top", top_margin + "px");
+		top_margin = top_margin + paste_options_panel.height() + 18;
+		if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
+			paste_options_panel.css("right", "25px");
+		} else {
+			paste_options_panel.css("right", "10px");
+		}
+	}
+	if(paste_info_panel.length > 0) {
+		paste_info_panel.css("top", + top_margin + "px");
+		top_margin = top_margin + paste_info_panel.height() + 18;
+		if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
+			paste_info_panel.css("right", "25px");
+		} else {
 			paste_info_panel.css("right", "10px");
-			button.css("right", "10px");
+		}
+	}
+	if(editor_options_panel.length > 0) {
+		editor_options_panel.css("top", + top_margin + "px");
+		top_margin = top_margin + editor_options_panel.height() + 18;
+		if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
+			editor_options_panel.css("right", "25px");
+		} else {
+			editor_options_panel.css("right", "10px");
 		}
 	}
 }
@@ -100,15 +107,17 @@ function toggleLanguage(files, mode, mode_complex)
 	}
 }
 
-function togglePasteInfo()
+function slidePanel(panel_id, button_id, func)
 {
-	var panel = $("#paste-info");
-	var button = $("#pasteinfo-toggle-button");
-	if(panel.is(":hidden")) {
-		panel.show();
-		button.hide();
+	var panel = $("#" + panel_id);
+	var button = $("#" + button_id);
+	if(panel.is(":visible")) {
+		button.html("<img src=\"static/images/icons/expand.png\">");
 	} else {
-		panel.hide();
-		button.show();
+		button.html("<img src=\"static/images/icons/collapse.png\">");
 	}
+	panel.slideToggle({
+		duration: 140,
+		progress: func
+	});
 }

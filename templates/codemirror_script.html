@@ -1,0 +1,23 @@
+var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+	tabMode: "indent",
+	theme: "lightpaste",
+	mode: {{@editor_mode}},
+	matchBrackets: true,
+	lineNumbers: {{@editor_line_numbers}},
+	lineWrapping: {{@editor_line_wrapping}},
+	smartIndent: {{@editor_smart_indent}},
+	tabSize: {{@editor_tab_size}},
+	cursorBlinkRate: {{@editor_cursor_blinkrate}},
+	readOnly: {{@editor_readonly}},
+	indentUnit: 4,
+	/*
+	extraKeys: {
+		"F11": function(cm) {
+			ToggleEditorFullscreen();
+		},
+		"Esc": function(cm) {
+			ToggleEditorFullscreen();
+		}
+	}
+	*/
+});

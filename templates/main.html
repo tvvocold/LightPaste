@@ -1,0 +1,27 @@
+<include href="templates/doctype.html" />
+<html>
+	<head>
+		<include href="templates/head.html" />
+	</head>
+	<body>
+		<include href="templates/header.html" />
+		<include href="templates/paste_options_panel.html" />
+		<include href="templates/editor_options_panel.html" />
+		<form action="./new" method="post" id="paste_form">
+			<check if="isset({{@SESSION.copy_text}})">
+				<true>
+					<textarea id="code" name="code">{{@SESSION.copy_text}}</textarea>
+				</true>
+				<false>
+					<textarea id="code" name="code"></textarea>
+				</false>
+			</check>
+		</form>
+		<script type="text/javascript">
+			<include href="templates/codemirror_script.html" />
+			<include href="templates/editor_options_scripts.html" />
+			<include href="templates/main_scripts.html" />
+			<include href="templates/language_selector_script.html" />
+		</script>
+	</body>
+</html>

@@ -1,380 +1,145 @@
 <?php
 
-	require("core.php");
+	// load f3
+	$f3 = require("lib/base.php");
+	$f3->set("DEBUG", 1);
 	
-	$language_mode = "none";
-	$language_website = false;
-	$paste_code = "";
-	$read_only = "false";
+	require("data.php");
+	require("classes/util.php");
 	
-	if(isset($_GET["id"])) {
-		if(!isset($_GET["mode"])) {
-			db::countView($_GET["id"]);
+	$f3->route("GET /",
+		function($f3)
+		{
+			global $DATA_LANGUAGES;
+			$langs = array();
+			ksort($DATA_LANGUAGES);
+			foreach($DATA_LANGUAGES as $key=>$value) {
+				$data_files = "";
+				foreach($value["mode_js_files"] as $key2=>$file) {
+					if($key2 != count($value["mode_js_files"]) - 1) {
+						$data_files .= "$file;";
+					} else {
+						$data_files .= "$file";
+					}
+				}
+				$data = array();
+				$data["files"] = $data_files;
+				$data["mode"] = $value["mode"];
+				$data["name"] = $value["name"];
+				if(isset($value["mode_complex"])) {
+					$data["mode_complex"] = $value["mode_complex"];
+				}
+				$langs[$key] = $data;
+			}
+			util::getEditorSettings($f3);
+			$f3->set("editor_mode", "'none'");
+			$f3->set("editor_readonly", "false");
+			$f3->set("page_title", "Light Paste");
+			$f3->set("languages", $langs);
+			$template = new Template;
+			echo $template->render("templates/main.html");
+			$f3->set("SESSION.copy_text", NULL);
 		}
-		$paste_data = db::getPaste($_GET["id"]);
-		if(gettype($paste_data) == "array") {
-			if(isset($_GET["mode"]) and $_GET["mode"] == "raw") {
-				header("Content-Type: text/plain; charset=utf-8");
-				echo $paste_data["code"];
-				exit();
-			}
-			$read_only = "true";
-			$paste_code = htmlspecialchars($paste_data["code"]);
-			$paste_language = $paste_data["language"];
-			$paste_time = date("M d, Y", $paste_data["time"]);
-			$paste_views = number_format($paste_data["views"]);
-			$paste_md5 = $paste_data["md5"];
-			$paste_sha1 = $paste_data["sha1"];
-			$paste_size = util::formatDataSize(strlen($paste_code));
-			if($paste_language != "") {
-				$language_data = $DATA_LANGUAGES[$paste_language];
-				$language_name = $language_data["name"];
-				$language_website = $language_data["website"];
-				$language_files = $language_data["mode_js_files"];
-				$language_mode = $language_data["mode"];
-				if(isset($language_data["mode_complex"])) {
-					$language_mode_complex = $language_data["mode_complex"];
-				}
-			} else {
-				$language_name = "None";
-			}
-			if(isset($_GET["mode"]) and $_GET["mode"] == "copy") {
-				$_SESSION["lightpaste_code"] = $paste_code;
-				if($language_mode != "none") {
-					$_SESSION["lightpaste_mode"] = $language_mode;
-					if(isset($language_files)) {
-						$_SESSION["lightpaste_files"] = $language_files;
-					}
-					if(isset($language_mode_complex)) {
-						$_SESSION["lightpaste_mode_complex"] = $language_mode_complex;
-					}
-				}
+	);
+	
+	$f3->route("GET /@id",
+		function($f3)
+		{
+			global $DATA_LANGUAGES;
+			$result = util::getPaste($f3->get("PARAMS.id"));
+			if(count($result) == 0) {
 				header("location: .");
 				exit();
 			}
+			util::getEditorSettings($f3);
+			if($result[0]["language"] != "") {
+				$language_data = $DATA_LANGUAGES[$result[0]["language"]];
+				$f3->set("language_website", $language_data["website"]);
+				$f3->set("language_name", $language_data["name"]);
+				$f3->set("editor_mode_files", $language_data["mode_js_files"]);
+				if(isset($language_data["mode_complex"])) {
+					$f3->set("editor_mode", $language_data["mode_complex"]);
+				} else {
+					$f3->set("editor_mode", "'$language_data[mode]'");
+				}
+			} else {
+				$f3->set("language_name", "None");
+				$f3->set("editor_mode", "'none'");
+			}
+			$f3->set("paste_time", date("M d, Y", $result[0]["time"]));
+			$f3->set("paste_views", number_format($result[0]["views"]));
+			$f3->set("paste_size", util::formatDataSize(strlen($result[0]["code"])));
+			$f3->set("paste_md5", $result[0]["md5"]);
+			$f3->set("paste_sha1", $result[0]["sha1"]);
+			$f3->set("editor_readonly", "true");
+			$f3->set("editor_text", $result[0]["code"]);
+			$f3->set("page_title", "Light Paste");
+			$f3->set("paste_id", $result[0]["access_id"]);
+			$template = new Template;
+			echo $template->render("templates/paste.html");
 		}
-	} else {
-		if(isset($_SESSION["lightpaste_code"])) {
-			$paste_code = $_SESSION["lightpaste_code"];
-			unset($_SESSION["lightpaste_code"]);
-		}
-	}
+	);
 	
-	if(isset($_COOKIE["editor_line_numbers"])) {
-		if($_COOKIE["editor_line_numbers"] == 1) {
-			$editor_line_numbers = true;
+	$f3->route("GET /@id/@mode",
+		function($f3)
+		{
+			$result = util::getPaste($f3->get("PARAMS.id"));
+			if(count($result) == 0) {
+				header("location: .");
+				exit();
+			}
+			if($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "raw") {
+				header("Content-Type: text/plain; charset=utf-8");
+				echo $result[0]["code"];
+				exit();
+			} elseif($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "download") {
+				$file = tempnam("tempfiles/", "txt");
+				$handle = fopen($file, "w");
+				fwrite($handle, $result[0]["code"]);
+				fclose($handle);
+				header("Content-Type: text/plain");
+				header("Content-Length: " . filesize($file));
+				header("Content-Disposition: attachment; filename=\"paste.txt\"");
+				readfile($file);
+				unlink($file);
+				exit();
+			} elseif($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "copy") {
+				$f3->set("SESSION.copy_text", $result[0]["code"]);
+				header("location: ../");
+				exit();
+			} else {
+				$f3->error(404);
+			}
 		}
-	} else {
-		$editor_line_numbers = true;
-	} 
-	if(isset($_COOKIE["editor_line_wrapping"])) {
-		if($_COOKIE["editor_line_wrapping"] == 1) {
-			$editor_line_wrapping = true;
+	);
+	
+	$f3->route("POST /new",
+		function($f3)
+		{
+			global $DATA_LANGUAGES;
+			if($f3->get("POST.code")) {
+				$code = $f3->get("POST.code");
+				$language = "";
+				if($f3->get("POST.language")) {
+					if(array_key_exists($f3->get("POST.language"), $DATA_LANGUAGES)) {
+						$language = $f3->get("POST.language");
+					}
+				}
+				if($f3->get("POST.private")) {
+					$private = 1;
+				} else {
+					$private = 0;
+				}
+				$result = util::insertPaste($code, $language, $private);
+				if(gettype($result) == "string") {
+					header("location: ./$result");
+				} else {
+					header("location: .");
+				}
+			}
 		}
-	} else {
-		$editor_line_wrapping = false;
-	}
-	if(isset($_COOKIE["editor_smart_indent"])) {
-		if($_COOKIE["editor_smart_indent"] == 1) {
-			$editor_smart_indent = true;
-		}
-	} else {
-		$editor_smart_indent = true;
-	}
-	if(isset($_COOKIE["editor_tab_size"])) {
-		$editor_tab_size = intval($_COOKIE["editor_tab_size"]);
-	} else {
-		$editor_tab_size = 4;
-	}
-	if(isset($_COOKIE["editor_cursor_blinkrate"])) {
-		$editor_cursor_blinkrate = $_COOKIE["editor_cursor_blinkrate"];
-		if($editor_cursor_blinkrate > 1000) {
-			$editor_cursor_blinkrate = 1000;
-		}
-	} else {
-		$editor_cursor_blinkrate = 530;
-	}
+	);
+	
+	$f3->run();
 	
 ?>
-
-<!doctype html>
-<html>
-	<head>
-		<title>Light Paste</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="StyleSheet" href="static/css/main.css" />
-		<link rel="StyleSheet" href="static/css/editor.css" />
-		<link rel="StyleSheet" href="static/js/codemirror-3.21/lib/codemirror.css" />
-		<script type="text/javascript" src="static/js/codemirror-3.21/lib/codemirror.js"></script>
-		<script type="text/javascript" src="static/js/codemirror-3.21/addon/edit/matchbrackets.js"></script>
-		<?php if(isset($language_files)) {
-			foreach($language_files as $value) {
-		?>
-		<script type="text/javascript" src="static/js/codemirror-3.21/mode/<?php echo $value; ?>"></script>
-		<?php } } ?>
-		<script type="text/javascript" src="static/js/main.js"></script>
-		<script type="text/javascript" src="static/js/jquery-1.10.2.min.js"></script>
-	</head>
-	<body>
-		<div id="header">
-			<div id="header-content">
-				<a href=".">Light Paste</a>
-				<a style="margin-left: 5px; font-size: 14px;" href="#" onclick="toggleCenterPanel('about-panel');">About</a>
-			</div>
-		</div>
-		<?php if(isset($paste_language)) { ?>
-		<div id="toolbar">
-			<a href="?id=<?php echo $_GET["id"]; ?>&mode=copy"><img src="static/images/icons/silk/page_paste.png"></a>
-			<a href="?id=<?php echo $_GET["id"]; ?>&mode=raw"><img src="static/images/icons/silk/page_white.png"></a>
-		</div>
-		<?php }
-			if(isset($paste_data) and $paste_data) { ?>
-		<a href="#" id="pasteinfo-toggle-button" onclick="togglePasteInfo();">Show Menu</a>
-		<div class="data-panel" id="paste-info">
-			<div class="data-panel-row">
-				<span class="data-panel-key">Language</span>
-				<?php if($language_website) { ?>
-				<span class="data-panel-value"><a href="<?php echo $language_website; ?>"><?php echo $language_name; ?></a></span>
-				<?php } else { ?>
-				<span class="data-panel-value"><?php echo $language_name; ?></span>
-				<?php } ?>
-			</div>
-			<div class="data-panel-row">
-				<span class="data-panel-key">Posted</span> 
-				<span class="data-panel-value"><?php echo $paste_time; ?></span>
-			</div>
-			<div class="data-panel-row">
-				<span class="data-panel-key">Views</span> 
-				<span class="data-panel-value"><?php echo $paste_views; ?></span>
-			</div>
-			<div class="data-panel-row">
-				<span class="data-panel-key">Size</span> 
-				<span class="data-panel-value"><?php echo $paste_size; ?></span>
-			</div>
-			<div class="data-panel-row">
-				<span class="data-panel-key">MD5</span> 
-				<span class="data-panel-value"><input type="text" readonly="readonly" value="<?php echo $paste_md5; ?>"></span>
-			</div>
-			<div class="data-panel-row">
-				<span class="data-panel-key">SHA1</span> 
-				<span class="data-panel-value"><input type="text" readonly="readonly" value="<?php echo $paste_sha1; ?>"></span>
-			</div>
-			<div class="data-panel-row" style="border-bottom: none; text-align: center;">
-				<a href="#" onclick="togglePasteInfo();">Hide Menu</a>
-			</div>
-		</div>
-		<?php } else { ?>
-		<div class="options-panel" id="paste-options">
-			<div class="options-panel-header">
-				Paste Options
-			</div>
-			<label for="languages">Language</label>
-			<select id="languages" name="language" form="paste_form" style="width: 136px;">
-				<option value="none">None</option>
-				<?php
-					foreach($DATA_LANGUAGES as $key=>$value) {
-						$data_files = "";
-						foreach($value["mode_js_files"] as $key2=>$file) {
-							if($key2 != count($value["mode_js_files"]) - 1) {
-								$data_files .= "$file;";
-							} else {
-								$data_files .= "$file";
-							}
-						}
-						if(isset($value["mode_complex"])) {
-							echo "<option value=\"$key\" data-files=\"$data_files\" data-mode=\"$value[mode]\" data-modecomplex=$value[mode_complex]>$value[name]</option>";
-						}  else {
-							echo "<option value=\"$key\" data-files=\"$data_files\" data-mode=\"$value[mode]\">$value[name]</option>";
-						}
-					}
-				?>
-			</select>
-			<br/>
-			<input type="checkbox" id="pasteprivate_checkbox" name="private" form="paste_form" >
-			<label for="pasteprivate_checkbox">Private</label>
-			<input type="submit" value="Post" form="paste_form" />
-		</div>
-		<div class="options-panel" id="editor-options">
-			<div class="options-panel-header">
-				Editor Options
-			</div>
-			<div class="options-panel-row" style="border-bottom: none;">
-				<input type="checkbox" <?php if(isset($editor_line_numbers)) { echo "checked=\"checked\""; } ?> id="linenumbers_checkbox" >
-				<label for="linenumbers_checkbox">Line numbers</label>
-				<br/>
-				<input type="checkbox" <?php if(isset($editor_line_wrapping)) { echo "checked=\"checked\""; } ?> id="wordwrap_checkbox" >
-				<label for="wordwrap_checkbox">Word wrap</label>
-				<br/>
-				<input type="checkbox" <?php if(isset($editor_smart_indent)) { echo "checked=\"checked\""; } ?> id="smartindent_checkbox" style="margin-bottom: 10px;">
-				<label for="smartindent_checkbox">Smart indent</label>
-				<br/>
-				<label for="tabsize_selector">Tab size</label>
-				<select id="tabsize_selector" style="width: 147px;">
-					<?php 
-						for($i=1; $i < 31; $i++) {
-							if($editor_tab_size == $i) {
-								echo "<option value=\"$i\" selected=\"selected\">$i</option>";
-							} else {
-								echo "<option value=\"$i\">$i</option>";
-							}
-						}
-					?>
-				</select>
-				<br/>
-				<label for="blinkrate_editor">Cursor blink rate (ms)</label>
-				<input type="text" id="blinkrate_editor" value="<?php echo $editor_cursor_blinkrate; ?>" style="width: 68px; margin-left: 5px;">
-			</div>
-		</div>
-		<?php } ?>
-		<form action="paste.php" method="post" id="paste_form">
-			<textarea id="code" name="code"><?php echo $paste_code; ?></textarea>
-		</form>
-		<div id="background"></div>
-		<div class="panel" id="about-panel">
-			<div class="panel-header" style="color: #000000;">
-				Light Paste - Version <?php echo $CONFIG_VERSION; ?>
-			</div>
-			<div class="panel-content">
-				<div style="background: #f2f2f2; padding: 5px; margin: 10px; margin-bottom: 0px; font-size: 14px;">
-					<strong>zlib/libpng License</strong><br/>
-					Copyright (c) 2014 Kenny Shields <br/> <br/>
-
-					This software is provided 'as-is', without any express or implied warranty. 
-					In no event will the authors be held liable for any damages arising from the use of this software.
-					
-					<br/> <br/>
-
-					Permission is granted to anyone to use this software for any purpose, 
-					including commercial applications, and to alter it and redistribute it freely, 
-					subject to the following restrictions:
-					
-					<ol>
-						<li>The origin of this software must not be misrepresented; 
-						you must not claim that you wrote the original software. 
-						If you use this software in a product, an acknowledgment in 
-						the product documentation would be appreciated but is not required.</li>
-						<br/>
-						<li>Altered source versions must be plainly marked as such, and must 
-						not be misrepresented as being the original software.</li>
-						<br/>
-						<li>This notice may not be removed or altered from any source distribution.</li>
-					</ol>
-				</div>
-			</div>
-			<div class="panel-footer">
-				<a href="#" class="panel-button" onclick="toggleCenterPanel('about-panel');">Close</a>
-			</div>
-		</div>
-		<?php if(isset($_SESSION["lightpaste_error"])) { ?>
-		<div class="panel" id="error-panel">
-			<div class="panel-header" style="background: #ff0000;">
-				Error
-			</div>
-			<div class="panel-content">
-				<?php echo $_SESSION["lightpaste_error"]; unset($_SESSION["lightpaste_error"]); ?>
-			</div>
-			<div class="panel-footer">
-				<a href="#" class="panel-button" onclick="toggleCenterPanel('error-panel');">Close</a>
-			</div>
-		</div>
-		<script style="text/javascript">
-			$(document).ready(function() {
-				toggleCenterPanel("error-panel");
-			});
-		</script>
-		<?php } ?>
-		<script type="text/javascript">
-			var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-				tabMode: "indent",
-				theme: "lightpaste",
-				mode: <?php if(isset($language_mode_complex)) { echo $language_mode_complex; } else { echo '"' . $language_mode . '"'; } ?>,
-				matchBrackets: true,
-				lineNumbers: <?php if(isset($editor_line_numbers)) { echo "true"; } else { echo "false"; } ?>,
-				lineWrapping: <?php if(isset($editor_line_wrapping)) { echo "true"; } else { echo "false"; } ?>,
-				smartIndent: <?php if(isset($editor_smart_indent)) { echo "true"; } else { echo "false"; } ?>,
-				tabSize: <?php if(isset($editor_tab_size)) { echo $editor_tab_size; } else { echo 4; } ?>,
-				cursorBlinkRate: <?php if(isset($editor_cursor_blinkrate)) { echo $editor_cursor_blinkrate; } else { echo "530"; } ?>,
-				readOnly: <?php echo $read_only; ?>,
-				indentUnit: 4,
-				/*
-				extraKeys: {
-					"F11": function(cm) {
-						ToggleEditorFullscreen();
-					},
-					"Esc": function(cm) {
-						ToggleEditorFullscreen();
-					}
-				}
-				*/
-			});
-			editor.on("change", function() {
-				positionPanels();
-			});
-			$(document).ready(function() { 
-				resizeEditor(); 
-				positionPanels();
-			});
-			$(window).resize(function() { 
-				resizeEditor(); 
-				positionPanels();
-			});
-			$("#languages").change(function() {
-				if($(this).find(":selected").data("modecomplex")) {
-					toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"), $(this).find(":selected").data("modecomplex"));
-				} else {
-					toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"));
-				}
-			});
-			$("#linenumbers_checkbox").change(function() {
-				if($(this).is(":checked")) {
-					editor.setOption("lineNumbers", true);
-					document.cookie = "editor_line_numbers=1; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
-				} else {
-					editor.setOption("lineNumbers", false);
-					document.cookie = "editor_line_numbers=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
-				}
-			});
-			$("#wordwrap_checkbox").change(function() {
-				if($(this).is(":checked")) {
-					editor.setOption("lineWrapping", true);
-					document.cookie = "editor_line_wrapping=1; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
-				} else {
-					editor.setOption("lineWrapping", false);
-					document.cookie = "editor_line_wrapping=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
-				}
-			});
-			$("#smartindent_checkbox").change(function() {
-				if($(this).is(":checked")) {
-					editor.setOption("smartIndent", true);
-					document.cookie = "editor_smart_indent=1; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
-				} else {
-					editor.setOption("smartIndent", false);
-					document.cookie = "editor_smart_indent=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
-				}
-			});
-			$("#tabsize_selector").change(function() {
-				var tabsize = $(this).find(":selected").text();
-				editor.setOption("tabSize", parseInt(tabsize));
-				document.cookie = "editor_tab_size=" + tabsize + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
-			});
-			$("#blinkrate_editor").keyup(function() {
-				var blinkrate = $(this).val();
-				editor.setOption("cursorBlinkRate", parseInt(blinkrate));
-				document.cookie = "editor_cursor_blinkrate=" + blinkrate + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
-			});
-			<?php
-				if(isset($_SESSION["lightpaste_mode"])) {
-					$files = implode(";", $_SESSION["lightpaste_files"]);
-					if(isset($_SESSION["lightpaste_mode_complex"])) {
-						echo "toggleLanguage('$files', '$_SESSION[lightpaste_mode]', $_SESSION[lightpaste_mode_complex]);";
-						unset($_SESSION["lightpaste_mode_complex"]);
-					} else {
-						echo "toggleLanguage('$files', '$_SESSION[lightpaste_mode]')";
-					}
-					unset($_SESSION["lightpaste_files"]);
-					unset($_SESSION["lightpaste_mode"]);
-				}
-			?>
-		</script>
-	</body>
-</html>

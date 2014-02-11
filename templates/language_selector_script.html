@@ -1,0 +1,7 @@
+$("#languages").change(function() {
+	if($(this).find(":selected").data("modecomplex")) {
+		toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"), $(this).find(":selected").data("modecomplex"));
+	} else {
+		toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"));
+	}
+});

@@ -112,7 +112,7 @@
 				"css/css.js"
 			)
 		),
-		"SQL" => array(
+		"sql" => array(
 			"name" => "SQL",
 			"website" => "http://en.wikipedia.org/wiki/SQL",
 			"mode" => "text/x-sql",
@@ -120,7 +120,7 @@
 				"sql/sql.js"
 			)
 		),
-		"MySQL" => array(
+		"mysql" => array(
 			"name" => "MySQL",
 			"website" => "http://www.mysql.com/",
 			"mode" => "text/x-mysql",

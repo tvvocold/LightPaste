@@ -1,0 +1,22 @@
+<div class="options-panel" id="paste-options">
+	<div class="options-panel-header">
+		Paste Options
+	</div>
+	<label for="languages">Language</label>
+	<select id="languages" name="language" form="paste_form" style="width: 136px; margin-top: 5px;">
+		<option value="none">None</option>
+		<repeat group="{{@languages}}" key="{{@k}}" value="{{@v}}">
+			<check if="{{isset(@v[mode_complex])}}">
+			<true>
+				<option value="{{@k}}" data-files="{{@v[files]}}" data-mode="{{@v[mode]}}" data-modecomplex="{{@v[mode_complex]}}">{{@v[name]}}</option>
+			</true>
+			<false>
+				<option value="{{@k}}" data-files="{{@v[files]}}" data-mode="{{@v[mode]}}">{{@v[name]}}</option>
+			</false>
+		</repeat>
+	</select>
+	<br/>
+	<input type="checkbox" id="pasteprivate_checkbox" name="private" form="paste_form" >
+	<label for="pasteprivate_checkbox">Private</label>
+	<input type="submit" value="Post" form="paste_form" />
+</div>

@@ -1,0 +1,16 @@
+<title>{{@page_title}}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="StyleSheet" href="static/css/main.css" />
+<link rel="StyleSheet" href="static/css/editor.css" />
+<link rel="StyleSheet" href="static/js/codemirror-3.21/lib/codemirror.css" />
+<script type="text/javascript" src="static/js/codemirror-3.21/lib/codemirror.js"></script>
+<script type="text/javascript" src="static/js/codemirror-3.21/addon/edit/matchbrackets.js"></script>
+<script type="text/javascript" src="static/js/main.js"></script>
+<script type="text/javascript" src="static/js/jquery-1.10.2.min.js"></script>
+<check if="isset({{@editor_mode_files}})">
+	<true>
+		<repeat group="{{@editor_mode_files}}" key="{{@k}}" value="{{@v}}">
+			<script type="text/javascript" src="static/js/codemirror-3.21/mode/{{@v}}"></script>
+		</repeat>
+	</true>
+</check>
