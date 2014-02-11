@@ -192,6 +192,14 @@
 			"mode_js_files" => array(
 				"commonlisp/commonlisp.js"
 			)
+		),
+		"d" => array(
+			"name" => "D",
+			"website" => "http://dlang.org/",
+			"mode" => "text/x-d",
+			"mode_js_files" => array(
+				"d/d.js"
+			)
 		)
 	);
 
