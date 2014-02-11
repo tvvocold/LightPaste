@@ -168,6 +168,14 @@
 			"mode_js_files" => array(
 				"apl/apl.js"
 			)
+		),
+		"clojure" => array(
+			"name" => "Clojure",
+			"website" => "http://clojure.org/",
+			"mode" => "text/x-clojure",
+			"mode_js_files" => array(
+				"clojure/clojure.js"
+			)
 		)
 	);
 
