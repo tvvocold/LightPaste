@@ -200,6 +200,15 @@
 			"mode_js_files" => array(
 				"d/d.js"
 			)
+		),
+		"dtd" => array(
+			"name" => "DTD",
+			"website" => "http://en.wikipedia.org/wiki/Document_type_definition",
+			"mode" => "",
+			"mode_complex" => json_encode(array("name" => "dtd", "alignCDATA" => true)),
+			"mode_js_files" => array(
+				"dtd/dtd.js"
+			)
 		)
 	);
 
