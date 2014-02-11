@@ -184,6 +184,14 @@
 			"mode_js_files" => array(
 				"cobol/cobol.js"
 			)
+		),
+		"commonlisp" => array(
+			"name" => "Common Lisp",
+			"website" => "http://common-lisp.net/",
+			"mode" => "text/x-common-lisp",
+			"mode_js_files" => array(
+				"commonlisp/commonlisp.js"
+			)
 		)
 	);
 
