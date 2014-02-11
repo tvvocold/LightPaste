@@ -209,6 +209,14 @@
 			"mode_js_files" => array(
 				"dtd/dtd.js"
 			)
+		),
+		"ecl" => array(
+			"name" => "ECL",
+			"website" => "http://hpccsystems.com/",
+			"mode" => "text/x-ecl",
+			"mode_js_files" => array(
+				"ecl/ecl.js"
+			)
 		)
 	);
 
