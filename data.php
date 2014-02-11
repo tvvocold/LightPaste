@@ -241,6 +241,14 @@
 			"mode_js_files" => array(
 				"fortran/fortran.js"
 			)
+		),
+		"f#" => array(
+			"name" => "F#",
+			"website" => "http://fsharp.org/",
+			"mode" => "text/x-fsharp",
+			"mode_js_files" => array(
+				"mllike/mllike.js"
+			)
 		)
 	);
 
