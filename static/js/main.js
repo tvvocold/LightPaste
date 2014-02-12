@@ -13,7 +13,7 @@ function resizeEditor()
 	editor.setSize((width - side_panel.width()), (height - header_height));
 }
 
-function positionPanels()
+function adjustSidePanel()
 {
 	var side_panel = $("#side-panel");
 	var header = $("#header");
