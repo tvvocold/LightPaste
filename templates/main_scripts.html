@@ -1,11 +1,11 @@
 editor.on("change", function() {
-	resizeSidePanel();
+	adjustSidePanel();
 });
 $(document).ready(function() { 
-	resizeEditor(); 
-	resizeSidePanel();
+	adjustEditor(); 
+	adjustSidePanel();
 });
 $(window).resize(function() { 
-	resizeEditor(); 
-	resizeSidePanel();
+	adjustEditor(); 
+	adjustSidePanel();
 });

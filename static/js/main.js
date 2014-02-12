@@ -1,7 +1,7 @@
 var editor_mode = "";
 var modes_loaded = new Array();
 
-function resizeEditor()
+function adjustEditor()
 {
 	var width = $(window).width();
 	var height = $(window).height();
