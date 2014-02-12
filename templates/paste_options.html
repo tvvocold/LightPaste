@@ -1,9 +1,12 @@
-<div class="options-panel" id="paste-options">
-	<div class="options-panel-header">
-		Paste Options
-	</div>
+<div class="side-panel-header">
+	Paste Options
+	<a href="#" id="paste-options-toggle" onclick="slidePanel('paste-options-content', 'paste-options-toggle', positionPanels);">
+		<img src="static/images/icons/collapse.png">
+	</a>
+</div>
+<div class="side-panel-section" id="paste-options-content">
 	<label for="languages">Language</label>
-	<select id="languages" name="language" form="paste_form" style="width: 136px; margin-top: 5px;">
+	<select id="languages" name="language" form="paste_form">
 		<option value="none">None</option>
 		<repeat group="{{@languages}}" key="{{@k}}" value="{{@v}}">
 			<check if="{{isset(@v[mode_complex])}}">

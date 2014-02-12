@@ -5,9 +5,13 @@
 	</head>
 	<body>
 		<include href="templates/header.html" />
-		<include href="templates/toolbar.html" />
-		<include href="templates/paste_info_panel.html" />
-		<include href="templates/editor_options_panel.html" />
+		<div id="side-panel">
+			<div id="side-panel-content">
+				<include href="templates/paste_toolbar.html" />
+				<include href="templates/paste_info.html" />
+				<include href="templates/editor_options.html" />
+			</div>
+		</div>
 		<textarea id="code" name="code">{{@editor_text}}</textarea>
 		<script type="text/javascript">
 			<include href="templates/codemirror_script.html" />

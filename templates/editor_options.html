@@ -1,0 +1,43 @@
+<div class="side-panel-header">
+	Editor Options
+	<a href="#" id="editor-options-toggle" onclick="slidePanel('editor-options-content', 'editor-options-toggle', positionPanels);">
+		<img src="static/images/icons/collapse.png">
+	</a>
+</div>
+<div class="side-panel-section" id="editor-options-content">
+	<check if="{{ @editor_line_numbers == 'true' }}">
+		<true>
+			<input type="checkbox" checked="checked" id="linenumbers_checkbox" style="margin-top: 5px;">
+		</true>
+		<false>
+			<input type="checkbox" id="linenumbers_checkbox" style="margin-top: 5px;">
+		</false>
+	</check>
+	<label for="linenumbers_checkbox">Line numbers</label>
+	<br/>
+	<check if="{{ @editor_line_wrapping == 'true' }}">
+		<true>
+			<input type="checkbox" checked="checked" id="wordwrap_checkbox" >
+		</true>
+		<false>
+			<input type="checkbox" id="wordwrap_checkbox" >
+		</false>
+	</check>
+	<label for="wordwrap_checkbox">Word wrap</label>
+	<br/>
+	<check if="{{ @editor_smart_indent == 'true' }}">
+		<true>
+			<input type="checkbox" checked="checked" id="smartindent_checkbox" >
+		</true>
+		<false>
+			<input type="checkbox" id="smartindent_checkbox" >
+		</false>
+	</check>
+	<label for="smartindent_checkbox">Smart indent</label>
+	<br/>
+	<label for="tabsize_selector">Tab size</label>
+	<input type="text" id="tabsize_selector" value="{{@editor_tab_size}}" style="width: 68px; margin-left: 80px; margin-bottom: 3px;" />
+	<br/>
+	<label for="blinkrate_editor">Cursor blink rate (ms)</label>
+	<input type="text" id="blinkrate_editor" value="{{@editor_cursor_blinkrate}}" style="width: 68px; margin-left: 5px;">
+</div>

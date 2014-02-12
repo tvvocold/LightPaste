@@ -6,55 +6,20 @@ function resizeEditor()
 	var width = $(window).width();
 	var height = $(window).height();
 	var header_height = $("#header").height();
+	var side_panel = $("#side-panel");
 	$(".CodeMirror").css("position", "absolute");
 	$(".CodeMirror").css("top", header_height + "px");
 	$(".CodeMirror").css("left", "0px");
-	editor.setSize(width, (height - header_height));
+	editor.setSize((width - side_panel.width()), (height - header_height));
 }
 
 function positionPanels()
 {
-	var toolbar = $("#toolbar");
-	var paste_options_panel = $("#paste-options");
-	var editor_options_panel = $("#editor-options");
-	var paste_info_panel = $("#paste-info");
-	var top_margin = $("#header").height() + 10;
-	if(toolbar.length > 0) {
-		toolbar.css("top", top_margin + "px");
-		top_margin = top_margin + toolbar.height() + 18;
-		if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
-			toolbar.css("right", "25px");
-		} else {
-			toolbar.css("right", "10px");
-		}
-	}
-	if(paste_options_panel.length > 0) {
-		paste_options_panel.css("top", top_margin + "px");
-		top_margin = top_margin + paste_options_panel.height() + 18;
-		if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
-			paste_options_panel.css("right", "25px");
-		} else {
-			paste_options_panel.css("right", "10px");
-		}
-	}
-	if(paste_info_panel.length > 0) {
-		paste_info_panel.css("top", + top_margin + "px");
-		top_margin = top_margin + paste_info_panel.height() + 18;
-		if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
-			paste_info_panel.css("right", "25px");
-		} else {
-			paste_info_panel.css("right", "10px");
-		}
-	}
-	if(editor_options_panel.length > 0) {
-		editor_options_panel.css("top", + top_margin + "px");
-		top_margin = top_margin + editor_options_panel.height() + 18;
-		if($(".CodeMirror-lines").height() > $(".CodeMirror").height()) {
-			editor_options_panel.css("right", "25px");
-		} else {
-			editor_options_panel.css("right", "10px");
-		}
-	}
+	var side_panel = $("#side-panel");
+	var header = $("#header");
+	var height = header.height();
+	side_panel.css("top", height + "px");
+	side_panel.css("height", ($(window).height() - height + "px"));
 }
 
 function toggleCenterPanel(id)

@@ -5,8 +5,12 @@
 	</head>
 	<body>
 		<include href="templates/header.html" />
-		<include href="templates/paste_options_panel.html" />
-		<include href="templates/editor_options_panel.html" />
+		<div id="side-panel">
+			<div id="side-panel-content">
+				<include href="templates/paste_options.html" />
+				<include href="templates/editor_options.html" />
+			</div>
+		</div>
 		<form action="./new" method="post" id="paste_form">
 			<check if="isset({{@SESSION.copy_text}})">
 				<true>

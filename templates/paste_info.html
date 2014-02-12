@@ -1,0 +1,39 @@
+<div class="side-panel-header">
+	Paste Info 
+	<a href="#" id="paste-info-toggle" onclick="slidePanel('paste-info-content', 'paste-info-toggle', positionPanels);">
+		<img src="static/images/icons/collapse.png">
+	</a>
+</div>
+<div class="side-panel-section" id="paste-info-content">
+	<div class="side-panel-row">
+		<span class="side-panel-key">Language</span>
+		<check if="isset({{@language_website}})">
+			<true>
+				<span class="side-panel-value"><a href="{{@language_website}}">{{@language_name}}</a></span>
+			</true>
+			<false>
+				<span class="side-panel-value">{{@language_name}}</span>
+			</false>
+		</check>
+	</div>
+	<div class="side-panel-row">
+		<span class="side-panel-key">Posted</span> 
+		<span class="side-panel-value">{{@paste_time}}</span>
+	</div>
+	<div class="side-panel-row">
+		<span class="side-panel-key">Views</span> 
+		<span class="side-panel-value">{{@paste_views}}</span>
+	</div>
+	<div class="side-panel-row">
+		<span class="side-panel-key">Size</span> 
+		<span class="side-panel-value">{{@paste_size}}</span>
+	</div>
+	<div class="side-panel-row">
+		<span class="side-panel-key">MD5</span> 
+		<span class="side-panel-value"><input type="text" readonly="readonly" value="{{@paste_md5}}"></span>
+	</div>
+	<div class="side-panel-row">
+		<span class="side-panel-key">SHA1</span> 
+		<span class="side-panel-value"><input type="text" readonly="readonly" value="{{@paste_sha1}}"></span>
+	</div>
+</div>
