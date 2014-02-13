@@ -136,6 +136,8 @@
 				} else {
 					header("location: .");
 				}
+			} else {
+				header("location: .");
 			}
 		}
 	);
