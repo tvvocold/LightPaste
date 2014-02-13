@@ -31,8 +31,11 @@
 		static function insertPaste($paste_text, $paste_language, $paste_private)
 		{
 			$db = new DB\SQL("mysql:host=localhost;port=3306;dbname=lightpaste", "root", "");
-			$result = $db->exec("SELECT MAX(id) as id FROM pastes;");
-			$max_id = $result[0]["id"] or 1;
+			$result = $db->exec("SELECT MAX(id) AS id FROM pastes;");
+			$max_id = $result[0]["id"];
+			if($max_id == NULL) {
+				$max_id = 1;
+			}
 			$paste_access_id = self::generatePasteID($max_id);
 			$paste_md5 = md5($paste_text);
 			$paste_sha1 = sha1($paste_text);
@@ -78,17 +81,9 @@
 		=======================================================*/
 		static function generatePasteID($id)
 		{
-			if(function_exists("openssl_random_pseudo_bytes")) {
-				$bytes = bin2hex(openssl_random_pseudo_bytes(5));
-				return substr($bytes, 0, 5) . base_convert((2000000 + $id), 10, 36) . substr($bytes, 5);
-			} else {
-				$str = "";
-				$chars = "0123456789abcdefghijklmnopqrstuvwxyz";
-				for($i=0; $i < 10; $i++) {
-					$str .= $chars[mt_rand(0, strlen($chars) - 1)];
-				}
-				return $str;
-			}
+			$salt = bin2hex(openssl_random_pseudo_bytes(35));
+			$hashids = new Hashids\Hashids($salt, 5);
+			return $hashids->encrypt($id);
 		}
 		
 		/*=======================================================

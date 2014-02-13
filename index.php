@@ -5,6 +5,7 @@
 	$f3->set("DEBUG", 1);
 	
 	require("data.php");
+	require("classes/third-party/hashids.php");
 	require("classes/util.php");
 	
 	$f3->route("GET /",
