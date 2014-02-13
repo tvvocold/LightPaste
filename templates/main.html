@@ -14,10 +14,10 @@
 		<form action="./new" method="post" id="paste_form">
 			<check if="isset({{@SESSION.copy_text}})">
 				<true>
-					<textarea id="code" name="code">{{@SESSION.copy_text}}</textarea>
+					<textarea id="text-editor" name="text">{{@SESSION.copy_text}}</textarea>
 				</true>
 				<false>
-					<textarea id="code" name="code"></textarea>
+					<textarea id="text-editor" name="text"></textarea>
 				</false>
 			</check>
 		</form>

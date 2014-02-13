@@ -68,11 +68,11 @@
 			}
 			$f3->set("paste_time", date("M d, Y", $result[0]["time"]));
 			$f3->set("paste_views", number_format($result[0]["views"]));
-			$f3->set("paste_size", util::formatDataSize(strlen($result[0]["code"])));
+			$f3->set("paste_size", util::formatDataSize(strlen($result[0]["text"])));
 			$f3->set("paste_md5", $result[0]["md5"]);
 			$f3->set("paste_sha1", $result[0]["sha1"]);
 			$f3->set("editor_readonly", "true");
-			$f3->set("editor_text", $result[0]["code"]);
+			$f3->set("editor_text", $result[0]["text"]);
 			$f3->set("page_title", "Light Paste");
 			$f3->set("paste_id", $result[0]["access_id"]);
 			$template = new Template;
@@ -90,12 +90,12 @@
 			}
 			if($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "raw") {
 				header("Content-Type: text/plain; charset=utf-8");
-				echo $result[0]["code"];
+				echo $result[0]["text"];
 				exit();
 			} elseif($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "download") {
 				$file = tempnam("tempfiles/", "txt");
 				$handle = fopen($file, "w");
-				fwrite($handle, $result[0]["code"]);
+				fwrite($handle, $result[0]["text"]);
 				fclose($handle);
 				header("Content-Type: text/plain");
 				header("Content-Length: " . filesize($file));
@@ -104,7 +104,7 @@
 				unlink($file);
 				exit();
 			} elseif($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "copy") {
-				$f3->set("SESSION.copy_text", $result[0]["code"]);
+				$f3->set("SESSION.copy_text", $result[0]["text"]);
 				header("location: ../");
 				exit();
 			} else {
@@ -117,8 +117,8 @@
 		function($f3)
 		{
 			global $DATA_LANGUAGES;
-			if($f3->get("POST.code")) {
-				$code = $f3->get("POST.code");
+			if($f3->get("POST.text")) {
+				$text = $f3->get("POST.text");
 				$language = "";
 				if($f3->get("POST.language")) {
 					if(array_key_exists($f3->get("POST.language"), $DATA_LANGUAGES)) {
@@ -130,7 +130,7 @@
 				} else {
 					$private = 0;
 				}
-				$result = util::insertPaste($code, $language, $private);
+				$result = util::insertPaste($text, $language, $private);
 				if(gettype($result) == "string") {
 					header("location: ./$result");
 				} else {

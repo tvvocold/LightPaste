@@ -25,28 +25,28 @@
 		}
 		
 		/*=======================================================
-			func: insertPaste($paste_code, $paste_language, $paste_private)
+			func: insertPaste($paste_text, $paste_language, $paste_private)
 			desc: inserts a new paste into the database
 		=======================================================*/
-		static function insertPaste($paste_code, $paste_language, $paste_private)
+		static function insertPaste($paste_text, $paste_language, $paste_private)
 		{
 			$db = new DB\SQL("mysql:host=localhost;port=3306;dbname=lightpaste", "root", "");
 			$result = $db->exec("SELECT MAX(id) as id FROM pastes;");
 			$max_id = $result[0]["id"] or 1;
 			$paste_access_id = self::generatePasteID($max_id);
-			$paste_md5 = md5($paste_code);
-			$paste_sha1 = sha1($paste_code);
+			$paste_md5 = md5($paste_text);
+			$paste_sha1 = sha1($paste_text);
 			// insert the new paste into the database using a prepared statement
 			$db->exec(
 				array(
-					"INSERT INTO pastes(access_id, code, 
+					"INSERT INTO pastes(access_id, text, 
 					time, language, md5, sha1, private) 
 					VALUES(?, ?, UNIX_TIMESTAMP(), ?, ?, ?, ?)"
 				), 
 				array(
 					array(
 						1 => $paste_access_id, 
-						2 => $paste_code,
+						2 => $paste_text,
 						3 => $paste_language,
 						4 => $paste_md5,
 						5 => $paste_sha1,
@@ -64,7 +64,7 @@
 		static function getPaste($id)
 		{
 			$db = new DB\SQL("mysql:host=localhost;port=3306;dbname=lightpaste", "root", "");
-			$result = $db->exec(array("SELECT access_id, code, 
+			$result = $db->exec(array("SELECT access_id, text, 
 				language, time, views, md5, sha1 
 				FROM pastes WHERE access_id = ?"),
 				array(array(1 => $id))
