@@ -10,6 +10,9 @@ function adjustEditor()
 	$(".CodeMirror").css("position", "absolute");
 	$(".CodeMirror").css("top", header_height + "px");
 	$(".CodeMirror").css("left", "0px");
+	if($(".CodeMirror").height() > (height - header_height)) {
+		width = width + 16;
+	}
 	editor.setSize((width - side_panel.width()), (height - header_height));
 }
 
