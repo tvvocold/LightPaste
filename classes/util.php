@@ -129,6 +129,11 @@
 			} else {
 				$f3->set("editor_cursor_blinkrate", 530);
 			}
+			if(isset($_COOKIE["editor_font_size"])) {
+				$f3->set("editor_font_size", intval($_COOKIE["editor_font_size"]));
+			} else {
+				$f3->set("editor_font_size", 14);
+			}
 		}
 	}
 	

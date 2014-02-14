@@ -8,6 +8,8 @@
 	require("classes/third-party/hashids.php");
 	require("classes/util.php");
 	
+	$f3->set("editor_font_sizes", $DATA_FONTSIZES);
+	
 	$f3->route("GET /",
 		function($f3)
 		{

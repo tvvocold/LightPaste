@@ -42,5 +42,19 @@
 	<input type="text" id="blinkrate_editor" value="{{@editor_cursor_blinkrate}}" style="width: 68px; margin-left: 5px; margin-bottom: 3px;">
 	<br/>
 	<label for="cursorheight_editor">Cursor height</label>
-	<input type="text" id="cursorheight_editor" value="" style="width: 68px; margin-left: 50px;">
+	<input type="text" id="cursorheight_editor" value="" style="width: 68px; margin-left: 50px; margin-bottom: 3px;">
+	<br/>
+	<label for="editor_fontselector">Font size</label>
+	<select id="editor_fontselector" style="width: 72px; margin-left: 76px;">
+		<repeat group="{{@editor_font_sizes}}" key="{{@k}}" value="{{@v}}">
+			<check if="{{@v}} == {{@editor_font_size}}">
+				<true>
+		<option value="{{@v}}" selected="selected">{{@v}}</option>
+				</true>
+				<false>
+		<option value="{{@v}}">{{@v}}</option>
+				</false>
+			</check>
+		</repeat>
+	</select>
 </div>
