@@ -2,7 +2,7 @@
 
 	// load f3
 	$f3 = require("lib/base.php");
-	$f3->set("DEBUG", 1);
+	$f3->config("config.ini");
 	
 	require("data.php");
 	require("classes/third-party/hashids.php");
