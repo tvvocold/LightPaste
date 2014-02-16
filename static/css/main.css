@@ -138,6 +138,11 @@ body {
 	margin-top: -2px;
 }
 
+#paste-toolbar a {
+	color: #000000;
+	text-decoration: none;
+}
+
 .panel {
 	display: none;
 	position: absolute;
