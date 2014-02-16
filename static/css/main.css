@@ -58,14 +58,14 @@ body {
 #side-panel {
 	position: absolute;
 	top: 0px;
-	right: 0px;
+	left: 0px;
 	width: 240px;
 	background-color: #F2F2F2;
 	z-index: 9999;
 	-webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
 	-moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
 	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
-	border-left: 1px solid #A4A4A4;
+	border-right: 1px solid #A4A4A4;
 	overflow-y: auto;
 }
 

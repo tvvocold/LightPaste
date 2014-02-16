@@ -6,14 +6,14 @@ function adjustEditor()
 	var width = $(window).width();
 	var height = $(window).height();
 	var header_height = $("#header").height();
-	var side_panel = $("#side-panel");
+	var side_panel_width = $("#side-panel").width()
 	$(".CodeMirror").css("position", "absolute");
 	$(".CodeMirror").css("top", header_height + "px");
-	$(".CodeMirror").css("left", "0px");
+	$(".CodeMirror").css("left", side_panel_width + "px");
 	if($(".CodeMirror").height() > (height - header_height)) {
 		width = width + 16;
 	}
-	editor.setSize((width - side_panel.width()), (height - header_height));
+	editor.setSize((width - side_panel_width), (height - header_height));
 }
 
 function adjustSidePanel()
