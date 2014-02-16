@@ -135,11 +135,6 @@ $(document).ready(function() {
 		editor.setOption("cursorBlinkRate", parseInt(blinkrate));
 		document.cookie = "editor_cursor_blinkrate=" + blinkrate + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
 	});
-	$("#cursorheight_editor").keyup(function() {
-		var height = $(this).val();
-		editor.setOption("cursorHeight", parseInt(height));
-		document.cookie = "editor_cursor_height=" + height + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
-	});
 	$("#editor_fontsize_selector").change(function() {
 		var size = $(this).find(":selected").val();
 		$(".CodeMirror").css("font-size", size + "px");
