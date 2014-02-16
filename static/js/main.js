@@ -106,28 +106,28 @@ $(document).ready(function() {
 	$("#linenumbers_checkbox").change(function() {
 		if($(this).is(":checked")) {
 			editor.setOption("lineNumbers", true);
-			document.cookie = "editor_line_numbers=1; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+			setCookie("editor_line_numbers", "1", "Mon, 1 Jan 2040 08:00:00 UTC");
 		} else {
 			editor.setOption("lineNumbers", false);
-			document.cookie = "editor_line_numbers=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+			setCookie("editor_line_numbers", "0", "Mon, 1 Jan 2040 08:00:00 UTC");
 		}
 	});
 	$("#wordwrap_checkbox").change(function() {
 		if($(this).is(":checked")) {
 			editor.setOption("lineWrapping", true);
-			document.cookie = "editor_line_wrapping=1; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+			setCookie("editor_line_wrapping", "1", "Mon, 1 Jan 2040 08:00:00 UTC");
 		} else {
 			editor.setOption("lineWrapping", false);
-			document.cookie = "editor_line_wrapping=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+			setCookie("editor_line_wrapping", "0", "Mon, 1 Jan 2040 08:00:00 UTC");
 		}
 	});
 	$("#smartindent_checkbox").change(function() {
 		if($(this).is(":checked")) {
 			editor.setOption("smartIndent", true);
-			document.cookie = "editor_smart_indent=1; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+			setCookie("editor_smart_indent", "1", "Mon, 1 Jan 2040 08:00:00 UTC");
 		} else {
 			editor.setOption("smartIndent", false);
-			document.cookie = "editor_smart_indent=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+			setCookie("editor_smart_indent", "0", "Mon, 1 Jan 2040 08:00:00 UTC");
 		}
 	});
 	$("#tabsize_selector").keyup(function() {
@@ -138,23 +138,23 @@ $(document).ready(function() {
 			tabsize = 0;
 		}
 		editor.setOption("tabSize", tabsize);
-		document.cookie = "editor_tab_size=" + tabsize + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+		setCookie("editor_tab_size", tabsize, "Mon, 1 Jan 2040 08:00:00 UTC");
 	});
 	$("#blinkrate_editor").keyup(function() {
 		var blinkrate = $(this).val();
 		editor.setOption("cursorBlinkRate", parseInt(blinkrate));
-		document.cookie = "editor_cursor_blinkrate=" + blinkrate + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+		setCookie("editor_cursor_blinkrate", blinkrate, "Mon, 1 Jan 2040 08:00:00 UTC");
 	});
 	$("#editor_fontsize_selector").change(function() {
 		var size = $(this).find(":selected").val();
 		$(".CodeMirror").css("font-size", size + "px");
 		editor.refresh();
-		document.cookie = "editor_font_size=" + size + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+		setCookie("editor_font_size", size, "Mon, 1 Jan 2040 08:00:00 UTC");
 	});
 	$("#editor_fontselector").change(function() {
 		var font = $(this).find(":selected").text();
 		$(".CodeMirror").css("font-family", font);
 		editor.refresh();
-		document.cookie = "editor_font=" + font + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+		setCookie("editor_font", font, "Mon, 1 Jan 2040 08:00:00 UTC");
 	});
 });
