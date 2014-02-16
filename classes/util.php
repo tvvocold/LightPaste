@@ -92,6 +92,7 @@
 		=======================================================*/
 		static function getEditorSettings($f3)
 		{
+			global $DATA_FONTS;
 			if(isset($_COOKIE["editor_line_numbers"])) {
 				if($_COOKIE["editor_line_numbers"] == 1) {
 					$f3->set("editor_line_numbers", "true");
@@ -133,6 +134,15 @@
 				$f3->set("editor_font_size", intval($_COOKIE["editor_font_size"]));
 			} else {
 				$f3->set("editor_font_size", 14);
+			}
+			if(isset($_COOKIE["editor_font"])) {
+				if(array_key_exists($_COOKIE["editor_font"], $DATA_FONTS)) {
+					$f3->set("editor_font", $DATA_FONTS[$_COOKIE["editor_font"]]);
+				} else {
+					$f3->set("editor_font", $DATA_FONTS["Courier New"]);
+				}
+			} else {
+				$f3->set("editor_font", $DATA_FONTS["Courier New"]);
 			}
 		}
 	}

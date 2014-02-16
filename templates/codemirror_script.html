@@ -22,4 +22,6 @@ var editor = CodeMirror.fromTextArea(document.getElementById("text-editor"), {
 	}
 	*/
 });
-$(".CodeMirror").css("font-size", {{@editor_font_size}});
+$(".CodeMirror").css("font-size", "{{@editor_font_size}}px");
+$(".CodeMirror").css("font-family", "{{@editor_font}}");
+editor.refresh();

@@ -290,5 +290,12 @@
 		28
 	);
 	
+	$DATA_FONTS = array(
+		"Arial" => "Arial, Arial, Helvetica, sans-serif",
+		"Arial Black" => "Arial Black, Gadget, sans-serif",
+		"Courier New" => "Courier New, Courier New, monospace",
+		"Lucida Console" => "Lucida Console, Monaco, monospace",
+		"Lucida Sans Unicode" => "Lucida Sans Unicode, Lucida Grande, sans-serif"
+	);
 
 ?>

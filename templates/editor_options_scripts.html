@@ -40,9 +40,15 @@ $("#cursorheight_editor").keyup(function() {
 	editor.setOption("cursorHeight", parseInt(height));
 	document.cookie = "editor_cursor_height=" + height + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
 });
-$("#editor_fontselector").change(function() {
+$("#editor_fontsize_selector").change(function() {
 	var size = $(this).find(":selected").val();
 	$(".CodeMirror").css("font-size", size + "px");
 	editor.refresh();
 	document.cookie = "editor_font_size=" + size + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+});
+$("#editor_fontselector").change(function() {
+	var font = $(this).find(":selected").text();
+	$(".CodeMirror").css("font-family", font);
+	editor.refresh();
+	document.cookie = "editor_font=" + font + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
 });
