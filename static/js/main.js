@@ -91,6 +91,13 @@ function slidePanel(panel_id, button_id, func)
 }
 
 $(document).ready(function() {
+	$("#languages").change(function() {
+		if($(this).find(":selected").data("modecomplex")) {
+			toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"), $(this).find(":selected").data("modecomplex"));
+		} else {
+			toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"));
+		}
+	});
 	$("#linenumbers_checkbox").change(function() {
 		if($(this).is(":checked")) {
 			editor.setOption("lineNumbers", true);
