@@ -125,7 +125,7 @@ $(document).ready(function() {
 			document.cookie = "editor_smart_indent=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
 		}
 	});
-	$("#tabsize_selector").change(function() {
+	$("#tabsize_selector").keyup(function() {
 		var tabsize = $(this).val();
 		editor.setOption("tabSize", parseInt(tabsize));
 		document.cookie = "editor_tab_size=" + tabsize + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
