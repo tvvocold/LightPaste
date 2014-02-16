@@ -295,7 +295,11 @@
 		"Arial Black" => "Arial Black, Gadget, sans-serif",
 		"Courier New" => "Courier New, Courier New, monospace",
 		"Lucida Console" => "Lucida Console, Monaco, monospace",
-		"Lucida Sans Unicode" => "Lucida Sans Unicode, Lucida Grande, sans-serif"
+		"Lucida Sans Unicode" => "Lucida Sans Unicode, Lucida Grande, sans-serif",
+		"Tahoma" => "Tahoma, Geneva, sans-serif",
+		"Times New Roman" => "Times New Roman, Times New Roman, Times, serif",
+		"Trebuchet MS" => "Trebuchet MS, Trebuchet MS, sans-serif",
+		"Verdana" => "Verdana, Verdana, Geneva, sans-serif"
 	);
 
 ?>
