@@ -90,6 +90,11 @@ function slidePanel(panel_id, button_id, func)
 	});
 }
 
+function setCookie(name, value, expiration)
+{
+	document.cookie = name + "=" + value + "; expires=" + expiration + "; path=/";
+}
+
 $(document).ready(function() {
 	$("#languages").change(function() {
 		if($(this).find(":selected").data("modecomplex")) {
