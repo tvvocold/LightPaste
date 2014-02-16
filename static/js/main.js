@@ -89,3 +89,60 @@ function slidePanel(panel_id, button_id, func)
 		progress: func
 	});
 }
+
+$(document).ready(function() {
+	$("#linenumbers_checkbox").change(function() {
+		if($(this).is(":checked")) {
+			editor.setOption("lineNumbers", true);
+			document.cookie = "editor_line_numbers=1; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+		} else {
+			editor.setOption("lineNumbers", false);
+			document.cookie = "editor_line_numbers=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+		}
+	});
+	$("#wordwrap_checkbox").change(function() {
+		if($(this).is(":checked")) {
+			editor.setOption("lineWrapping", true);
+			document.cookie = "editor_line_wrapping=1; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+		} else {
+			editor.setOption("lineWrapping", false);
+			document.cookie = "editor_line_wrapping=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+		}
+	});
+	$("#smartindent_checkbox").change(function() {
+		if($(this).is(":checked")) {
+			editor.setOption("smartIndent", true);
+			document.cookie = "editor_smart_indent=1; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+		} else {
+			editor.setOption("smartIndent", false);
+			document.cookie = "editor_smart_indent=0; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+		}
+	});
+	$("#tabsize_selector").change(function() {
+		var tabsize = $(this).val();
+		editor.setOption("tabSize", parseInt(tabsize));
+		document.cookie = "editor_tab_size=" + tabsize + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+	});
+	$("#blinkrate_editor").keyup(function() {
+		var blinkrate = $(this).val();
+		editor.setOption("cursorBlinkRate", parseInt(blinkrate));
+		document.cookie = "editor_cursor_blinkrate=" + blinkrate + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+	});
+	$("#cursorheight_editor").keyup(function() {
+		var height = $(this).val();
+		editor.setOption("cursorHeight", parseInt(height));
+		document.cookie = "editor_cursor_height=" + height + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+	});
+	$("#editor_fontsize_selector").change(function() {
+		var size = $(this).find(":selected").val();
+		$(".CodeMirror").css("font-size", size + "px");
+		editor.refresh();
+		document.cookie = "editor_font_size=" + size + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+	});
+	$("#editor_fontselector").change(function() {
+		var font = $(this).find(":selected").text();
+		$(".CodeMirror").css("font-family", font);
+		editor.refresh();
+		document.cookie = "editor_font=" + font + "; expires=Mon, 1 Jan 2040 08:00:00 UTC; path=/"
+	});
+});
