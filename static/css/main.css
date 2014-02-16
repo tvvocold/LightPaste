@@ -10,6 +10,17 @@ body {
 	padding: 5px;
 }
 
+.content-section-header {
+	font-weight: bold;
+	font-size: 18px;
+	background: #A4A4A4;
+	padding: 5px;
+}
+
+.content-section-body {
+	padding: 5px;
+}
+
 #header {
 	position: absolute;
 	top: 0px;
@@ -160,7 +171,6 @@ body {
 	-webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
 	-moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
 	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
-	padding: 5px;
 	max-width: 700px;
 	z-index: 10002;
 }
@@ -170,11 +180,25 @@ body {
 	position: relative;
 	font-weight: bold;
 	font-size: 18px;
+	border: 1px solid #668CFF;
 	color: #FFFFFF;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+	background-color: #809FFF;
+	background-image: url(../images/header.png);
 }
 
 .panel-content {
 	padding: 5px;
+	background: #ffffff;
+	background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5));
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
+	background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
+	background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
+	background: linear-gradient(to bottom,  #ffffff 0%,#e5e5e5 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 );
+	border: 1px solid #CCCCCC;
+	border-top: none;
 }
 
 .panel-button {
@@ -184,6 +208,7 @@ body {
 	color: #000000;
 	text-decoration: none;
 	min-width: 100px;
+	border: 1px solid #CCCCCC;
 }
 
 .panel-footer {
