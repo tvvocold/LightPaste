@@ -121,7 +121,13 @@
 				$f3->set("editor_smart_indent", 'true');
 			}
 			if(isset($_COOKIE["editor_tab_size"])) {
-				$f3->set("editor_tab_size", intval($_COOKIE["editor_tab_size"]));
+				$tabsize = intval($_COOKIE["editor_tab_size"]);
+				if($tabsize > 30) {
+					$tabsize = 30;
+				} elseif($tabsize < 0) {
+					$tabsize = 0;
+				}
+				$f3->set("editor_tab_size", $tabsize);
 			} else {
 				$f3->set("editor_tab_size", 4);
 			}
