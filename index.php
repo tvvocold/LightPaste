@@ -87,6 +87,7 @@
 	$f3->route("GET /@id/@mode",
 		function($f3)
 		{
+			global $DATA_LANGUAGES;
 			$result = util::getPaste($f3->get("PARAMS.id"));
 			if(count($result) == 0) {
 				header("location: .");
@@ -97,13 +98,21 @@
 				echo $result[0]["text"];
 				exit();
 			} elseif($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "download") {
+				$extension = "txt";
+				$access_id = $result[0]["access_id"];
+				if($result[0]["language"] != "") {
+					$language_data = $DATA_LANGUAGES[$result[0]["language"]];
+					if(isset($language_data["file_extension"])) {
+						$extension = $language_data["file_extension"];
+					}
+				}
 				$file = tempnam("tempfiles/", "txt");
 				$handle = fopen($file, "w");
 				fwrite($handle, $result[0]["text"]);
 				fclose($handle);
-				header("Content-Type: text/plain");
+				header("Content-Type: text/*");
 				header("Content-Length: " . filesize($file));
-				header("Content-Disposition: attachment; filename=\"paste.txt\"");
+				header("Content-Disposition: attachment; filename=\"$access_id.$extension\"");
 				readfile($file);
 				unlink($file);
 				exit();
