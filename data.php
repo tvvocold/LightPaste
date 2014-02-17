@@ -297,6 +297,15 @@
 			"mode_js_files" => array(
 				"haskell/haskell.js"
 			)
+		),
+		"smarty" => array(
+			"name" => "Smarty",
+			"website" => "http://www.smarty.net/",
+			"file_extension" => "tpl",
+			"mode" => "smarty",
+			"mode_js_files" => array(
+				"smarty/smarty.js"
+			)
 		)
 	);
 	
