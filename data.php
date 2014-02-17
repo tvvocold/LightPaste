@@ -306,6 +306,15 @@
 			"mode_js_files" => array(
 				"smarty/smarty.js"
 			)
+		),
+		"mirc" => array(
+			"name" => "mIRC",
+			"website" => "http://www.mirc.com/",
+			"file_extension" => "mrc",
+			"mode" => "text/mirc",
+			"mode_js_files" => array(
+				"mirc/mirc.js"
+			)
 		)
 	);
 	
