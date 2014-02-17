@@ -132,10 +132,10 @@ body {
 	position: relative;
 	background-color: #809FFF;
 	background-image: url(../images/header.png);
-	border: 1px solid #668CFF;
 	color: #FFFFFF;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 	margin-top: 5px;
+	font-size: 14px;
 }
 
 .side-panel-header a {
@@ -147,16 +147,6 @@ body {
 .side-panel-section
 {
 	padding: 5px;
-	background: #ffffff;
-	background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5));
-	background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
-	background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
-	background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
-	background: linear-gradient(to bottom,  #ffffff 0%,#e5e5e5 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 );
-	border: 1px solid #CCCCCC;
-	border-top: none;
 }
 
 .side-panel-section a {
