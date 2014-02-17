@@ -155,9 +155,7 @@ body {
 }
 
 .side-panel-row input[type="text"] {
-	width: 140px;
-	border: none;
-	background: none;
+	width: 125px;
 }
 
 .side-panel-row {
