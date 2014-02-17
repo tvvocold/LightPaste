@@ -2,7 +2,7 @@ var editor = CodeMirror.fromTextArea(document.getElementById("text-editor"), {
 	tabMode: "indent",
 	theme: "lightpaste",
 	mode: {{@editor_mode}},
-	matchBrackets: true,
+	matchBrackets: {{@editor_match_brackets}},
 	lineNumbers: {{@editor_line_numbers}},
 	lineWrapping: {{@editor_line_wrapping}},
 	smartIndent: {{@editor_smart_indent}},

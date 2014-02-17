@@ -35,6 +35,16 @@
 	</check>
 	<label for="smartindent_checkbox">Smart indent</label>
 	<br/>
+	<check if="{{ @editor_match_brackets == 'true' }}">
+		<true>
+			<input type="checkbox" checked="checked" id="matchbrackets_checkbox" >
+		</true>
+		<false>
+			<input type="checkbox" id="matchbrackets_checkbox" >
+		</false>
+	</check>
+	<label for="matchbrackets_checkbox">Match brackets</label>
+	<br/>
 	<label for="tabsize_selector">Tab size</label>
 	<input type="text" id="tabsize_selector" value="{{@editor_tab_size}}" style="width: 68px; margin-left: 80px; margin-bottom: 3px;" />
 	<br/>

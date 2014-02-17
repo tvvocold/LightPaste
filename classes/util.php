@@ -120,6 +120,15 @@
 			} else {
 				$f3->set("editor_smart_indent", 'true');
 			}
+			if(isset($_COOKIE["editor_match_brackets"])) {
+				if($_COOKIE["editor_match_brackets"] == 1) {
+					$f3->set("editor_match_brackets", "true");
+				} else {
+					$f3->set("editor_match_brackets", "false");
+				}
+			} else {
+				$f3->set("editor_match_brackets", 'true');
+			}
 			if(isset($_COOKIE["editor_tab_size"])) {
 				$tabsize = intval($_COOKIE["editor_tab_size"]);
 				if($tabsize > 30) {
