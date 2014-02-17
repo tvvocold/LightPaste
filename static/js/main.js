@@ -136,6 +136,15 @@ $(document).ready(function() {
 			setCookie("editor_match_brackets", "0", "Mon, 1 Jan 2040 08:00:00 UTC");
 		}
 	});
+	$("#highlight_active_line_checkbox").change(function() {
+		if($(this).is(":checked")) {
+			editor.setOption("styleActiveLine", true);
+			setCookie("editor_highlight_active_line", "1", "Mon, 1 Jan 2040 08:00:00 UTC");
+		} else {
+			editor.setOption("styleActiveLine", false);
+			setCookie("editor_highlight_active_line", "0", "Mon, 1 Jan 2040 08:00:00 UTC");
+		}
+	});
 	$("#tabsize_selector").keyup(function() {
 		var tabsize = parseInt($(this).val());
 		if(tabsize > 30) {

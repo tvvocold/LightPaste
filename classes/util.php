@@ -129,6 +129,15 @@
 			} else {
 				$f3->set("editor_match_brackets", 'true');
 			}
+			if(isset($_COOKIE["editor_highlight_active_line"])) {
+				if($_COOKIE["editor_highlight_active_line"] == 1) {
+					$f3->set("editor_highlight_active_line", "true");
+				} else {
+					$f3->set("editor_highlight_active_line", "false");
+				}
+			} else {
+				$f3->set("editor_highlight_active_line", 'true');
+			}
 			if(isset($_COOKIE["editor_tab_size"])) {
 				$tabsize = intval($_COOKIE["editor_tab_size"]);
 				if($tabsize > 30) {
