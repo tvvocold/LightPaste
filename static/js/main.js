@@ -152,7 +152,4 @@ $(document).ready(function() {
 		editor.refresh();
 		setCookie("editor_font", font, "Mon, 1 Jan 2040 08:00:00 UTC");
 	});
-	editor.on("gutterClick", function(cm, line, gutter) {
-		alert(line);
-	});
 });
