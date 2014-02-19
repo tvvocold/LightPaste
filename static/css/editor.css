@@ -24,6 +24,7 @@
 .cm-s-lightpaste .cm-header {color: blue;}
 .cm-s-lightpaste .cm-quote {color: #090;}
 .cm-s-lightpaste .cm-hr {color: #999;}
+.cm-s-lightpaste .cm-selectedline {background: #FFFFCC;}
 
 .cm-s-lightpaste .CodeMirror-activeline-background {
   background-color: #E0EAFF !important;
