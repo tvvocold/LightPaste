@@ -41,6 +41,7 @@
 		function($f3)
 		{
 			global $DATA_LANGUAGES;
+			util::countView($f3->get("PARAMS.id"));
 			$result = util::getPaste($f3->get("PARAMS.id"));
 			if(count($result) == 0) {
 				header("location: .");

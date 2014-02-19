@@ -68,7 +68,7 @@
 		{
 			$db = new DB\SQL("mysql:host=localhost;port=3306;dbname=lightpaste", "root", "");
 			$result = $db->exec(array("SELECT access_id, text, 
-				language, time, views, md5, sha1 
+				language, time, views, md5, sha1, views 
 				FROM pastes WHERE access_id = ?"),
 				array(array(1 => $id))
 			);
@@ -167,6 +167,25 @@
 				}
 			} else {
 				$f3->set("editor_font", $DATA_FONTS["Courier New"]);
+			}
+		}
+		
+		static function countView($paste_id)
+		{
+			global $f3;
+			$db = new DB\SQL("mysql:host=localhost;port=3306;dbname=lightpaste", "root", "");
+			$delay = $f3->get("VIEWCOUNT_DELAY");
+			$paste = self::getPaste($paste_id);
+			$time = time();
+			$db->exec(array("DELETE FROM viewlogs WHERE ? > time + ?;"), array(array(1 => $time, 2 => $delay)));
+			if(gettype($paste) == "array") {
+				$hash = hash("sha256", $paste_id . $_SERVER["REMOTE_ADDR"]);
+				$logrows = $db->exec(array("SELECT time FROM viewlogs WHERE hash = ?;"), array(array(1=> $hash)));
+				if(count($logrows) == 1) {
+					return;
+				}
+				$db->exec(array("UPDATE pastes SET views = views + 1 WHERE access_id = ?;"), array(array(1 => $paste_id)));
+				$db->exec(array("INSERT INTO viewlogs (hash, time) VALUES(?, ?);"), array(array(1 => $hash, 2 => $time)));
 			}
 		}
 	}
