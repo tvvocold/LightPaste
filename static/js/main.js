@@ -1,12 +1,11 @@
 var editor_mode = "";
-var modes_loaded = new Array();
 
 function adjustEditor()
 {
 	var width = $(window).width();
 	var height = $(window).height();
 	var header_height = $("#header").height();
-	var side_panel_width = $("#side-panel").width()
+	var side_panel_width = $("#side-panel").width();
 	$(".CodeMirror").css("position", "absolute");
 	$(".CodeMirror").css("bottom", "0px");
 	$(".CodeMirror").css("right", "0px");
@@ -43,33 +42,14 @@ function toggleCenterPanel(id)
 	}
 }
 
-function toggleLanguage(files, mode, mode_complex)
+function toggleLanguage(mode, mode_complex)
 {
-	var data = files.split(";");
-	if(!modes_loaded[mode]) {
-		for(i=0; i < data.length; i++) {
-			if(i == (data.length - 1)) {
-				$.getScript("static/js/codemirror-3.21/mode/" + data[i], function() {
-					if(mode_complex) {
-						editor.setOption("mode", mode_complex);
-					} else {
-						editor.setOption("mode", mode);
-					}
-					editor_mode = mode;
-					modes_loaded[mode] = true;
-				});
-			} else {
-				$.getScript("static/js/codemirror-3.21/mode/" + data[i]);
-			}
-		}
+	if(mode_complex) {
+		editor.setOption("mode", mode_complex);
 	} else {
-		if(mode_complex) {
-			editor.setOption("mode", mode_complex);
-		} else {
-			editor.setOption("mode", mode);
-		}
-		editor_mode = mode;
+		editor.setOption("mode", mode);
 	}
+	editor_mode = mode;
 }
 
 function slidePanel(panel_id, button_id, func)
@@ -95,9 +75,9 @@ function setCookie(name, value, expiration)
 $(document).ready(function() {
 	$("#languages").change(function() {
 		if($(this).find(":selected").data("modecomplex")) {
-			toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"), $(this).find(":selected").data("modecomplex"));
+			toggleLanguage($(this).find(":selected").data("mode"), $(this).find(":selected").data("modecomplex"));
 		} else {
-			toggleLanguage($(this).find(":selected").data("files"), $(this).find(":selected").data("mode"));
+			toggleLanguage($(this).find(":selected").data("mode"));
 		}
 	});
 	$("#linenumbers_checkbox").change(function() {
@@ -171,5 +151,8 @@ $(document).ready(function() {
 		$(".CodeMirror").css("font-family", font);
 		editor.refresh();
 		setCookie("editor_font", font, "Mon, 1 Jan 2040 08:00:00 UTC");
+	});
+	editor.on("gutterClick", function(cm, line, gutter) {
+		alert(line);
 	});
 });

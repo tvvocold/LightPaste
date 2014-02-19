@@ -11,10 +11,10 @@
 		<repeat group="{{@languages}}" key="{{@k}}" value="{{@v}}">
 			<check if="{{isset(@v[mode_complex])}}">
 			<true>
-				<option value="{{@k}}" data-files="{{@v[files]}}" data-mode="{{@v[mode]}}" data-modecomplex="{{@v[mode_complex]}}">{{@v[name]}}</option>
+				<option value="{{@k}}" data-mode="{{@v[mode]}}" data-modecomplex="{{@v[mode_complex]}}">{{@v[name]}}</option>
 			</true>
 			<false>
-				<option value="{{@k}}" data-files="{{@v[files]}}" data-mode="{{@v[mode]}}">{{@v[name]}}</option>
+				<option value="{{@k}}" data-mode="{{@v[mode]}}">{{@v[name]}}</option>
 			</false>
 		</repeat>
 	</select>

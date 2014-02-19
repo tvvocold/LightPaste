@@ -18,16 +18,7 @@
 			$langs = array();
 			ksort($DATA_LANGUAGES);
 			foreach($DATA_LANGUAGES as $key=>$value) {
-				$data_files = "";
-				foreach($value["mode_js_files"] as $key2=>$file) {
-					if($key2 != count($value["mode_js_files"]) - 1) {
-						$data_files .= "$file;";
-					} else {
-						$data_files .= "$file";
-					}
-				}
 				$data = array();
-				$data["files"] = $data_files;
 				$data["mode"] = $value["mode"];
 				$data["name"] = $value["name"];
 				if(isset($value["mode_complex"])) {
@@ -60,7 +51,6 @@
 				$language_data = $DATA_LANGUAGES[$result[0]["language"]];
 				$f3->set("language_website", $language_data["website"]);
 				$f3->set("language_name", $language_data["name"]);
-				$f3->set("editor_mode_files", $language_data["mode_js_files"]);
 				if(isset($language_data["mode_complex"])) {
 					$f3->set("editor_mode", str_replace('"', "'", $language_data["mode_complex"]));
 				} else {
