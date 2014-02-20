@@ -1,5 +1,11 @@
 <div id="paste-toolbar">
-	<a href="./{{@paste_id}}/copy"><img src="static/images/icons/silk/page_paste.png"> Copy & Edit</a>
-	<a href="./{{@paste_id}}/raw"><img src="static/images/icons/silk/page_white.png"> Raw</a>
-	<a href="./{{@paste_id}}/download"><img src="static/images/icons/silk/drive_disk.png"> Download</a>
+	<a href="./{{@paste_id}}/copy">
+		<img src="static/images/icons/silk/page_paste.png" id="paste-copy-link" class="tooltip-object" data-tooltip="paste-copy-tooltip">
+	</a>
+	<a href="./{{@paste_id}}/raw">
+		<img src="static/images/icons/silk/page_white.png" id="paste-raw-link" class="tooltip-object" data-tooltip="paste-raw-tooltip">
+	</a>
+	<a href="./{{@paste_id}}/download">
+		<img src="static/images/icons/silk/drive_disk.png" id="paste-download-link" class="tooltip-object" data-tooltip="paste-download-tooltip">
+	</a>
 </div>

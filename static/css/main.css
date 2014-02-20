@@ -262,3 +262,18 @@ body {
 	background-color: #FFFFFF;
 	z-index: 10000;
 }
+
+.tooltip {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: none;
+	background: rgba(0, 0, 0, 0.80);
+	color: #FFFFFF;
+	z-index: 10001;
+	font-size: 14px;
+}
+
+.tooltip-content {
+	padding: 5px;
+}

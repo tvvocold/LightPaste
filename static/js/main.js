@@ -78,6 +78,27 @@ function setCookie(name, value, expiration)
 	document.cookie = name + "=" + value + "; expires=" + expiration + "; path=/";
 }
 
+function toggleToolTip(tooltip_id, object_id)
+{
+	var tooltip = $("#" + tooltip_id);
+	var tooltip_width = tooltip.width();
+	var tooltip_height = tooltip.height();
+	var object = $("#" + object_id);
+	var object_width = object.width();
+	var object_height = object.height();
+	var object_position = object.offset();
+	if(tooltip.is(":hidden")) {
+		tooltip.css("top", ((object_position.top - tooltip_height) - 5) + "px");
+		tooltip.css("left", ((object_position.left + (object_width/2)) - (tooltip_width/2)) + "px");
+		tooltip.show();
+		if(tooltip.offset().left < 0) {
+			tooltip.css("left", "5px");
+		}
+	} else {
+		tooltip.hide();
+	}
+}
+
 /* ==================================================
 	begin page operations
 ================================================== */
@@ -198,4 +219,12 @@ $(document).ready(function() {
 			});
 		}
 	}
+	$(".tooltip-object").on("mouseenter", function(obj) {
+		var newobj = $("#" + obj.currentTarget.id);
+		toggleToolTip(newobj.data("tooltip"), newobj.attr("id"));
+		console.log(newobj.data("tooltip"));
+	}).on("mouseleave", function(obj) {
+		var newobj = $("#" + obj.currentTarget.id);
+		toggleToolTip(newobj.data("tooltip"), newobj.attr("id"));
+	});
 });
