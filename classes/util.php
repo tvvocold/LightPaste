@@ -68,7 +68,7 @@
 		{
 			$db = new DB\SQL("mysql:host=localhost;port=3306;dbname=lightpaste", "root", "");
 			$result = $db->exec(array("SELECT access_id, text, 
-				language, time, views, md5, sha1, views 
+				language, time, views, md5, sha1, views, private 
 				FROM pastes WHERE access_id = ?"),
 				array(array(1 => $id))
 			);

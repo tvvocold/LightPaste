@@ -1,5 +1,10 @@
 <title>{{@page_title}}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<check if="isset({{@paste_private}}) and {{@paste_private}} == 1">
+	<true>
+<meta name="robots" content="noindex, nofollow">
+	</true>
+</check>
 <link rel="StyleSheet" href="static/css/main.css" />
 <link rel="StyleSheet" href="static/css/editor.css" />
 <link rel="StyleSheet" href="static/css/codemirror.css" />

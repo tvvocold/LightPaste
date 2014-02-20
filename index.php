@@ -70,6 +70,7 @@
 			$f3->set("editor_text", $result[0]["text"]);
 			$f3->set("page_title", "Light Paste");
 			$f3->set("paste_id", $result[0]["access_id"]);
+			$f3->set("paste_private", $result[0]["private"]);
 			$template = new Template;
 			echo $template->render("templates/paste.html");
 		}
