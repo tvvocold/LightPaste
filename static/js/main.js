@@ -1,4 +1,10 @@
+var editor = null;
 var editor_mode = "";
+var prev_selected_line = -1;
+
+/* ==================================================
+	begin functions
+================================================== */
 
 function adjustEditor()
 {
@@ -71,6 +77,10 @@ function setCookie(name, value, expiration)
 {
 	document.cookie = name + "=" + value + "; expires=" + expiration + "; path=/";
 }
+
+/* ==================================================
+	begin page operations
+================================================== */
 
 $(document).ready(function() {
 	$("#languages").change(function() {
@@ -152,4 +162,40 @@ $(document).ready(function() {
 		editor.refresh();
 		setCookie("editor_font", font, "Mon, 1 Jan 2040 08:00:00 UTC");
 	});
+	if(editor != null) {
+		adjustSidePanel();
+		adjustEditor();
+		editor.on("change", function() {
+			adjustSidePanel();
+		});
+		$(window).resize(function() { 
+			adjustSidePanel();
+			adjustEditor(); 
+		});
+		// check url for selected line
+		var hash = window.location.hash
+		if(hash.search("line-") != -1) {
+			var line = parseInt(hash.substring(6));
+			if(line != NaN) {
+				if(line != 0) {
+					line = line - 1;
+					prev_selected_line = line;
+					editor.addLineClass(line, "background", "cm-selectedline");
+					editor.scrollIntoView({line: line, ch: 0}, 0);
+				}
+			}
+		}
+		// check for line selection via gutter clicks
+		// only do this when the editor is in read-only mode
+		if(editor.getOption("readOnly")) {
+			editor.on("gutterClick", function(cm, line, gutter) {
+				window.location.hash = "#line-" + (line + 1);
+				if(prev_selected_line != -1) {
+					cm.removeLineClass(prev_selected_line, "background", "cm-selectedline");
+				}
+				cm.addLineClass(line, "background", "cm-selectedline");
+				prev_selected_line = line;
+			});
+		}
+	}
 });
