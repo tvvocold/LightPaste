@@ -6,6 +6,7 @@
 	
 	require("data.php");
 	require("classes/third-party/hashids.php");
+	require("classes/database.php");
 	require("classes/util.php");
 	
 	$f3->set("editor_font_sizes", $DATA_FONTSIZES);
@@ -40,6 +41,7 @@
 	$f3->route("GET /@id",
 		function($f3)
 		{
+			database::connect();
 			global $DATA_LANGUAGES;
 			util::countView($f3->get("PARAMS.id"));
 			$result = util::getPaste($f3->get("PARAMS.id"));
@@ -80,6 +82,7 @@
 		function($f3)
 		{
 			global $DATA_LANGUAGES;
+			database::connect();
 			$result = util::getPaste($f3->get("PARAMS.id"));
 			if(count($result) == 0) {
 				header("location: .");
@@ -122,6 +125,7 @@
 		function($f3)
 		{
 			global $DATA_LANGUAGES;
+			database::connect();
 			if($f3->get("POST.text")) {
 				$text = $f3->get("POST.text");
 				$language = "";
