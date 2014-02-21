@@ -73,7 +73,7 @@
 		static function generatePasteID($id)
 		{
 			$salt = bin2hex(openssl_random_pseudo_bytes(35));
-			$hashids = new Hashids\Hashids($salt, 5);
+			$hashids = new Hashids\Hashids($salt, 8);
 			return $hashids->encrypt($id);
 		}
 		
