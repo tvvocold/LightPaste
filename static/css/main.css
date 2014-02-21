@@ -204,6 +204,7 @@ body {
 	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
 	max-width: 700px;
 	z-index: 10002;
+	background: #F5F5F5;
 }
 
 .panel-header {
@@ -211,7 +212,6 @@ body {
 	position: relative;
 	font-weight: bold;
 	font-size: 18px;
-	border: 1px solid #668CFF;
 	color: #FFFFFF;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 	background-color: #809FFF;
@@ -219,16 +219,15 @@ body {
 
 .panel-content {
 	padding: 5px;
-	background: #ffffff;
-	background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5));
-	background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
-	background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
-	background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
-	background: linear-gradient(to bottom,  #ffffff 0%,#e5e5e5 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 );
-	border: 1px solid #CCCCCC;
-	border-top: none;
+}
+
+.panel-content a {
+	color: #3366FF !important;
+	text-decoration: none;
+}
+
+.panel-content a:hover {
+	text-decoration: underline !important;
 }
 
 .panel-button {
@@ -244,7 +243,6 @@ body {
 .panel-footer {
 	padding: 5px;
 	text-align: center;
-	padding-bottom: 0px;
 }
 
 #error-panel {
