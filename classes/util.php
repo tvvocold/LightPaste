@@ -181,6 +181,25 @@
 				);
 			}
 		}
+		
+		static function logIP($ip, $type, $modifier)
+		{
+			$time = time();
+			$result = database::query(array("SELECT ipaddress FROM iplogs WHERE ipaddress = ?;"), array(array(1 => $ip)));
+			if(gettype($result) == "array") {
+				if(count($result) == 1) {
+					database::query(array("UPDATE iplogs SET $type = ? WHERE ipaddress = ?;"), array(array(1 => ($time + $modifier), 2 => $ip)));
+				} else {
+					database::query(array("INSERT INTO iplogs (ipaddress, $type) VALUES(?, ?);"), array(array(1 => $ip, 2 => ($time + $modifier))));
+				}
+			}
+			database::query("DELETE FROM iplogs WHERE paste_time < UNIX_TIMESTAMP();");
+		}
+		
+		static function checkIPLogs($ip, $field)
+		{
+			return database::query(array("SELECT $field FROM iplogs WHERE ipaddress = ?;"), array(array(1 => $ip)));
+		}
 	}
 	
 ?>

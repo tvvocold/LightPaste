@@ -1,0 +1,15 @@
+<check if="isset({{@SESSION.error}})">
+	<true>
+<div class="panel" id="error-panel">
+	<div class="panel-header">
+		Error
+	</div>
+	<div class="panel-content">
+		{{@SESSION.error}}
+	</div>
+	<div class="panel-footer">
+		<a href="#" class="panel-button" onclick="toggleCenterPanel('error-panel');">Close</a>
+	</div>
+</div>
+	</true>
+</check>

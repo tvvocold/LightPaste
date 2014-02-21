@@ -12,6 +12,7 @@
 	$f3->set("editor_font_sizes", $DATA_FONTSIZES);
 	$f3->set("editor_fonts", $DATA_FONTS);
 	
+	// main page route
 	$f3->route("GET /",
 		function($f3)
 		{
@@ -35,9 +36,11 @@
 			$template = new Template;
 			echo $template->render("templates/main.html");
 			$f3->set("SESSION.copy_text", NULL);
+			$f3->set("SESSION.error", NULL);
 		}
 	);
 	
+	// paste route
 	$f3->route("GET /@id",
 		function($f3)
 		{
@@ -78,6 +81,7 @@
 		}
 	);
 	
+	// paste mode route
 	$f3->route("GET /@id/@mode",
 		function($f3)
 		{
@@ -121,11 +125,24 @@
 		}
 	);
 	
+	// new paste route
 	$f3->route("POST /new",
 		function($f3)
 		{
 			global $DATA_LANGUAGES;
 			database::connect();
+			$result = util::checkIPLogs($f3->get("IP"), "paste_time");
+			if(gettype($result) == "array") {
+				if(count($result) == 1) {
+					$time = time();
+					if($result[0]["paste_time"] > $time) {
+						$wait_time = $result[0]["paste_time"] - $time;
+						$f3->set("SESSION.error", "You must wait $wait_time seconds before creating another paste.");
+						header("location: .");
+						exit();
+					}
+				}
+			}
 			if($f3->get("POST.text")) {
 				$text = $f3->get("POST.text");
 				$language = "";
@@ -141,6 +158,7 @@
 				}
 				$result = util::insertPaste($text, $language, $private);
 				if(gettype($result) == "string") {
+					util::logIP($f3->get("IP"), "paste_time", $f3->get("PASTE_DELAY"));
 					header("location: ./$result");
 				} else {
 					header("location: .");

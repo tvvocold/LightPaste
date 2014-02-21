@@ -227,4 +227,8 @@ $(document).ready(function() {
 		var newobj = $("#" + obj.currentTarget.id);
 		toggleToolTip(newobj.data("tooltip"), newobj.attr("id"));
 	});
+	var error_panel = $("#error-panel");
+	if(error_panel.length > 0) {
+		toggleCenterPanel("error-panel");
+	}
 });
