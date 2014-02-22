@@ -210,12 +210,17 @@ $(document).ready(function() {
 		// only do this when the editor is in read-only mode
 		if(editor.getOption("readOnly")) {
 			editor.on("gutterClick", function(cm, line, gutter) {
-				window.location.hash = "#line-" + (line + 1);
 				if(prev_selected_line != -1) {
 					cm.removeLineClass(prev_selected_line, "background", "cm-selectedline");
 				}
-				cm.addLineClass(line, "background", "cm-selectedline");
-				prev_selected_line = line;
+				if(prev_selected_line != line) {
+					cm.addLineClass(line, "background", "cm-selectedline");
+					prev_selected_line = line;
+					window.location.hash = "#line-" + (line + 1);
+				} else {
+					prev_selected_line = -1;
+					window.location.hash = "";
+				}
 			});
 		}
 	}
