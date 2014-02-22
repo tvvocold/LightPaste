@@ -127,37 +127,39 @@
 					$f3->set("editor_highlight_active_line", "false");
 				}
 			} else {
-				$f3->set("editor_highlight_active_line", 'true');
+				$f3->set("editor_highlight_active_line", "true");
 			}
 			if(isset($_COOKIE["editor_tab_size"])) {
 				$tabsize = intval($_COOKIE["editor_tab_size"]);
-				if($tabsize > 30) {
-					$tabsize = 30;
-				} elseif($tabsize < 0) {
-					$tabsize = 0;
+				$min = $f3->get("EDITOR_MINIMUM_TABSIZE");
+				$max = $f3->get("EDITOR_MAXIMUM_TABSIZE");
+				if($tabsize > $max) {
+					$tabsize = $max;
+				} elseif($tabsize < $min) {
+					$tabsize = $min;
 				}
 				$f3->set("editor_tab_size", $tabsize);
 			} else {
-				$f3->set("editor_tab_size", 4);
+				$f3->set("editor_tab_size", $f3->get("EDITOR_DEFAULT_TABSIZE"));
 			}
 			if(isset($_COOKIE["editor_cursor_blinkrate"])) {
 				$f3->set("editor_cursor_blinkrate", intval($_COOKIE["editor_cursor_blinkrate"]));
 			} else {
-				$f3->set("editor_cursor_blinkrate", 530);
+				$f3->set("editor_cursor_blinkrate", $f3->get("EDITOR_DEFAULT_BLINKRATE"));
 			}
 			if(isset($_COOKIE["editor_font_size"])) {
 				$f3->set("editor_font_size", intval($_COOKIE["editor_font_size"]));
 			} else {
-				$f3->set("editor_font_size", 14);
+				$f3->set("editor_font_size", $f3->get("EDITOR_DEFAULT_FONTSIZE"));
 			}
 			if(isset($_COOKIE["editor_font"])) {
 				if(array_key_exists($_COOKIE["editor_font"], $DATA_FONTS)) {
 					$f3->set("editor_font", $DATA_FONTS[$_COOKIE["editor_font"]]);
 				} else {
-					$f3->set("editor_font", $DATA_FONTS["Courier New"]);
+					$f3->set("editor_font", $DATA_FONTS[$f3->get("EDITOR_DEFAULT_FONT")]);
 				}
 			} else {
-				$f3->set("editor_font", $DATA_FONTS["Courier New"]);
+				$f3->set("editor_font", $DATA_FONTS[$f3->get("EDITOR_DEFAULT_FONT")]);
 			}
 		}
 		
