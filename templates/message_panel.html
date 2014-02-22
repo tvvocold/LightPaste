@@ -1,0 +1,15 @@
+<check if="isset({{@SESSION.message}})">
+	<true>
+<div class="panel" id="message-panel">
+	<div class="panel-header">
+		{{@SESSION.message_title}}
+	</div>
+	<div class="panel-content">
+		{{@SESSION.message}}
+	</div>
+	<div class="panel-footer">
+		<a href="#" class="panel-button" onclick="toggleCenterPanel('message-panel');">Close</a>
+	</div>
+</div>
+	</true>
+</check>

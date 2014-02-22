@@ -236,4 +236,8 @@ $(document).ready(function() {
 	if(error_panel.length > 0) {
 		toggleCenterPanel("error-panel");
 	}
+	var message_panel = $("#message-panel");
+	if(message_panel.length > 0) {
+		toggleCenterPanel("message-panel");
+	}
 });

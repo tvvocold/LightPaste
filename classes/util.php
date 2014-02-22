@@ -195,7 +195,7 @@
 					database::query(array("INSERT INTO iplogs (ipaddress, $type) VALUES(?, ?);"), array(array(1 => $ip, 2 => ($time + $modifier))));
 				}
 			}
-			database::query("DELETE FROM iplogs WHERE paste_time < UNIX_TIMESTAMP();");
+			database::query("DELETE FROM iplogs WHERE paste_time < UNIX_TIMESTAMP() AND report_time < UNIX_TIMESTAMP();");
 		}
 		
 		static function checkIPLogs($ip, $field)

@@ -35,8 +35,6 @@
 			$f3->set("languages", $langs);
 			$template = new Template;
 			echo $template->render("templates/main.html");
-			$f3->set("SESSION.copy_text", NULL);
-			$f3->set("SESSION.error", NULL);
 		}
 	);
 	
@@ -119,6 +117,25 @@
 				$f3->set("SESSION.copy_text", $result[0]["text"]);
 				header("location: ../");
 				exit();
+			} elseif($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "report") {
+				$result = util::checkIPLogs($f3->get("IP"), "report_time");
+				if(gettype($result) == "array") {
+					if(count($result) == 1) {
+						$time = time();
+						if($result[0]["report_time"] > $time) {
+							$wait_time = $result[0]["report_time"] - $time;
+							$f3->set("SESSION.error", "You must wait $wait_time seconds before reporting another paste.");
+							header("location: ./");
+							exit();
+						}
+					}
+				}
+				util::logIP($f3->get("IP"), "report_time", $f3->get("REPORT_DELAY"));
+				database::query(array("UPDATE pastes SET reported = '1' WHERE access_id = ?;"), array(array(1 => $f3->get("PARAMS.id"))));
+				$f3->set("SESSION.message", "The paste you specified has been reported.");
+				$f3->set("SESSION.message_title", "Success");
+				header("location: ./");
+				exit();
 			} else {
 				$f3->error(404);
 			}
@@ -170,5 +187,9 @@
 	);
 	
 	$f3->run();
+	$f3->set("SESSION.copy_text", NULL);
+	$f3->set("SESSION.error", NULL);
+	$f3->set("SESSION.message", NULL);
+	$f3->set("SESSION.message_title", NULL);
 	
 ?>
