@@ -30,6 +30,7 @@
 		=======================================================*/
 		static function insertPaste($paste_text, $paste_language, $paste_private)
 		{
+			global $f3;
 			$result = database::query("SELECT MAX(id) AS id FROM pastes;");
 			$max_id = $result[0]["id"];
 			if($max_id == NULL) {
@@ -40,15 +41,16 @@
 			$paste_sha1 = sha1($paste_text);
 			// insert the new paste into the database using a prepared statement
 			database::query(array("INSERT INTO pastes(access_id, text, 
-				time, language, md5, sha1, private) 
-				VALUES(?, ?, UNIX_TIMESTAMP(), ?, ?, ?, ?)"), 
+				time, language, md5, sha1, private, ipaddress) 
+				VALUES(?, ?, UNIX_TIMESTAMP(), ?, ?, ?, ?, ?)"), 
 				array(array(
 					1 => $paste_access_id, 
 					2 => $paste_text,
 					3 => $paste_language,
 					4 => $paste_md5,
 					5 => $paste_sha1,
-					6 => $paste_private)
+					6 => $paste_private,
+					7 => $f3->get("IP"))
 				)
 			);
 			return $paste_access_id;
