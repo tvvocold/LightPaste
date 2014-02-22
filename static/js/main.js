@@ -64,9 +64,9 @@ function slidePanel(panel_id, button_id, func)
 	var panel = $("#" + panel_id);
 	var button = $("#" + button_id);
 	if(panel.is(":visible")) {
-		button.html("<img src=\""  + site_static + "/images/icons/expand.png\">");
+		button.html("<img src=\""  + site_static + "/images/icons/expand.png\" alt=\"Expand icon\">");
 	} else {
-		button.html("<img src=\"" + site_static + "/images/icons/collapse.png\">");
+		button.html("<img src=\"" + site_static + "/images/icons/collapse.png\" alt=\"Collapse icon\">");
 	}
 	panel.slideToggle({
 		duration: 140,
