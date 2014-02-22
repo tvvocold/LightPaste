@@ -1,6 +1,7 @@
 var editor = null;
 var editor_mode = "";
 var prev_selected_line = -1;
+var site_static = ""
 
 /* ==================================================
 	begin functions
@@ -63,9 +64,9 @@ function slidePanel(panel_id, button_id, func)
 	var panel = $("#" + panel_id);
 	var button = $("#" + button_id);
 	if(panel.is(":visible")) {
-		button.html("<img src=\"static/images/icons/expand.png\">");
+		button.html("<img src=\""  + site_static + "/images/icons/expand.png\">");
 	} else {
-		button.html("<img src=\"static/images/icons/collapse.png\">");
+		button.html("<img src=\"" + site_static + "/images/icons/collapse.png\">");
 	}
 	panel.slideToggle({
 		duration: 140,

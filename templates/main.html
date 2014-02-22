@@ -15,7 +15,7 @@
 				<include href="templates/editor_options.html" />
 			</div>
 		</div>
-		<form action="./new" method="post" id="paste_form">
+		<form action="{{@SITE_BASE_URL}}/new" method="post" id="paste_form">
 			<check if="isset({{@SESSION.copy_text}})">
 				<true>
 					<textarea id="text-editor" name="text">{{@SESSION.copy_text}}</textarea>

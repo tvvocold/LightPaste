@@ -39,7 +39,7 @@
 	);
 	
 	// paste route
-	$f3->route("GET /@id",
+	$f3->route("GET /paste/@id",
 		function($f3)
 		{
 			database::connect();
@@ -47,7 +47,7 @@
 			util::countView($f3->get("PARAMS.id"));
 			$result = util::getPaste($f3->get("PARAMS.id"));
 			if(count($result) == 0) {
-				header("location: .");
+				header("location: " . $f3->get("SITE_BASE_URL"));
 				exit();
 			}
 			$f3->set("page_title", "Light Paste / " . $f3->get("PARAMS.id"));
@@ -81,14 +81,15 @@
 	);
 	
 	// paste mode route
-	$f3->route("GET /@id/@mode",
+	$f3->route("GET /paste/@id/@mode",
 		function($f3)
 		{
 			global $DATA_LANGUAGES;
 			database::connect();
 			$result = util::getPaste($f3->get("PARAMS.id"));
+			$base_url = $f3->get("SITE_BASE_URL");
 			if(count($result) == 0) {
-				header("location: .");
+				header("location: $base_url");
 				exit();
 			}
 			if($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "raw") {
@@ -116,7 +117,7 @@
 				exit();
 			} elseif($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "copy") {
 				$f3->set("SESSION.copy_text", $result[0]["text"]);
-				header("location: ../");
+				header("location: $base_url");
 				exit();
 			} elseif($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "report") {
 				$result = util::checkIPLogs($f3->get("IP"), "report_time");
@@ -126,7 +127,7 @@
 						if($result[0]["report_time"] > $time) {
 							$wait_time = $result[0]["report_time"] - $time;
 							$f3->set("SESSION.error", "You must wait $wait_time seconds before reporting another paste.");
-							header("location: ./");
+							header("location: $base_url/paste/" . $f3->get("PARAMS.id"));
 							exit();
 						}
 					}
@@ -135,7 +136,7 @@
 				database::query(array("UPDATE pastes SET reported = '1' WHERE access_id = ?;"), array(array(1 => $f3->get("PARAMS.id"))));
 				$f3->set("SESSION.message", "The paste you specified has been reported.");
 				$f3->set("SESSION.message_title", "Success");
-				header("location: ./");
+				header("location: $base_url/paste/" . $f3->get("PARAMS.id"));
 				exit();
 			} else {
 				$f3->error(404);
@@ -149,6 +150,7 @@
 		{
 			global $DATA_LANGUAGES;
 			database::connect();
+			$base_url = $f3->get("SITE_BASE_URL");
 			$result = util::checkIPLogs($f3->get("IP"), "paste_time");
 			if(gettype($result) == "array") {
 				if(count($result) == 1) {
@@ -156,7 +158,7 @@
 					if($result[0]["paste_time"] > $time) {
 						$wait_time = $result[0]["paste_time"] - $time;
 						$f3->set("SESSION.error", "You must wait $wait_time seconds before creating another paste.");
-						header("location: .");
+						header("location: $base_url");
 						exit();
 					}
 				}
@@ -177,12 +179,12 @@
 				$result = util::insertPaste($text, $language, $private);
 				if(gettype($result) == "string") {
 					util::logIP($f3->get("IP"), "paste_time", $f3->get("PASTE_DELAY"));
-					header("location: ./$result");
+					header("location: $base_url/paste/$result");
 				} else {
-					header("location: .");
+					header("location: $base_url");
 				}
 			} else {
-				header("location: .");
+				header("location: $base_url");
 			}
 		}
 	);
