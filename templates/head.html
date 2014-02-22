@@ -13,4 +13,9 @@
 <script type="text/javascript" src="http://localhost/lightpaste/static/js/main.js"></script>
 <script type="text/javascript">
 	site_static = "{{@SITE_STATIC}}";
+<check if="isset({{@SITE_ANALYTICS_ENABLED}}) and {{@SITE_ANALYTICS_ENABLED}} == true">
+	<true>
+	<include href="templates/google_analytics_script.html" />
+	</true>
+</check>
 </script>
