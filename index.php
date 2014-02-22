@@ -65,7 +65,8 @@
 				$f3->set("language_name", "None");
 				$f3->set("editor_mode", "'none'");
 			}
-			$f3->set("paste_time", date("M d, Y", $result[0]["time"]));
+			$f3->set("paste_date", date("M d, Y", $result[0]["time"]));
+			$f3->set("paste_time", date("g:i A", $result[0]["time"]));
 			$f3->set("paste_views", number_format($result[0]["views"]));
 			$f3->set("paste_size", util::formatDataSize(strlen($result[0]["text"])));
 			$f3->set("paste_md5", $result[0]["md5"]);
