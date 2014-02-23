@@ -107,7 +107,7 @@
 						$extension = $language_data["file_extension"];
 					}
 				}
-				$file = tempnam("tempfiles/", "txt");
+				$file = tempnam(NULL, "txt");
 				$handle = fopen($file, "w");
 				fwrite($handle, $result[0]["text"]);
 				fclose($handle);
