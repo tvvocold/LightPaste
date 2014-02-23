@@ -35,6 +35,7 @@
 			$f3->set("languages", $langs);
 			$template = new Template;
 			echo $template->render("templates/main.html");
+			util::clearCommonSessionData();
 		}
 	);
 	
@@ -77,6 +78,7 @@
 			$f3->set("paste_private", $result[0]["private"]);
 			$template = new Template;
 			echo $template->render("templates/paste.html");
+			util::clearCommonSessionData();
 		}
 	);
 	
@@ -190,9 +192,5 @@
 	);
 	
 	$f3->run();
-	$f3->set("SESSION.copy_text", NULL);
-	$f3->set("SESSION.error", NULL);
-	$f3->set("SESSION.message", NULL);
-	$f3->set("SESSION.message_title", NULL);
 	
 ?>
