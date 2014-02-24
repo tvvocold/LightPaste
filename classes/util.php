@@ -86,6 +86,7 @@
 		static function getEditorSettings($f3)
 		{
 			global $DATA_FONTS;
+			global $DATA_THEMES;
 			if(isset($_COOKIE["editor_line_numbers"])) {
 				if($_COOKIE["editor_line_numbers"] == 1) {
 					$f3->set("editor_line_numbers", "true");
@@ -162,6 +163,18 @@
 				}
 			} else {
 				$f3->set("editor_font", $DATA_FONTS[$f3->get("EDITOR_DEFAULT_FONT")]);
+			}
+			if(isset($_COOKIE["site_theme"])) {
+				if(array_key_exists($_COOKIE["site_theme"], $DATA_THEMES)) {
+					$f3->set("site_theme", $_COOKIE["site_theme"]);
+					$f3->set("editor_theme", $DATA_THEMES[$_COOKIE["site_theme"]]["editor_theme"]);
+				} else {
+					$f3->set("site_theme", "default");
+					$f3->set("editor_theme", "lightpaste");
+				}
+			} else {
+				$f3->set("site_theme", "default");
+				$f3->set("editor_theme", "lightpaste");
 			}
 		}
 		

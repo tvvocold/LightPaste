@@ -1,0 +1,20 @@
+<div class="side-panel-header">
+	Site Options
+	<a href="#" id="site-options-toggle" onclick="slidePanel('site-options-content', 'site-options-toggle', adjustSidePanel);">
+		<img src="{{@SITE_STATIC}}/images/icons/collapse.png" alt="Collapse icon">
+	</a>
+</div>
+<div class="side-panel-section" id="site-options-content">
+	<select id="theme-selector">
+		<repeat group="{{@site_themes}}" key="{{@k}}" value="{{@v}}">
+			<check if="{{@site_theme}} == {{@k}}">
+			<true>
+				<option value="{{@k}}" selected="selected">{{@v[name]}}</option>
+			</true>
+			<false>
+				<option value="{{@k}}">{{@v[name]}}</option>
+			</false>
+		</repeat>
+	</select>
+	<label for="theme-selector">Theme</label>
+</div>

@@ -10,17 +10,6 @@ body {
 	padding: 5px;
 }
 
-.content-section-header {
-	font-weight: bold;
-	font-size: 18px;
-	background: #A4A4A4;
-	padding: 5px;
-}
-
-.content-section-body {
-	padding: 5px;
-}
-
 #header {
 	position: absolute;
 	top: 0px;
@@ -281,4 +270,8 @@ body {
 
 .tooltip-content {
 	padding: 5px;
+}
+
+#editor_fontsize_selector {
+	width: 72px;
 }

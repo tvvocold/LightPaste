@@ -11,6 +11,7 @@
 	
 	$f3->set("editor_font_sizes", $DATA_FONTSIZES);
 	$f3->set("editor_fonts", $DATA_FONTS);
+	$f3->set("site_themes", $DATA_THEMES);
 	
 	// main page route
 	$f3->route("GET /",

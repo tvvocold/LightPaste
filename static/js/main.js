@@ -184,6 +184,11 @@ $(document).ready(function() {
 		editor.refresh();
 		setCookie("editor_font", font, "Mon, 1 Jan 2040 08:00:00 UTC");
 	});
+	$("#theme-selector").change(function() {
+		var theme = $(this).find(":selected").val();
+		setCookie("site_theme", theme, "Mon, 1 Jan 2040 08:00:00 UTC");
+		location.reload();
+	});
 	if(editor != null) {
 		adjustSidePanel();
 		adjustEditor();

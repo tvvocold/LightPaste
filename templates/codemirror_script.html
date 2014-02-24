@@ -1,6 +1,6 @@
 var editor = CodeMirror.fromTextArea(document.getElementById("text-editor"), {
 	tabMode: "indent",
-	theme: "lightpaste",
+	theme: "{{@editor_theme}}",
 	mode: {{@editor_mode}},
 	matchBrackets: {{@editor_match_brackets}},
 	lineNumbers: {{@editor_line_numbers}},

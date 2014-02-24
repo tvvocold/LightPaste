@@ -242,5 +242,24 @@
 		"Trebuchet MS" => "Trebuchet MS, Trebuchet MS, sans-serif",
 		"Verdana" => "Verdana, Verdana, Geneva, sans-serif"
 	);
+	
+	$DATA_THEMES = array(
+		"default" => array(
+			"name" => "Default",
+			"editor_theme" => "lightpaste"
+		),
+		"ambiance" => array(
+			"name" => "Ambiance",
+			"editor_theme" => "ambiance"
+		),
+		"monokai" => array(
+			"name" => "Monokai",
+			"editor_theme" => "monokai"
+		),
+		"base16-dark" => array(
+			"name" => "Base16-Dark",
+			"editor_theme" => "base16-dark"
+		)
+	);
 
 ?>

@@ -1,0 +1,287 @@
+body {
+	font-family: Arial;
+	background: #272822;
+}
+
+body input[type="text"] {
+	background: #36372F;
+	border: none;
+	color: #d0d0d0;
+	padding: 5px;
+}
+
+body select {
+	background: #36372F;
+	border: none;
+	color: #d0d0d0;
+	padding: 5px;
+}
+
+body input[type="checkbox"] {
+	padding: 5px;
+	border: none;
+}
+
+#container { 
+	margin-top: 45px;
+}
+
+#content {
+	padding: 5px;
+}
+
+#header {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 40px;
+	color: #d0d0d0;
+	-webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+	-moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+	z-index: 10000;
+	background: #36372F;
+}
+
+#header-main {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 240px;
+	height: 40px;
+	text-align: center;
+	font-size: 28px;
+	font-weight: bold;
+	display: block;
+	text-decoration: none;
+	color: #d0d0d0;
+	line-height: 35px;
+}
+
+#header-main:hover {
+	background: rgba(255, 255, 255, 0.07);
+}
+
+#navigation {
+	position: absolute;
+	top: 0px;
+	left: 240px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+}
+
+#navigation li {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	float: left;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+#navigation li a {
+	display: block;
+	margin: 0px 0px 0px 0px;
+	padding: 4px 10px;
+	width: auto;
+	text-align: left;
+	text-decoration: none;
+	color: #d0d0d0;
+	line-height: 32px;
+	text-align: center;
+}
+
+#navigation li a img {
+	border: 0px;
+	vertical-align: middle;
+}
+
+#navigation li a:hover {
+	background-color: rgba(255, 255, 255, 0.07);
+}
+
+#languages {
+	display: inline-block;
+	margin-left: 5px;
+	width: 138px;
+}
+
+#side-panel {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 240px;
+	height: 100%;
+	z-index: 9999;
+	overflow-y: auto;
+	color: #d0d0d0;
+}
+
+#side-panel-content {
+	padding: 5px;
+	padding-top: 5px;
+	font-size: 12px;
+}
+
+#side-panel-content input[type="submit"] {
+	display: block;
+	width: 100%;
+}
+
+.side-panel-header {
+	font-weight: bold;
+	padding: 5px;
+	position: relative;
+	color: #d0d0d0;
+	margin-top: 5px;
+	font-size: 14px;
+	background: #36372F;
+}
+
+.side-panel-header a {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.side-panel-section
+{
+	padding: 5px;
+}
+
+.side-panel-section a {
+	color: #000000;
+	text-decoration: none;
+}
+
+.side-panel-row input[type="text"] {
+	width: 125px;
+}
+
+.side-panel-row {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.side-panel-key {
+	width: 70px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.side-panel-value {
+	display: inline-block;
+	word-wrap: break-word;
+	width: 115px;
+	vertical-align: middle;
+}
+
+.side-panel-value a {
+	color: #3366FF !important;
+}
+
+.side-panel-value a:hover {
+	text-decoration: underline !important;
+}
+
+#paste-toolbar {
+	padding: 5px;
+}
+
+#paste-toolbar img {
+	vertical-align: middle;
+	margin-top: -2px;
+}
+
+#paste-toolbar a {
+	color: #000000;
+	text-decoration: none;
+}
+
+.panel {
+	display: none;
+	position: absolute;
+	background-color: #FFFFFF;
+	-webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
+	-moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
+	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
+	width: 700px;
+	z-index: 10002;
+	background: #F5F5F5;
+}
+
+.panel-header {
+	padding: 5px;
+	position: relative;
+	font-weight: bold;
+	font-size: 18px;
+	color: #FFFFFF;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+	background: #80B3FF;
+}
+
+.panel-content {
+	padding: 5px;
+	font-size: 14px;
+}
+
+.panel-content a {
+	color: #3366FF !important;
+	text-decoration: none;
+}
+
+.panel-content a:hover {
+	text-decoration: underline !important;
+}
+
+.panel-button {
+	padding: 5px;
+	display: inline-block;
+	background-color: #F2F2F2;
+	color: #000000;
+	text-decoration: none;
+	min-width: 100px;
+	border: 1px solid #CCCCCC;
+}
+
+.panel-footer {
+	padding: 5px;
+	text-align: center;
+}
+
+#error-panel {
+	width: 700px;
+}
+
+#background {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	opacity: 0.70;
+	background-color: #FFFFFF;
+	z-index: 10000;
+}
+
+.tooltip {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: none;
+	background: #FFFFE5;
+	color: #000000;
+	z-index: 10001;
+	font-size: 14px;
+	border: 1px solid #737373;
+}
+
+.tooltip-content {
+	padding: 5px;
+}
+
+#editor_fontsize_selector {
+	width: 78px;
+}
