@@ -160,6 +160,7 @@ $(document).ready(function() {
 	$("#fullscreen_checkbox").change(function() {
 		if($(this).is(":checked")) {
 			editor.setOption("fullScreen", true);
+			editor.focus();
 		} else {
 			editor.setOption("fullScreen", false);
 		}
