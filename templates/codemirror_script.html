@@ -12,16 +12,14 @@ var editor = CodeMirror.fromTextArea(document.getElementById("text-editor"), {
 	styleActiveLine: {{@editor_highlight_active_line}},
 	indentUnit: 4,
 	autofocus: true,
-	/*
 	extraKeys: {
 		"F11": function(cm) {
-			ToggleEditorFullscreen();
-		},
-		"Esc": function(cm) {
-			ToggleEditorFullscreen();
-		}
+			cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+        },
+        "Esc": function(cm) {
+			if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+        }
 	}
-	*/
 });
 $(".CodeMirror").css("font-size", "{{@editor_font_size}}px");
 $(".CodeMirror").css("font-family", "{{@editor_font}}");
