@@ -15,9 +15,13 @@ var editor = CodeMirror.fromTextArea(document.getElementById("text-editor"), {
 	extraKeys: {
 		"F11": function(cm) {
 			cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+			$("#fullscreen_checkbox").prop("checked", !cm.getOption("fullScreen"));
         },
         "Esc": function(cm) {
-			if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+			if (cm.getOption("fullScreen")) {
+				cm.setOption("fullScreen", false)
+				$("#fullscreen_checkbox").prop("checked", false);
+			}
         }
 	}
 });
