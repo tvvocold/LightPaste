@@ -233,7 +233,14 @@
 		
 		static function checkIPLogs($ip, $field)
 		{
-			return database::query(array("SELECT $field FROM iplogs WHERE ipaddress = ?;"), array(array(1 => $ip)));
+			$result = database::query(array("SELECT $field FROM iplogs WHERE ipaddress = ?;"), array(array(1 => $ip)));
+			if(gettype($result) == "array" and count($result) == 1) {
+				$time = time();
+				if($result[0][$field] > $time) {
+					return $wait_time = $result[0][$field] - $time;
+				}
+			}
+			return true;
 		}
 		
 		static function clearCommonSessionData()

@@ -122,17 +122,11 @@
 				header("location: /");
 				exit();
 			} elseif($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "report") {
-				$result = util::checkIPLogs($f3->get("IP"), "report_time");
-				if(gettype($result) == "array") {
-					if(count($result) == 1) {
-						$time = time();
-						if($result[0]["report_time"] > $time) {
-							$wait_time = $result[0]["report_time"] - $time;
-							$f3->set("SESSION.error", "You must wait $wait_time seconds before reporting another paste.");
-							header("location: /paste/" . $f3->get("PARAMS.id"));
-							exit();
-						}
-					}
+				$logcheck = util::checkIPLogs($f3->get("IP"), "report_time");
+				if(gettype($logcheck) != "boolean") {
+					$f3->set("SESSION.error", "You must wait $logcheck seconds before reporting another paste.");
+					header("location: /paste/" . $f3->get("PARAMS.id"));
+					exit();
 				}
 				util::logIP($f3->get("IP"), "report_time", $f3->get("REPORT_DELAY"));
 				database::query(array("UPDATE pastes SET reported = '1' WHERE access_id = ?;"), array(array(1 => $f3->get("PARAMS.id"))));
@@ -152,17 +146,12 @@
 		{
 			global $DATA_LANGUAGES;
 			database::connect();
-			$result = util::checkIPLogs($f3->get("IP"), "paste_time");
-			if(gettype($result) == "array") {
-				if(count($result) == 1) {
-					$time = time();
-					if($result[0]["paste_time"] > $time) {
-						$wait_time = $result[0]["paste_time"] - $time;
-						$f3->set("SESSION.error", "You must wait $wait_time seconds before creating another paste.");
-						header("location: /");
-						exit();
-					}
-				}
+			$logcheck = util::checkIPLogs($f3->get("IP"), "paste_time");
+			if(gettype($logcheck) != "boolean") {
+				$f3->set("SESSION.error", "You must wait $logcheck seconds before creating another paste.");
+				header("location: /");
+				exit();
+
 			}
 			if($f3->get("POST.text")) {
 				$text = $f3->get("POST.text");
