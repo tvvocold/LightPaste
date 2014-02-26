@@ -14,14 +14,10 @@ var editor = CodeMirror.fromTextArea(document.getElementById("text-editor"), {
 	autofocus: true,
 	extraKeys: {
 		"F11": function(cm) {
-			cm.setOption("fullScreen", !cm.getOption("fullScreen"));
-			$("#fullscreen_checkbox").prop("checked", !cm.getOption("fullScreen"));
+			toggleFullscreenEditor();
         },
         "Esc": function(cm) {
-			if (cm.getOption("fullScreen")) {
-				cm.setOption("fullScreen", false)
-				$("#fullscreen_checkbox").prop("checked", false);
-			}
+			toggleFullscreenEditor();
         }
 	}
 });

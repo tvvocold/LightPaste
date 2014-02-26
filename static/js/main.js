@@ -28,6 +28,17 @@ function adjustSidePanel()
 	side_panel.css("height", ($(window).height() - height + "px"));
 }
 
+function adjustEditorFullscreenInfobox()
+{
+	var panel = $("#editor-fullscreen-infobox");
+	panel.css("top", "10px");
+	if($(".CodeMirror-lines").height() > $(".CodeMirror-scroll").height()) {
+		panel.css("right", "26px");
+	} else {
+		panel.css("right", "10px");
+	}
+}
+
 function toggleCenterPanel(id)
 {
 	var panel = $("#" + id);
@@ -100,6 +111,23 @@ function toggleToolTip(tooltip_id, object_id)
 	}
 }
 
+function toggleFullscreenEditor()
+{
+	if(!editor.getOption("fullScreen")) {
+		editor.setOption("fullScreen", true);
+		editor.focus();
+		$("#editor-fullscreen-infobox").show();
+		$("#fullscreen_checkbox").prop("checked", true);
+		adjustEditorFullscreenInfobox();
+	} else {
+		editor.setOption("fullScreen", false);
+		editor.focus();
+		$("#editor-fullscreen-infobox").hide();
+		$("#fullscreen_checkbox").prop("checked", false);
+		adjustEditor();
+	}
+}
+
 /* ==================================================
 	begin page operations
 ================================================== */
@@ -158,12 +186,7 @@ $(document).ready(function() {
 		}
 	});
 	$("#fullscreen_checkbox").change(function() {
-		if($(this).is(":checked")) {
-			editor.setOption("fullScreen", true);
-			editor.focus();
-		} else {
-			editor.setOption("fullScreen", false);
-		}
+		toggleFullscreenEditor();
 	});
 	$("#tabsize_selector").keyup(function() {
 		var tabsize = parseInt($(this).val());
@@ -202,10 +225,15 @@ $(document).ready(function() {
 		adjustEditor();
 		editor.on("change", function() {
 			adjustSidePanel();
+			if(editor.getOption("fullScreen")) {
+				adjustEditorFullscreenInfobox();
+			}
 		});
-		$(window).resize(function() { 
+		$(window).resize(function() {
 			adjustSidePanel();
-			adjustEditor(); 
+			if(!editor.getOption("fullScreen")) {
+				adjustEditor();
+			}
 		});
 		// check url for selected line
 		var hash = window.location.hash
