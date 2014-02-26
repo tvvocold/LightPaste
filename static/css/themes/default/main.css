@@ -275,3 +275,15 @@ body {
 #editor_fontsize_selector {
 	width: 72px;
 }
+
+#editor-fullscreen-infobox {
+	background-color: #80B3FF;
+	color: #FFFFFF;
+	display: none;
+	position: absolute;
+	z-index: 1000001;
+}
+
+#editor-fullscreen-infobox div {
+	padding: 5px;
+}
