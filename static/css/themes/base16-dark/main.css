@@ -122,6 +122,10 @@ body select {
 #side-panel-content input[type="submit"] {
 	display: block;
 	width: 100%;
+	background: #2E2E2E;
+	border: none;
+	padding: 5px;
+	color: #d0d0d0;
 }
 
 .side-panel-header {

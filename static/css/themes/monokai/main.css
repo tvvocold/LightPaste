@@ -127,6 +127,10 @@ body input[type="checkbox"] {
 #side-panel-content input[type="submit"] {
 	display: block;
 	width: 100%;
+	background: #36372F;
+	border: none;
+	padding: 5px;
+	color: #d0d0d0;
 }
 
 .side-panel-header {
@@ -208,7 +212,7 @@ body input[type="checkbox"] {
 	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
 	width: 700px;
 	z-index: 10002;
-	background: #F5F5F5;
+	background: #1C1C17;
 }
 
 .panel-header {
@@ -216,14 +220,14 @@ body input[type="checkbox"] {
 	position: relative;
 	font-weight: bold;
 	font-size: 18px;
-	color: #FFFFFF;
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
-	background: #80B3FF;
+	color: #d0d0d0;
+	background: #36372F;
 }
 
 .panel-content {
 	padding: 5px;
 	font-size: 14px;
+	color: #d0d0d0;
 }
 
 .panel-content a {
@@ -238,11 +242,10 @@ body input[type="checkbox"] {
 .panel-button {
 	padding: 5px;
 	display: inline-block;
-	background-color: #F2F2F2;
-	color: #000000;
+	background-color: #36372F;
+	color: #d0d0d0;
 	text-decoration: none;
 	min-width: 100px;
-	border: 1px solid #CCCCCC;
 }
 
 .panel-footer {
@@ -262,7 +265,7 @@ body input[type="checkbox"] {
 	top: 0px;
 	left: 0px;
 	opacity: 0.70;
-	background-color: #FFFFFF;
+	background-color: #272822;
 	z-index: 10000;
 }
 
