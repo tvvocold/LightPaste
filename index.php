@@ -4,10 +4,10 @@
 	$f3 = require("lib/base.php");
 	$f3->config("config.ini");
 	
-	require("data.php");
-	require("classes/third-party/hashids.php");
-	require("classes/database.php");
-	require("classes/util.php");
+	require("core/data.php");
+	require("core/classes/third-party/hashids.php");
+	require("core/classes/database.php");
+	require("core/classes/util.php");
 	
 	$f3->set("editor_font_sizes", $DATA_FONTSIZES);
 	$f3->set("editor_fonts", $DATA_FONTS);
