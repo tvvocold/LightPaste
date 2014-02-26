@@ -117,6 +117,7 @@ body select {
 	z-index: 9999;
 	overflow-y: auto;
 	color: #505050;
+	background: #1E1E1E;
 }
 
 #side-panel-content {
