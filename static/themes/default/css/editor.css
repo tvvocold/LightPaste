@@ -30,8 +30,6 @@
   background-color: #E0EAFF !important;
 }
 
-.CodeMirror {overflow-y: hidden;}
-.CodeMirror-scroll { overflow: auto; overflow-y: hidden; position: relative; outline: none; height: 100%; }
 .CodeMirror-gutters{ background-color: #FFFFFF !important; border-right: none !important; padding-right: 10px;}
 
 div.CodeMirror span.CodeMirror-matchingbracket{ color: #FF0000 !important; font-weight: bold; }
