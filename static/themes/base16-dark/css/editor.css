@@ -34,4 +34,6 @@
 .cm-s-base16-dark .CodeMirror-matchingbracket { text-decoration: underline; color: white !important;}
 .cm-s-base16-dark .cm-selectedline {background: #3B3B3B;}
 
+.CodeMirror-matchingtag { background: rgba(26, 117, 255, 0.40); }
+
 div.CodeMirror-linenumber.CodeMirror-gutter-elt { cursor: pointer; }

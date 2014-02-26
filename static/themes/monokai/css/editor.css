@@ -29,4 +29,6 @@
   color: white !important;
 }
 
+.CodeMirror-matchingtag { background: rgba(26, 117, 255, 0.40); }
+
 div.CodeMirror-linenumber.CodeMirror-gutter-elt { cursor: pointer; }

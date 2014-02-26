@@ -31,9 +31,9 @@
 }
 
 .CodeMirror-gutters{ background-color: #FFFFFF !important; border-right: none !important; padding-right: 10px;}
+.CodeMirror-matchingtag { background: rgba(255, 153, 0, 0.40); }
 
 div.CodeMirror span.CodeMirror-matchingbracket{ color: #FF0000 !important; font-weight: bold; }
 div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #000000;}
 div.CodeMirror-linenumber.CodeMirror-gutter-elt { cursor: pointer; }
 div.CodeMirror-linenumber.CodeMirror-gutter-elt:target { color: #FF0000; font-weight: bold; }
-

@@ -123,6 +123,15 @@
 			} else {
 				$f3->set("editor_match_brackets", 'true');
 			}
+			if(isset($_COOKIE["editor_match_tags"])) {
+				if($_COOKIE["editor_match_tags"] == 1) {
+					$f3->set("editor_match_tags", "true");
+				} else {
+					$f3->set("editor_match_tags", "false");
+				}
+			} else {
+				$f3->set("editor_match_tags", 'true');
+			}
 			if(isset($_COOKIE["editor_highlight_active_line"])) {
 				if($_COOKIE["editor_highlight_active_line"] == 1) {
 					$f3->set("editor_highlight_active_line", "true");

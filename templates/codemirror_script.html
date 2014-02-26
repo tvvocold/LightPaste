@@ -12,6 +12,14 @@ var editor = CodeMirror.fromTextArea(document.getElementById("text-editor"), {
 	styleActiveLine: {{@editor_highlight_active_line}},
 	indentUnit: 4,
 	autofocus: true,
+<check if="{{ @editor_match_tags == 'true' }}">
+	<true>
+	matchTags: {bothTags: true},
+	</true>
+	<false>
+	matchTags: false,
+	</false>
+</check>
 	extraKeys: {
 		"F11": function(cm) {
 			toggleFullscreenEditor();
