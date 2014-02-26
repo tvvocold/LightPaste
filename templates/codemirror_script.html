@@ -17,7 +17,9 @@ var editor = CodeMirror.fromTextArea(document.getElementById("text-editor"), {
 			toggleFullscreenEditor();
         },
         "Esc": function(cm) {
-			toggleFullscreenEditor();
+			if(cm.getOption("fullScreen")) {
+				toggleFullscreenEditor();
+			}
         }
 	}
 });
