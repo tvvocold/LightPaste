@@ -248,10 +248,6 @@
 			"name" => "Default",
 			"editor_theme" => "lightpaste"
 		),
-		"ambiance" => array(
-			"name" => "Ambiance",
-			"editor_theme" => "ambiance"
-		),
 		"monokai" => array(
 			"name" => "Monokai",
 			"editor_theme" => "monokai"
