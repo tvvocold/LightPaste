@@ -1,7 +1,8 @@
 var editor = null;
 var editor_mode = "";
 var prev_selected_line = -1;
-var site_static = ""
+var site_static = "";
+var site_theme = "";
 
 /* ==================================================
 	begin functions
@@ -75,9 +76,9 @@ function slidePanel(panel_id, button_id, func)
 	var panel = $("#" + panel_id);
 	var button = $("#" + button_id);
 	if(panel.is(":visible")) {
-		button.html("<img src=\""  + site_static + "/images/icons/expand.png\" alt=\"Expand icon\">");
+		button.html("<img src=\""  + site_static + "/themes/" + site_theme + "/images/expand.png\" alt=\"Expand icon\">");
 	} else {
-		button.html("<img src=\"" + site_static + "/images/icons/collapse.png\" alt=\"Collapse icon\">");
+		button.html("<img src=\"" + site_static + "/themes/" + site_theme + "/images/collapse.png\" alt=\"Collapse icon\">");
 	}
 	panel.slideToggle({
 		duration: 140,
@@ -217,6 +218,7 @@ $(document).ready(function() {
 	});
 	$("#theme-selector").change(function() {
 		var theme = $(this).find(":selected").val();
+		site_theme = theme;
 		setCookie("site_theme", theme, "Mon, 1 Jan 2040 08:00:00 UTC");
 		location.reload();
 	});

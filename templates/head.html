@@ -7,13 +7,14 @@
 </check>
 <link rel="StyleSheet" href="{{@SITE_STATIC}}/css/codemirror.css" />
 <link rel="StyleSheet" href="{{@SITE_STATIC}}/css/fullscreen.css" />
-<link rel="StyleSheet" href="{{@SITE_STATIC}}/css/themes/{{@site_theme}}/main.css" />
-<link rel="StyleSheet" href="{{@SITE_STATIC}}/css/themes/{{@site_theme}}/editor.css" />
+<link rel="StyleSheet" href="{{@SITE_STATIC}}/themes/{{@site_theme}}/css/main.css" />
+<link rel="StyleSheet" href="{{@SITE_STATIC}}/themes/{{@site_theme}}/css/editor.css" />
 <script type="text/javascript" src="{{@SITE_STATIC}}/js/codemirror-compressed.js"></script>
 <script type="text/javascript" src="{{@SITE_STATIC}}/js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="{{@SITE_STATIC}}/js/main.js"></script>
 <script type="text/javascript">
 	site_static = "{{@SITE_STATIC}}";
+	site_theme = "{{@site_theme}}";
 <check if="isset({{@SITE_ANALYTICS_ENABLED}}) and {{@SITE_ANALYTICS_ENABLED}} == true">
 	<true>
 	<include href="templates/google_analytics_script.html" />
