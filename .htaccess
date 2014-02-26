@@ -14,9 +14,9 @@ RewriteRule ^templates/(.+)$ - [R=404]
 RewriteRule ^templates/$ - [R=404]
 RewriteRule ^templates$ - [R=404]
 
-RewriteRule ^tempfiles/(.+)$ - [R=404]
-RewriteRule ^tempfiles/$ - [R=404]
-RewriteRule ^tempfiles$ - [R=404]
+RewriteRule ^core/(.+)$ - [R=404]
+RewriteRule ^core/$ - [R=404]
+RewriteRule ^core$ - [R=404]
 
 RewriteCond %{REQUEST_FILENAME} !-l
 RewriteCond %{REQUEST_FILENAME} !-f
