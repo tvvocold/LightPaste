@@ -153,6 +153,10 @@ body select {
 	position: absolute;
 	top: 5px;
 	right: 5px;
+	font-size: 10px;
+	font-weight: normal;
+	text-decoration: none;
+	color: #FFFFFF;
 }
 
 .side-panel-section

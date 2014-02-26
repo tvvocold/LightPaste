@@ -149,6 +149,10 @@ body select {
 	position: absolute;
 	top: 5px;
 	right: 5px;
+	font-size: 10px;
+	font-weight: normal;
+	text-decoration: none;
+	color: #d0d0d0;
 }
 
 .side-panel-section
