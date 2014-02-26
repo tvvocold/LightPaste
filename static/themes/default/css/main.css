@@ -97,8 +97,14 @@ body select {
 
 #languages {
 	display: inline-block;
-	margin-left: 5px;
 	width: 138px;
+	margin-bottom: 3px;
+}
+
+#paste-visibility-selector {
+	display: inline-block;
+	width: 138px;
+	margin-bottom: 3px;
 }
 
 #side-panel {

@@ -5,7 +5,6 @@
 	</a>
 </div>
 <div class="side-panel-section" id="paste-options-content">
-	<label for="languages">Language</label>
 	<select id="languages" name="language" form="paste_form">
 		<option value="none">None</option>
 		<repeat group="{{@languages}}" key="{{@k}}" value="{{@v}}">
@@ -18,8 +17,11 @@
 			</false>
 		</repeat>
 	</select>
-	<br/>
-	<input type="checkbox" id="pasteprivate_checkbox" name="private" form="paste_form" >
-	<label for="pasteprivate_checkbox">Private</label>
+	<label for="languages">Language</label>
+	<select id="paste-visibility-selector" name="visibility" form="paste_form">
+		<option value="public" selected="selected">Public</option>
+		<option value="private">Private</option>
+	</select>
+	<label for="paste-visibility-selector">Visibility</label>
 	<input type="submit" value="Post" form="paste_form" />
 </div>

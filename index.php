@@ -167,15 +167,16 @@
 			if($f3->get("POST.text")) {
 				$text = $f3->get("POST.text");
 				$language = "";
+				$private = 0;
 				if($f3->get("POST.language")) {
 					if(array_key_exists($f3->get("POST.language"), $DATA_LANGUAGES)) {
 						$language = $f3->get("POST.language");
 					}
 				}
-				if($f3->get("POST.private")) {
-					$private = 1;
-				} else {
-					$private = 0;
+				if($f3->get("POST.visibility")) {
+					if($f3->get("POST.visibility") == "private") {
+						$private = 1;
+					}
 				}
 				$result = util::insertPaste($text, $language, $private);
 				if(gettype($result) == "string") {
