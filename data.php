@@ -207,6 +207,12 @@
 			"website" => "http://www.mirc.com/",
 			"file_extension" => "mrc",
 			"mode" => "text/mirc"
+		),
+		"shell" => array(
+			"name" => "Shell",
+			"website" => "http://en.wikipedia.org/wiki/Shell_script",
+			"file_extension" => "sh",
+			"mode" => "shell"
 		)
 	);
 	
