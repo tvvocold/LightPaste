@@ -65,6 +65,16 @@
 	</check>
 	<label for="matchbrackets_checkbox">Highlight active line</label>
 	<br/>
+	<check if="{{ @editor_highlight_occurrences == 'true' }}">
+		<true>
+			<input type="checkbox" checked="checked" id="highlight_occurrences_checkbox" >
+		</true>
+		<false>
+			<input type="checkbox" id="highlight_occurrences_checkbox" >
+		</false>
+	</check>
+	<label for="highlight_occurrences_checkbox">Highlight occurrences</label>
+	<br/>
 	<input type="checkbox" id="fullscreen_checkbox" >
 	<label for="fullscreen_checkbox">Fullscreen</label>
 	<br/>

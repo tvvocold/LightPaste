@@ -195,6 +195,15 @@ $(document).ready(function() {
 			setCookie("editor_highlight_active_line", "0", "Mon, 1 Jan 2040 08:00:00 UTC");
 		}
 	});
+	$("#highlight_occurrences_checkbox").change(function() {
+		if($(this).is(":checked")) {
+			editor.setOption("highlightSelectionMatches", {showToken: /\w/});
+			setCookie("editor_highlight_occurrences", "1", "Mon, 1 Jan 2040 08:00:00 UTC");
+		} else {
+			editor.setOption("highlightSelectionMatches", false);
+			setCookie("editor_highlight_occurrences", "0", "Mon, 1 Jan 2040 08:00:00 UTC");
+		}
+	});
 	$("#fullscreen_checkbox").change(function() {
 		toggleFullscreenEditor();
 	});

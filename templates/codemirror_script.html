@@ -20,6 +20,14 @@ var editor = CodeMirror.fromTextArea(document.getElementById("text-editor"), {
 	matchTags: false,
 	</false>
 </check>
+<check if="{{ @editor_highlight_occurrences == 'true' }}">
+	<true>
+	highlightSelectionMatches: {showToken: /\w/},
+	</true>
+	<false>
+	highlightSelectionMatches: false,
+	</false>
+</check>
 	extraKeys: {
 		"F11": function(cm) {
 			toggleFullscreenEditor();

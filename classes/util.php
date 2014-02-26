@@ -141,6 +141,15 @@
 			} else {
 				$f3->set("editor_highlight_active_line", "true");
 			}
+			if(isset($_COOKIE["editor_highlight_occurrences"])) {
+				if($_COOKIE["editor_highlight_occurrences"] == 1) {
+					$f3->set("editor_highlight_occurrences", "true");
+				} else {
+					$f3->set("editor_highlight_occurrences", "false");
+				}
+			} else {
+				$f3->set("editor_highlight_occurrences", "true");
+			}
 			if(isset($_COOKIE["editor_tab_size"])) {
 				$tabsize = intval($_COOKIE["editor_tab_size"]);
 				$min = $f3->get("EDITOR_MINIMUM_TABSIZE");

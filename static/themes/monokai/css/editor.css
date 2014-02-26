@@ -30,5 +30,6 @@
 }
 
 .CodeMirror-matchingtag { background: rgba(26, 117, 255, 0.40); }
+.CodeMirror-focused .cm-matchhighlight { background: rgba(153, 0, 0, 0.40); }
 
 div.CodeMirror-linenumber.CodeMirror-gutter-elt { cursor: pointer; }
