@@ -310,3 +310,43 @@ body input[type="checkbox"] {
 #editor-fullscreen-infobox div {
 	padding: 5px;
 }
+
+#error-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -32px;
+	margin-left: -350px;
+	background: #36372F;
+	width: 700px;
+	height: 65px;
+	color: #d0d0d0;
+	-webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
+	-moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
+	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
+}
+
+#error-container-content {
+	padding: 5px;
+}
+
+#error-container-header {
+	font-size: 28px;
+	font-weight: bold;
+	text-align: center;
+}
+
+#error-container-footer {
+	font-size: 14px;
+	text-align: center;
+	padding-top: 5px;
+}
+
+#error-container-footer a {
+	color: #3366FF !important;
+	text-decoration: none;
+}
+
+#error-container-footer a:hover {
+	text-decoration: underline !important;
+}
