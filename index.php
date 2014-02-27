@@ -144,38 +144,12 @@
 	$f3->route("POST /new",
 		function($f3)
 		{
-			global $DATA_LANGUAGES;
-			database::connect();
-			$logcheck = util::checkIPLogs($f3->get("IP"), "paste_time");
-			if(gettype($logcheck) != "boolean") {
-				$f3->set("SESSION.error", "You must wait $logcheck seconds before creating another paste.");
+			$result = util::processNewPasteData($f3);
+			if(gettype($result) == "array") {
+				$f3->set("SESSION.error", $result[1]);
 				header("location: /");
-				exit();
-
-			}
-			if($f3->get("POST.text")) {
-				$text = $f3->get("POST.text");
-				$language = "";
-				$private = 0;
-				if($f3->get("POST.language")) {
-					if(array_key_exists($f3->get("POST.language"), $DATA_LANGUAGES)) {
-						$language = $f3->get("POST.language");
-					}
-				}
-				if($f3->get("POST.visibility")) {
-					if($f3->get("POST.visibility") == "private") {
-						$private = 1;
-					}
-				}
-				$result = util::insertPaste($text, $language, $private);
-				if(gettype($result) == "string") {
-					util::logIP($f3->get("IP"), "paste_time", $f3->get("PASTE_DELAY"));
-					header("location: /paste/$result");
-				} else {
-					header("location: /");
-				}
 			} else {
-				header("location: /");
+				header("location: /paste/$result");
 			}
 		}
 	);
