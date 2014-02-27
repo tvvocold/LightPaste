@@ -154,6 +154,18 @@
 		}
 	);
 	
+	$f3->set("ONERROR", function($f3) {
+		if(substr($f3->get("SERVER.REQUEST_URI"), 0, 5) == "/api/") {
+			header("Content-Type: application/json; charset=utf-8");
+			echo json_encode(array("error" => true, "error_message" => $f3->get("ERROR.status")), JSON_PRETTY_PRINT);
+		} else {
+			$f3->set("page_title", "Light Paste / Error");
+			util::getEditorSettings($f3);
+			$template = new Template;
+			echo $template->render("templates/error.html");
+		}
+	});
+	
 	$f3->run();
 	
 ?>

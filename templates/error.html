@@ -1,0 +1,18 @@
+<include href="templates/doctype.html" />
+<html>
+	<head>
+		<include href="templates/head.html" />
+	</head>
+	<body>
+		<div id="error-container">
+			<div id="error-container-content">
+				<div id="error-container-header">
+					Error: {{@ERROR.code}} - {{@ERROR.status}}
+				</div>
+				<div id="error-container-footer">
+					<a href="/">Return to site</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
