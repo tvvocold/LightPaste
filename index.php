@@ -8,6 +8,7 @@
 	require("core/classes/third-party/hashids.php");
 	require("core/classes/database.php");
 	require("core/classes/util.php");
+	require("core/api.php");
 	
 	$f3->set("editor_font_sizes", $DATA_FONTSIZES);
 	$f3->set("editor_fonts", $DATA_FONTS);
