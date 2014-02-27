@@ -196,6 +196,11 @@
 			}
 		}
 		
+		/*=======================================================
+			func: countView($paste_id)
+			desc: increments the total number of views for a
+				  specific paste
+		=======================================================*/
 		static function countView($paste_id)
 		{
 			global $f3;
@@ -217,6 +222,10 @@
 			}
 		}
 		
+		/*=======================================================
+			func: logIP($ip, $type, $modifier)
+			desc: logs an action performed by the client
+		=======================================================*/
 		static function logIP($ip, $type, $modifier)
 		{
 			$time = time();
@@ -231,6 +240,10 @@
 			database::query("DELETE FROM iplogs WHERE paste_time < UNIX_TIMESTAMP() AND report_time < UNIX_TIMESTAMP();");
 		}
 		
+		/*=======================================================
+			func: checkIPLogs($ip, $field)
+			desc: chekcs the ip logs for relevant data
+		=======================================================*/
 		static function checkIPLogs($ip, $field)
 		{
 			$result = database::query(array("SELECT $field FROM iplogs WHERE ipaddress = ?;"), array(array(1 => $ip)));
@@ -243,6 +256,11 @@
 			return true;
 		}
 		
+		/*=======================================================
+			func: clearCommonSessionData()
+			desc: clears common data stored in the client's 
+				  session
+		=======================================================*/
 		static function clearCommonSessionData()
 		{
 			global $f3;
@@ -252,6 +270,11 @@
 			$f3->set("SESSION.message_title", NULL);
 		}
 		
+		/*=======================================================
+			func: processNewPasteData($f3)
+			desc: processes new paste data received from the 
+				  client
+		=======================================================*/
 		static function processNewPasteData($f3)
 		{
 			global $DATA_LANGUAGES;
