@@ -383,3 +383,9 @@ body input[type="checkbox"] {
 	width: 138px;
 	margin-bottom: 3px;
 }
+
+#paste-expiration-selector {
+	display: inline-block;
+	width: 138px;
+	margin-bottom: 3px;
+}

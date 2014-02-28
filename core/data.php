@@ -263,5 +263,16 @@
 			"editor_theme" => "base16-dark"
 		)
 	);
+	
+	$DATA_EXPIRATIONS = array(
+		"Never" => 0,
+		"5 minutes" => 300,
+		"10 minutes" => 600,
+		"30 minutes" => 1800,
+		"1 hour" => 3600,
+		"1 day" => 86400,
+		"1 week" => 604800,
+		"1 month" => 2419200
+	);
 
 ?>

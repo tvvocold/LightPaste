@@ -19,6 +19,7 @@
 		function($f3)
 		{
 			global $DATA_LANGUAGES;
+			global $DATA_EXPIRATIONS;
 			$langs = array();
 			ksort($DATA_LANGUAGES);
 			foreach($DATA_LANGUAGES as $key=>$value) {
@@ -35,6 +36,7 @@
 			$f3->set("editor_readonly", "false");
 			$f3->set("page_title", "Light Paste");
 			$f3->set("languages", $langs);
+			$f3->set("expirations", $DATA_EXPIRATIONS);
 			$template = new Template;
 			echo $template->render("templates/main.html");
 			util::clearCommonSessionData();
@@ -66,6 +68,12 @@
 			$f3->set("language_name", "None");
 			$f3->set("editor_mode", "'none'");
 		}
+		if($result[0]["expiration"] != 0) {
+			if(time() > $result[0]["expiration"]) {
+				header("location: /");
+				exit();
+			}
+		}
 		$f3->set("paste_date", date("M d, Y", $result[0]["time"]));
 		$f3->set("paste_time", date("g:i A", $result[0]["time"]));
 		$f3->set("paste_views", number_format($result[0]["views"]));
@@ -89,6 +97,12 @@
 		if(count($result) == 0) {
 			header("location: /");
 			exit();
+		}
+		if($result[0]["expiration"] != 0) {
+			if(time() > $result[0]["expiration"]) {
+				header("location: /");
+				exit();
+			}
 		}
 		if($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "raw") {
 			header("Content-Type: text/plain; charset=utf-8");

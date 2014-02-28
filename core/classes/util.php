@@ -25,10 +25,10 @@
 		}
 		
 		/*=======================================================
-			func: insertPaste($paste_text, $paste_language, $paste_private)
+			func: insertPaste($text, $language, $private, $expiration)
 			desc: inserts a new paste into the database
 		=======================================================*/
-		static function insertPaste($paste_text, $paste_language, $paste_private)
+		static function insertPaste($text, $language, $private, $expiration)
 		{
 			global $f3;
 			$result = database::query("SELECT MAX(id) AS id FROM pastes;");
@@ -36,24 +36,25 @@
 			if($max_id == NULL) {
 				$max_id = 1;
 			}
-			$paste_access_id = self::generatePasteID($max_id);
-			$paste_md5 = md5($paste_text);
-			$paste_sha1 = sha1($paste_text);
+			$access_id = self::generatePasteID($max_id);
+			$md5 = md5($text);
+			$sha1 = sha1($text);
 			// insert the new paste into the database using a prepared statement
 			database::query(array("INSERT INTO pastes(access_id, text, 
-				time, language, md5, sha1, private, ipaddress) 
-				VALUES(?, ?, UNIX_TIMESTAMP(), ?, ?, ?, ?, ?)"), 
+				time, language, md5, sha1, private, ipaddress, expiration) 
+				VALUES(?, ?, UNIX_TIMESTAMP(), ?, ?, ?, ?, ?, ?)"), 
 				array(array(
-					1 => $paste_access_id, 
-					2 => $paste_text,
-					3 => $paste_language,
-					4 => $paste_md5,
-					5 => $paste_sha1,
-					6 => $paste_private,
-					7 => $f3->get("IP"))
-				)
+					1 => $access_id, 
+					2 => $text,
+					3 => $language,
+					4 => $md5,
+					5 => $sha1,
+					6 => $private,
+					7 => $f3->get("IP"),
+					8 => $expiration
+				))
 			);
-			return $paste_access_id;
+			return $access_id;
 		}
 		
 		/*=======================================================
@@ -63,8 +64,8 @@
 		static function getPaste($id)
 		{
 			return database::query(array("SELECT access_id, text, 
-				language, time, views, md5, sha1, views, private 
-				FROM pastes WHERE access_id = ?"),
+				language, time, views, md5, sha1, views, private,
+				expiration FROM pastes WHERE access_id = ?"),
 				array(array(1 => $id)));
 		}
 		
@@ -278,6 +279,7 @@
 		static function processNewPasteData($f3)
 		{
 			global $DATA_LANGUAGES;
+			global $DATA_EXPIRATIONS;
 			database::connect();
 			$logcheck = util::checkIPLogs($f3->get("IP"), "paste_time");
 			if(gettype($logcheck) != "boolean") {
@@ -287,6 +289,7 @@
 				$text = $f3->get("POST.text");
 				$language = "";
 				$private = 0;
+				$expiration = 0;
 				if($f3->get("POST.language")) {
 					if(array_key_exists($f3->get("POST.language"), $DATA_LANGUAGES)) {
 						$language = $f3->get("POST.language");
@@ -297,7 +300,12 @@
 						$private = 1;
 					}
 				}
-				$result = util::insertPaste($text, $language, $private);
+				if($f3->get("POST.expiration")) {
+					if(array_key_exists($f3->get("POST.expiration"), $DATA_EXPIRATIONS)) {
+						$expiration = time() + $DATA_EXPIRATIONS[$f3->get("POST.expiration")];
+					}
+				}
+				$result = util::insertPaste($text, $language, $private, $expiration);
 				if(gettype($result) == "string") {
 					util::logIP($f3->get("IP"), "paste_time", $f3->get("PASTE_DELAY"));
 					return $result;

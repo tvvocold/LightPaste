@@ -381,6 +381,12 @@ body select {
 	margin-bottom: 3px;
 }
 
+#paste-expiration-selector {
+	display: inline-block;
+	width: 138px;
+	margin-bottom: 3px;
+}
+
 #editor_fontsize_selector {
 	width: 72px;
 }

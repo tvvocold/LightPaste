@@ -23,5 +23,17 @@
 		<option value="private">Private</option>
 	</select>
 	<label for="paste-visibility-selector">Visibility</label>
+	<select id="paste-expiration-selector" name="expiration" form="paste_form">
+		<repeat group="{{@expirations}}" key="{{@k}}" value="{{@v}}">
+			<check if="{{@v}} == 'Never'">
+			<true>
+				<option value="{{@k}}" selected="selected">{{@k}}</option>
+			</true>
+			<false>
+				<option value="{{@k}}">{{@k}}</option>
+			</false>
+		</repeat>
+	</select>
+	<label for="paste-expiration-selector">Expiration</label>
 	<input type="submit" value="Post" form="paste_form" />
 </div>
