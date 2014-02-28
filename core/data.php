@@ -265,7 +265,6 @@
 	);
 	
 	$DATA_EXPIRATIONS = array(
-		"Never" => 0,
 		"5 minutes" => 300,
 		"10 minutes" => 600,
 		"30 minutes" => 1800,

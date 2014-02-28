@@ -24,14 +24,9 @@
 	</select>
 	<label for="paste-visibility-selector">Visibility</label>
 	<select id="paste-expiration-selector" name="expiration" form="paste_form">
+		<option value="Never" selected="selected">Never</option>
 		<repeat group="{{@expirations}}" key="{{@k}}" value="{{@v}}">
-			<check if="{{@v}} == 'Never'">
-			<true>
-				<option value="{{@k}}" selected="selected">{{@k}}</option>
-			</true>
-			<false>
-				<option value="{{@k}}">{{@k}}</option>
-			</false>
+		<option value="{{@k}}">{{@k}}</option>
 		</repeat>
 	</select>
 	<label for="paste-expiration-selector">Expiration</label>
