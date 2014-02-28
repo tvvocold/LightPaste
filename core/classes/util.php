@@ -81,6 +81,25 @@
 		}
 		
 		/*=======================================================
+			func: readSetting($setting)
+			desc: reads a setting that is expected to have a
+				  value of either 0 or 1
+		=======================================================*/
+		static function readSetting($setting)
+		{
+			global $f3;
+			if(isset($_COOKIE[$setting])) {
+				if($_COOKIE[$setting] == 1) {
+					$f3->set($setting, "true");
+				} else {
+					$f3->set($setting, "false");
+				}
+			} else {
+				$f3->set($setting, "true");
+			}
+		}
+		
+		/*=======================================================
 			func: getEditorSettings($f3)
 			desc: gets editor settings stored in client cookies
 		=======================================================*/
@@ -88,69 +107,15 @@
 		{
 			global $DATA_FONTS;
 			global $DATA_THEMES;
-			if(isset($_COOKIE["editor_line_numbers"])) {
-				if($_COOKIE["editor_line_numbers"] == 1) {
-					$f3->set("editor_line_numbers", "true");
-				} else {
-					$f3->set("editor_line_numbers", "false");
-				}
-			} else {
-				$f3->set("editor_line_numbers", "true");
-			} 
-			if(isset($_COOKIE["editor_line_wrapping"])) {
-				if($_COOKIE["editor_line_wrapping"] == 1) {
-					$f3->set("editor_line_wrapping", "true");
-				} else {
-					$f3->set("editor_line_wrapping", "false");
-				}
-			} else {
-				$f3->set("editor_line_wrapping", "false");
-			}
-			if(isset($_COOKIE["editor_smart_indent"])) {
-				if($_COOKIE["editor_smart_indent"] == 1) {
-					$f3->set("editor_smart_indent", "true");
-				} else {
-					$f3->set("editor_smart_indent", "false");
-				}
-			} else {
-				$f3->set("editor_smart_indent", 'true');
-			}
-			if(isset($_COOKIE["editor_match_brackets"])) {
-				if($_COOKIE["editor_match_brackets"] == 1) {
-					$f3->set("editor_match_brackets", "true");
-				} else {
-					$f3->set("editor_match_brackets", "false");
-				}
-			} else {
-				$f3->set("editor_match_brackets", 'true');
-			}
-			if(isset($_COOKIE["editor_match_tags"])) {
-				if($_COOKIE["editor_match_tags"] == 1) {
-					$f3->set("editor_match_tags", "true");
-				} else {
-					$f3->set("editor_match_tags", "false");
-				}
-			} else {
-				$f3->set("editor_match_tags", 'true');
-			}
-			if(isset($_COOKIE["editor_highlight_active_line"])) {
-				if($_COOKIE["editor_highlight_active_line"] == 1) {
-					$f3->set("editor_highlight_active_line", "true");
-				} else {
-					$f3->set("editor_highlight_active_line", "false");
-				}
-			} else {
-				$f3->set("editor_highlight_active_line", "true");
-			}
-			if(isset($_COOKIE["editor_highlight_occurrences"])) {
-				if($_COOKIE["editor_highlight_occurrences"] == 1) {
-					$f3->set("editor_highlight_occurrences", "true");
-				} else {
-					$f3->set("editor_highlight_occurrences", "false");
-				}
-			} else {
-				$f3->set("editor_highlight_occurrences", "true");
-			}
+			// parse toggle settings
+			self::readSetting("editor_line_numbers");
+			self::readSetting("editor_line_wrapping");
+			self::readSetting("editor_smart_indent");
+			self::readSetting("editor_match_brackets");
+			self::readSetting("editor_match_tags");
+			self::readSetting("editor_highlight_active_line");
+			self::readSetting("editor_highlight_occurrences");
+			// set editor tab size
 			if(isset($_COOKIE["editor_tab_size"])) {
 				$tabsize = intval($_COOKIE["editor_tab_size"]);
 				$min = $f3->get("EDITOR_MINIMUM_TABSIZE");
@@ -164,16 +129,19 @@
 			} else {
 				$f3->set("editor_tab_size", $f3->get("EDITOR_DEFAULT_TABSIZE"));
 			}
+			// set editor blink rate
 			if(isset($_COOKIE["editor_cursor_blinkrate"])) {
 				$f3->set("editor_cursor_blinkrate", intval($_COOKIE["editor_cursor_blinkrate"]));
 			} else {
 				$f3->set("editor_cursor_blinkrate", $f3->get("EDITOR_DEFAULT_BLINKRATE"));
 			}
+			// set editor font size
 			if(isset($_COOKIE["editor_font_size"])) {
 				$f3->set("editor_font_size", intval($_COOKIE["editor_font_size"]));
 			} else {
 				$f3->set("editor_font_size", $f3->get("EDITOR_DEFAULT_FONTSIZE"));
 			}
+			// set editor font
 			if(isset($_COOKIE["editor_font"])) {
 				if(array_key_exists($_COOKIE["editor_font"], $DATA_FONTS)) {
 					$f3->set("editor_font", $DATA_FONTS[$_COOKIE["editor_font"]]);
@@ -183,6 +151,7 @@
 			} else {
 				$f3->set("editor_font", $DATA_FONTS[$f3->get("EDITOR_DEFAULT_FONT")]);
 			}
+			// set stite theme
 			if(isset($_COOKIE["site_theme"])) {
 				if(array_key_exists($_COOKIE["site_theme"], $DATA_THEMES)) {
 					$f3->set("site_theme", $_COOKIE["site_theme"]);
