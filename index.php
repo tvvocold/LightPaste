@@ -160,6 +160,7 @@
 		}
 	});
 	
+	/*
 	// error handler
 	$f3->set("ONERROR", function($f3) {
 		if(substr($f3->get("SERVER.REQUEST_URI"), 0, 5) == "/api/") {
@@ -172,6 +173,7 @@
 			echo $template->render("templates/error.html");
 		}
 	});
+	*/
 	
 	$f3->run();
 	
