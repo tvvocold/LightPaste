@@ -31,7 +31,7 @@
 				}
 				$langs[$key] = $data;
 			}
-			util::getEditorSettings($f3);
+			util::getClientSettings($f3);
 			$f3->set("editor_mode", "'none'");
 			$f3->set("editor_readonly", "false");
 			$f3->set("page_title", "Light Paste");
@@ -54,7 +54,7 @@
 			exit();
 		}
 		$f3->set("page_title", "Light Paste / " . $f3->get("PARAMS.id"));
-		util::getEditorSettings($f3);
+		util::getClientSettings($f3);
 		if($result[0]["language"] != "") {
 			$language_data = $DATA_LANGUAGES[$result[0]["language"]];
 			$f3->set("language_website", $language_data["website"]);
@@ -168,7 +168,7 @@
 			echo json_encode(array("error" => true, "error_message" => $f3->get("ERROR.status")), JSON_PRETTY_PRINT);
 		} else {
 			$f3->set("page_title", "Light Paste / Error");
-			util::getEditorSettings($f3);
+			util::getClientSettings($f3);
 			$template = new Template;
 			echo $template->render("templates/error.html");
 		}

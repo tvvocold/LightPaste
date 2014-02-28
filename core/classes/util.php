@@ -100,10 +100,10 @@
 		}
 		
 		/*=======================================================
-			func: getEditorSettings($f3)
-			desc: gets editor settings stored in client cookies
+			func: getClientSettings($f3)
+			desc: gets settings stored in client cookies
 		=======================================================*/
-		static function getEditorSettings($f3)
+		static function getClientSettings($f3)
 		{
 			global $DATA_FONTS;
 			global $DATA_THEMES;
