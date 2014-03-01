@@ -17,13 +17,13 @@
 			);
 			if(gettype($result) == "array" and count($result) == 1) {
 				$data = json_encode(array(
-					"paste_id" => $result[0]["access_id"],
-					"paste_text" => base64_encode($result[0]["text"]),
-					"paste_language" => $result[0]["language"],
-					"paste_time" => $result[0]["time"],
-					"paste_views" => $result[0]["views"],
-					"paste_md5" => $result[0]["md5"],
-					"paste_sha1" => $result[0]["sha1"]
+					"id" => $result[0]["access_id"],
+					"text" => base64_encode($result[0]["text"]),
+					"language" => $result[0]["language"],
+					"time" => $result[0]["time"],
+					"views" => $result[0]["views"],
+					"md5" => $result[0]["md5"],
+					"sha1" => $result[0]["sha1"]
 				), JSON_PRETTY_PRINT);
 				echo $data;
 			} else {
