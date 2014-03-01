@@ -28,6 +28,27 @@ body select {
 
 #content {
 	padding: 5px;
+	font-size: 14px;
+}
+
+#content a {
+	color: #3366FF !important;
+	text-decoration: none;
+}
+
+#content a:hover {
+	text-decoration: underline !important;
+}
+
+.content-section-header {
+	padding: 5px;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.content-section-body {
+	padding: 5px;
+	padding-left: 30px;
 }
 
 /*==========================================================
@@ -189,8 +210,12 @@ body select {
 }
 
 .side-panel-section a {
-	color: #000000;
+	color: #3366FF !important;
 	text-decoration: none;
+}
+
+.side-panel-section a:hover {
+	text-decoration: underline !important;
 }
 
 .side-panel-row input[type="text"] {
@@ -213,14 +238,6 @@ body select {
 	word-wrap: break-word;
 	width: 115px;
 	vertical-align: middle;
-}
-
-.side-panel-value a {
-	color: #3366FF !important;
-}
-
-.side-panel-value a:hover {
-	text-decoration: underline !important;
 }
 
 /*==========================================================
