@@ -10,6 +10,7 @@
 	require("core/classes/util.php");
 	require("core/api.php");
 	require("core/pages/about.php");
+	require("core/pages/api.php");
 	
 	$f3->set("editor_font_sizes", $DATA_FONTSIZES);
 	$f3->set("editor_fonts", $DATA_FONTS);

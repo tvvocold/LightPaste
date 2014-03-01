@@ -1,0 +1,72 @@
+<include href="templates/doctype.html" />
+<html>
+	<head>
+		<include href="templates/head.html" />
+	</head>
+	<body>
+		<include href="templates/header.html" />
+		<div id="background"></div>
+		<div id="container">
+			<div id="content">
+				<div class="content-section-header">
+					Creating a Paste
+				</div>
+				<div class="content-section-body">
+					To create a new paste, send a POST request to <strong>http://lightpaste.com/api/paste</strong>. 
+					Light Paste will check the request for the following data:
+					<table class="datatable">
+						<tr><th>Key</th><th>Value</th><th>Required</th></tr>
+						<tr><td>text</td><td>Contents of the paste</td><td>Yes</td></tr>
+						<tr><td>language</td><td>Paste language</td><td>No</td></tr>
+						<tr><td>visibility</td><td>Visibility of the paste</td><td>No</td></tr>
+						<tr><td>expiration</td><td>When the paste should expire</td><td>No</td></tr>
+					</table>
+					If the paste was successfully created, Light Paste send a response in the following format:
+					<div class="databox">
+						HTTP/1.1 201 Created<br/>
+						Content-Type: application/json; charset=utf-8<br/><br/>
+						{<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;"paste_id", "ZxMo14a2"<br/>
+						}
+					</div>
+				</div>
+				<div class="content-section-header">
+					Retrieving a Paste
+				</div>
+				<div class="content-section-body">
+					To retrieve a paste, send a GET request to <strong>http://lightpaste.com/api/paste/*paste_id*</strong> 
+					and replace <strong>*paste_id*</strong> with the id of the paste that you are looking for.
+					If the request was successful, Light Paste will send a response in the following format:
+					<div class="databox">
+						HTTP/1.1 200 OK<br/>
+						Content-Type: application/json; charset=utf-8<br/><br/>
+						{<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;"id", "ZxMo14a2"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;"text", "**encoded text**"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;"language", "lua"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;"time", "1393114519"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;"views", "10"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;"md5", "96a6eddfb4173bcad25228990720a2d9"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;"sha1", "63c4e4e27cf625a637abe04f0a9faa9f08a2e310"<br/>
+						}
+					</div>
+					Note: The text field listed in the response body will contain the paste's text encoded in Base 64.
+				</div>
+				<div class="content-section-header">
+					Errors
+				</div>
+				<div class="content-section-body">
+					When an API request is unsuccessful or encounters an error, Light Paste will send a response in following format:
+					<div class="databox">
+						HTTP/1.1 **status code**<br/>
+						Content-Type: application/json; charset=utf-8<br/><br/>
+						{<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;"error", "true"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;"error_message", "**error_message**"<br/>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
