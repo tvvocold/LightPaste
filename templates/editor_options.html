@@ -4,17 +4,23 @@
 		<img src="{{@SITE_STATIC}}/themes/{{@site_theme}}/images/collapse.png" alt="Collapse icon">
 	</a>
 </div>
-<div class="side-panel-section" id="editor-options-content" style="text-align: left;">
+<div class="side-panel-section" id="editor-options-content">
+	<table>
+		<tr>
+			<td>
 	<check if="{{ @editor_line_numbers == 'true' }}">
 		<true>
-			<input type="checkbox" checked="checked" id="linenumbers_checkbox" style="margin-top: 5px;">
+			<input type="checkbox" checked="checked" id="linenumbers_checkbox">
 		</true>
 		<false>
-			<input type="checkbox" id="linenumbers_checkbox" style="margin-top: 5px;">
+			<input type="checkbox" id="linenumbers_checkbox">
 		</false>
 	</check>
-	<label for="linenumbers_checkbox">Line numbers</label>
-	<br/>
+		<label for="linenumbers_checkbox">Line numbers</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
 	<check if="{{ @editor_line_wrapping == 'true' }}">
 		<true>
 			<input type="checkbox" checked="checked" id="wordwrap_checkbox" >
@@ -24,7 +30,10 @@
 		</false>
 	</check>
 	<label for="wordwrap_checkbox">Word wrap</label>
-	<br/>
+			</td>
+		</tr>
+		<tr>
+			<td>
 	<check if="{{ @editor_smart_indent == 'true' }}">
 		<true>
 			<input type="checkbox" checked="checked" id="smartindent_checkbox" >
@@ -34,7 +43,10 @@
 		</false>
 	</check>
 	<label for="smartindent_checkbox">Smart indent</label>
-	<br/>
+			</td>
+		</tr>
+		<tr>
+			<td>
 	<check if="{{ @editor_match_brackets == 'true' }}">
 		<true>
 			<input type="checkbox" checked="checked" id="matchbrackets_checkbox" >
@@ -44,7 +56,10 @@
 		</false>
 	</check>
 	<label for="matchbrackets_checkbox">Match brackets</label>
-	<br/>
+			</td>
+		</tr>
+		<tr>
+			<td>
 	<check if="{{ @editor_match_tags == 'true' }}">
 		<true>
 			<input type="checkbox" checked="checked" id="matchtags_checkbox" >
@@ -54,7 +69,10 @@
 		</false>
 	</check>
 	<label for="matchbrackets_checkbox">Match tags</label>
-	<br/>
+			</td>
+		</tr>
+		<tr>
+			<td>
 	<check if="{{ @editor_highlight_active_line == 'true' }}">
 		<true>
 			<input type="checkbox" checked="checked" id="highlight_active_line_checkbox" >
@@ -64,7 +82,10 @@
 		</false>
 	</check>
 	<label for="matchbrackets_checkbox">Highlight active line</label>
-	<br/>
+			</td>
+		</tr>
+		<tr>
+			<td>
 	<check if="{{ @editor_highlight_occurrences == 'true' }}">
 		<true>
 			<input type="checkbox" checked="checked" id="highlight_occurrences_checkbox" >
@@ -74,41 +95,54 @@
 		</false>
 	</check>
 	<label for="highlight_occurrences_checkbox">Highlight occurrences</label>
-	<br/>
-	<input type="checkbox" id="fullscreen_checkbox" >
-	<label for="fullscreen_checkbox">Fullscreen</label>
-	<br/>
-	<input type="text" id="tabsize_selector" value="{{@editor_tab_size}}" style="width: 68px; margin-bottom: 3px; margin-top: 5px;" />
-	<label for="tabsize_selector">Tab size</label>
-	<br/>
-	<input type="text" id="blinkrate_editor" value="{{@editor_cursor_blinkrate}}" style="width: 68px; margin-bottom: 3px;">
-	<label for="blinkrate_editor">Cursor blink rate (ms)</label>
-	<br/>
-	<select id="editor_fontsize_selector" style="margin-bottom: 3px;">
-		<repeat group="{{@editor_font_sizes}}" key="{{@k}}" value="{{@v}}">
-			<check if="{{@v}} == {{@editor_font_size}}">
-				<true>
-		<option value="{{@v}}" selected="selected">{{@v}}</option>
-				</true>
-				<false>
-		<option value="{{@v}}">{{@v}}</option>
-				</false>
-			</check>
-		</repeat>
-	</select>
-	<label for="editor_fontsize_selector">Font size</label>
-	<br/>
-	<select id="editor_fontselector" style="width: 168px;">
-		<repeat group="{{@editor_fonts}}" key="{{@k}}" value="{{@v}}">
-			<check if="{{@v}} == {{@editor_font}}">
-				<true>
-		<option value="{{@v}}" selected="selected">{{@k}}</option>
-				</true>
-				<false>
-		<option value="{{@v}}">{{@k}}</option>
-				</false>
-			</check>
-		</repeat>
-	</select>
-	<label for="editor_fontselector">Font</label>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" id="fullscreen_checkbox" ><label for="fullscreen_checkbox">Fullscreen</label></td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td><label for="tabsize_selector">Tab size</label></td>
+			<td><input type="text" id="tabsize_selector" value="{{@editor_tab_size}}" /></td>
+		</tr>
+		<tr>
+			<td><label for="blinkrate_editor">Blink rate</label></td>
+			<td><input type="text" id="blinkrate_editor" value="{{@editor_cursor_blinkrate}}" /></td>
+		</tr>
+		<tr>
+			<td><label for="editor_fontsize_selector">Font size</label></td>
+			<td>
+				<select id="editor_fontsize_selector">
+					<repeat group="{{@editor_font_sizes}}" key="{{@k}}" value="{{@v}}">
+						<check if="{{@v}} == {{@editor_font_size}}">
+							<true>
+					<option value="{{@v}}" selected="selected">{{@v}}</option>
+							</true>
+							<false>
+					<option value="{{@v}}">{{@v}}</option>
+							</false>
+						</check>
+					</repeat>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="editor_fontselector">Font</label></td>
+			<td>
+				<select id="editor_fontselector">
+					<repeat group="{{@editor_fonts}}" key="{{@k}}" value="{{@v}}">
+						<check if="{{@v}} == {{@editor_font}}">
+							<true>
+					<option value="{{@v}}" selected="selected">{{@k}}</option>
+							</true>
+							<false>
+					<option value="{{@v}}">{{@k}}</option>
+							</false>
+						</check>
+					</repeat>
+				</select>
+			</td>
+		</tr>
+	</table>
 </div>

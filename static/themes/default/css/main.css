@@ -9,12 +9,14 @@ body input[type="text"] {
 	background: #FFFFFF;
 	border: 1px solid #CCCCCC;
 	color: #000000;
+	padding: 2px;
 }
 
 body select {
 	background: #FFFFFF;
 	border: 1px solid #CCCCCC;
 	color: #000000;
+	padding: 2px;
 }
 
 /*==========================================================
@@ -132,10 +134,29 @@ body select {
 }
 
 #side-panel-content input[type="submit"] {
-	display: block;
 	width: 100%;
 	border: 1px solid #CCCCCC;
 	background-color: #FFFFFF;
+}
+
+
+#side-panel-content table {
+	border: none;
+	width: 100%;
+}
+
+#side-panel-content table td {
+	border: none;
+	padding: 1px;
+	min-width: 70px;
+}
+
+#side-panel-content input[type="text"] {
+	width: 96%;
+}
+
+#side-panel-content select {
+	width: 100%;
 }
 
 .side-panel-header {
@@ -370,21 +391,18 @@ body select {
 }
 
 #languages {
-	display: inline-block;
-	width: 138px;
 	margin-bottom: 3px;
+	width: 100%;
 }
 
 #paste-visibility-selector {
-	display: inline-block;
-	width: 138px;
 	margin-bottom: 3px;
+	width: 100%;
 }
 
 #paste-expiration-selector {
-	display: inline-block;
-	width: 138px;
 	margin-bottom: 3px;
+	width: 100%;
 }
 
 #editor_fontsize_selector {

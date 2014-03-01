@@ -5,6 +5,10 @@
 	</a>
 </div>
 <div class="side-panel-section" id="site-options-content">
+	<table>
+		<tr>
+			<td><label for="theme-selector">Theme</label></td>
+			<td>
 	<select id="theme-selector">
 		<repeat group="{{@site_themes}}" key="{{@k}}" value="{{@v}}">
 			<check if="{{@site_theme}} == {{@k}}">
@@ -16,5 +20,7 @@
 			</false>
 		</repeat>
 	</select>
-	<label for="theme-selector">Theme</label>
+			</td>
+		</tr>
+	</table>
 </div>

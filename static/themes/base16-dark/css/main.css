@@ -370,18 +370,18 @@ body select {
 
 #languages {
 	display: inline-block;
-	width: 138px;
+	width: 100%;
 	margin-bottom: 3px;
 }
 
 #paste-visibility-selector {
 	display: inline-block;
-	width: 138px;
+	width: 100%;
 	margin-bottom: 3px;
 }
 
 #paste-expiration-selector {
 	display: inline-block;
-	width: 138px;
+	width: 100%;
 	margin-bottom: 3px;
 }

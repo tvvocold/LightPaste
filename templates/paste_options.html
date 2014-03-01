@@ -5,30 +5,44 @@
 	</a>
 </div>
 <div class="side-panel-section" id="paste-options-content">
-	<select id="languages" name="language" form="paste_form">
-		<option value="none">None</option>
-		<repeat group="{{@languages}}" key="{{@k}}" value="{{@v}}">
-			<check if="{{isset(@v[mode_complex])}}">
-			<true>
-				<option value="{{@k}}" data-mode="{{@v[mode]}}" data-modecomplex="{{@v[mode_complex]}}">{{@v[name]}}</option>
-			</true>
-			<false>
-				<option value="{{@k}}" data-mode="{{@v[mode]}}">{{@v[name]}}</option>
-			</false>
-		</repeat>
-	</select>
-	<label for="languages">Language</label>
-	<select id="paste-visibility-selector" name="visibility" form="paste_form">
-		<option value="public" selected="selected">Public</option>
-		<option value="private">Private</option>
-	</select>
-	<label for="paste-visibility-selector">Visibility</label>
-	<select id="paste-expiration-selector" name="expiration" form="paste_form">
-		<option value="Never" selected="selected">Never</option>
-		<repeat group="{{@expirations}}" key="{{@k}}" value="{{@v}}">
-		<option value="{{@k}}">{{@k}}</option>
-		</repeat>
-	</select>
-	<label for="paste-expiration-selector">Expiration</label>
-	<input type="submit" value="Post" form="paste_form" />
+	<table>
+		<tr>
+			<td><label for="languages">Language</label></td>
+			<td>
+				<select id="languages" name="language" form="paste_form">
+					<option value="none">None</option>
+					<repeat group="{{@languages}}" key="{{@k}}" value="{{@v}}">
+						<check if="{{isset(@v[mode_complex])}}">
+						<true>
+							<option value="{{@k}}" data-mode="{{@v[mode]}}" data-modecomplex="{{@v[mode_complex]}}">{{@v[name]}}</option>
+						</true>
+						<false>
+							<option value="{{@k}}" data-mode="{{@v[mode]}}">{{@v[name]}}</option>
+						</false>
+					</repeat>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="paste-visibility-selector">Visibility</label></td>
+			<td>
+				<select id="paste-visibility-selector" name="visibility" form="paste_form">
+					<option value="public" selected="selected">Public</option>
+					<option value="private">Private</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="paste-expiration-selector">Expiration</label></td>
+			<td>
+				<select id="paste-expiration-selector" name="expiration" form="paste_form">
+					<option value="Never" selected="selected">Never</option>
+					<repeat group="{{@expirations}}" key="{{@k}}" value="{{@v}}">
+					<option value="{{@k}}">{{@k}}</option>
+					</repeat>
+				</select>
+			</td>
+		</tr>
+		<tr><td colspan="2"><input type="submit" value="Post" form="paste_form" /></td></tr>
+	</table>
 </div>
