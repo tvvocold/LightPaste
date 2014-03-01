@@ -29,6 +29,28 @@ body select {
 
 #content {
 	padding: 5px;
+	color: #d0d0d0;
+}
+
+#content a {
+	color: #3366FF !important;
+	text-decoration: none;
+}
+
+#content a:hover {
+	text-decoration: underline !important;
+}
+
+.content-section-header {
+	padding: 5px;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.content-section-body {
+	padding: 5px;
+	padding-left: 30px;
+	width: 700px;
 }
 
 /*==========================================================
@@ -346,6 +368,18 @@ body select {
 }
 
 /*==========================================================
+	-- data table --
+==========================================================*/
+.datatable {
+	background: #2E2E2E;
+	margin: 15px;
+}
+
+.datatable td {
+	padding: 5px;
+}
+
+/*==========================================================
 	-- misc --
 ==========================================================*/
 #error-panel {
@@ -384,4 +418,10 @@ body select {
 	display: inline-block;
 	width: 100%;
 	margin-bottom: 3px;
+}
+
+.databox {
+	margin: 15px;
+	background: #2E2E2E;
+	padding: 5px;
 }
