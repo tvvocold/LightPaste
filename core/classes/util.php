@@ -234,10 +234,10 @@
 		static function clearCommonSessionData()
 		{
 			global $f3;
-			$f3->set("SESSION.copy_text", NULL);
-			$f3->set("SESSION.error", NULL);
-			$f3->set("SESSION.message", NULL);
-			$f3->set("SESSION.message_title", NULL);
+			$f3->clear("SESSION.copy_text");
+			$f3->clear("SESSION.error");
+			$f3->clear("SESSION.message");
+			$f3->clear("SESSION.message_title");
 		}
 		
 		/*=======================================================
