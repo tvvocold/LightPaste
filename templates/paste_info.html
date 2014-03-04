@@ -5,39 +5,41 @@
 	</a>
 </div>
 <div class="side-panel-section" id="paste-info-content">
-	<div class="side-panel-row">
-		<span class="side-panel-key">Language</span>
+	<table>
+		<tr>
+			<td>Language</td>
 		<check if="isset({{@language_website}})">
 			<true>
-				<span class="side-panel-value"><a href="{{@language_website}}">{{@language_name}}</a></span>
+				<td><a href="{{@language_website}}">{{@language_name}}</a></td>
 			</true>
 			<false>
-				<span class="side-panel-value">{{@language_name}}</span>
+				<td>{{@language_name}}</td>
 			</false>
 		</check>
-	</div>
-	<div class="side-panel-row">
-		<span class="side-panel-key">Post Date</span> 
-		<span class="side-panel-value">{{@paste_date}}</span>
-	</div>
-	<div class="side-panel-row">
-		<span class="side-panel-key">Post Time</span> 
-		<span class="side-panel-value">{{@paste_time}}</span>
-	</div>
-	<div class="side-panel-row">
-		<span class="side-panel-key">Views</span> 
-		<span class="side-panel-value">{{@paste_views}}</span>
-	</div>
-	<div class="side-panel-row">
-		<span class="side-panel-key">Size</span> 
-		<span class="side-panel-value">{{@paste_size}}</span>
-	</div>
-	<div class="side-panel-row">
-		<span class="side-panel-key">MD5</span> 
-		<span class="side-panel-value"><input type="text" readonly="readonly" value="{{@paste_md5}}"></span>
-	</div>
-	<div class="side-panel-row">
-		<span class="side-panel-key">SHA1</span> 
-		<span class="side-panel-value"><input type="text" readonly="readonly" value="{{@paste_sha1}}"></span>
-	</div>
+		</tr>
+		<tr>
+			<td>Post Date</td>
+			<td>{{@paste_date}}</td>
+		</tr>
+		<tr>
+			<td>Post Time</td>
+			<td>{{@paste_time}}</td>
+		</tr>
+		<tr>
+			<td>Views</td>
+			<td>{{@paste_views}}</td>
+		</tr>
+		<tr>
+			<td>Size</td>
+			<td>{{@paste_size}}</td>
+		</tr>
+		<tr>
+			<td>MD5</td>
+			<td><input type="text" readonly="readonly" value="{{@paste_md5}}"></td>
+		</tr>
+		<tr>
+			<td>SHA1</td>
+			<td><input type="text" readonly="readonly" value="{{@paste_sha1}}"></td>
+		</tr>
+	</table>
 </div>

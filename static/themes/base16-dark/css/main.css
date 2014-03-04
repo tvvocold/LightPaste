@@ -151,6 +151,25 @@ body select {
 	font-size: 12px;
 }
 
+#side-panel-content table {
+	border: none;
+	width: 100%;
+}
+
+#side-panel-content table td {
+	border: none;
+	padding: 1px;
+	min-width: 70px;
+}
+
+#side-panel-content input[type="text"] {
+	width: 93%;
+}
+
+#side-panel-content select {
+	width: 100%;
+}
+
 #side-panel-content input[type="submit"] {
 	display: block;
 	width: 100%;
@@ -186,37 +205,11 @@ body select {
 }
 
 .side-panel-section a {
-	color: #000000;
+	color: #3366FF !important;
 	text-decoration: none;
 }
 
-.side-panel-row input[type="text"] {
-	width: 125px;
-}
-
-.side-panel-row {
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-
-.side-panel-key {
-	width: 70px;
-	display: inline-block;
-	vertical-align: middle;
-}
-
-.side-panel-value {
-	display: inline-block;
-	word-wrap: break-word;
-	width: 115px;
-	vertical-align: middle;
-}
-
-.side-panel-value a {
-	color: #3366FF !important;
-}
-
-.side-panel-value a:hover {
+.side-panel-section a:hover {
 	text-decoration: underline !important;
 }
 

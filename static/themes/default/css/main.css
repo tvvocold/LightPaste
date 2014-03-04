@@ -219,28 +219,6 @@ body select {
 	text-decoration: underline !important;
 }
 
-.side-panel-row input[type="text"] {
-	width: 125px;
-}
-
-.side-panel-row {
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-
-.side-panel-key {
-	width: 70px;
-	display: inline-block;
-	vertical-align: middle;
-}
-
-.side-panel-value {
-	display: inline-block;
-	word-wrap: break-word;
-	width: 115px;
-	vertical-align: middle;
-}
-
 /*==========================================================
 	-- paste toolbar --
 ==========================================================*/
