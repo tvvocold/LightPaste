@@ -115,6 +115,7 @@
 			self::readSetting("editor_match_tags");
 			self::readSetting("editor_highlight_active_line");
 			self::readSetting("editor_highlight_occurrences");
+			self::readSetting("editor_vertical_ruler");
 			// set editor tab size
 			if(isset($_COOKIE["editor_tab_size"])) {
 				$tabsize = intval($_COOKIE["editor_tab_size"]);

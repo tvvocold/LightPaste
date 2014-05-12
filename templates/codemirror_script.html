@@ -28,6 +28,14 @@ var editor = CodeMirror.fromTextArea(document.getElementById("text-editor"), {
 	highlightSelectionMatches: false,
 	</false>
 </check>
+<check if="{{ @editor_vertical_ruler == 'true' }}">
+	<true>
+	rulers: [{column: 90, className: "editor-ruler"}],
+	</true>
+	<false>
+	rulers: false,
+	</false>
+</check>
 	extraKeys: {
 		"F11": function(cm) {
 			toggleFullscreenEditor();

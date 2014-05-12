@@ -9,7 +9,6 @@
 */
 
 .cm-s-base16-dark.CodeMirror {background: #151515; color: #e0e0e0;}
-.cm-s-base16-dark div.CodeMirror-selected {background: #202020 !important;}
 .cm-s-base16-dark .CodeMirror-gutters {background: #151515; border-right: 0px;}
 .cm-s-base16-dark .CodeMirror-linenumber {color: #505050;}
 .cm-s-base16-dark .CodeMirror-cursor {border-left: 1px solid #b0b0b0 !important;}
@@ -30,7 +29,6 @@
 .cm-s-base16-dark span.cm-link {color: #aa759f;}
 .cm-s-base16-dark span.cm-error {background: #ac4142; color: #b0b0b0;}
 
-.cm-s-base16-dark .CodeMirror-activeline-background {background: #2F2F2F !important;}
 .cm-s-base16-dark .CodeMirror-matchingbracket { text-decoration: underline; color: white !important;}
 .cm-s-base16-dark .cm-selectedline {background: #3B3B3B;}
 
@@ -38,3 +36,10 @@
 .CodeMirror-focused .cm-matchhighlight { background: rgba(153, 0, 0, 0.40); }
 
 div.CodeMirror-linenumber.CodeMirror-gutter-elt { cursor: pointer; }
+
+.editor-ruler { border-left: 1px solid #383838; }
+
+.cm-s-base16-dark .CodeMirror-activeline-background {
+  background-color: rgba(46, 46, 46, 0.40) !important;
+}
+.cm-s-base16-dark div.CodeMirror-selected {background: rgba(46, 46, 46, 0.40) !important;}

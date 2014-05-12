@@ -24,11 +24,11 @@
 .cm-s-lightpaste .cm-header {color: blue;}
 .cm-s-lightpaste .cm-quote {color: #090;}
 .cm-s-lightpaste .cm-hr {color: #999;}
-.cm-s-lightpaste .cm-selectedline {background: #FFFFCC;}
 
 .cm-s-lightpaste .CodeMirror-activeline-background {
-  background-color: #E0EAFF !important;
+  background-color: rgba(230, 230, 230, 0.40) !important;
 }
+.cm-s-lightpaste div.CodeMirror-selected {background: rgba(230, 230, 230, 0.40) !important;}
 
 .CodeMirror-gutters{ background-color: #FFFFFF !important; border-right: none !important; padding-right: 10px;}
 .CodeMirror-matchingtag { background: rgba(255, 153, 0, 0.40); }
@@ -39,3 +39,5 @@ div.CodeMirror-linenumber.CodeMirror-gutter-elt { cursor: pointer; }
 div.CodeMirror-linenumber.CodeMirror-gutter-elt:target { color: #FF0000; font-weight: bold; }
 
 .CodeMirror-focused .cm-matchhighlight { background: rgba(0, 255, 64, 0.40); }
+
+.editor-ruler { border-left: 1px solid #CCCCCC; }

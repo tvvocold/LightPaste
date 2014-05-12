@@ -99,6 +99,19 @@
 		</tr>
 		<tr>
 			<td>
+	<check if="{{ @editor_vertical_ruler == 'true' }}">
+		<true>
+			<input type="checkbox" checked="checked" id="vertical_ruler_checkbox" >
+		</true>
+		<false>
+			<input type="checkbox" id="vertical_ruler_checkbox" >
+		</false>
+	</check>
+	<label for="vertical_ruler_checkbox">Vertical ruler</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<input type="checkbox" id="fullscreen_checkbox" >
 				<label for="fullscreen_checkbox">Fullscreen</label>
 			</td>
