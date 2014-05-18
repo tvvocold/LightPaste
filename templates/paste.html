@@ -42,6 +42,9 @@
 		<textarea id="text-editor">{{@editor_text}}</textarea>
 		<script type="text/javascript">
 			<include href="templates/codemirror_script.html" />
+			$(document).ready(function() {
+				$(".CodeMirror").attr("id", "CodeMirror-mode-" + {{@editor_mode}});
+			});
 		</script>
 	</body>
 </html>
