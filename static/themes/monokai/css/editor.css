@@ -38,3 +38,5 @@ div.CodeMirror-linenumber.CodeMirror-gutter-elt { cursor: pointer; }
   background-color: rgba(55, 54, 47, 0.40) !important;
 }
 .cm-s-monokai div.CodeMirror-selected {background: rgba(55, 54, 47, 0.40) !important;}
+
+.cm-selectedline {background: #303030;}

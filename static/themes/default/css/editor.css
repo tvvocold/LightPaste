@@ -41,3 +41,5 @@ div.CodeMirror-linenumber.CodeMirror-gutter-elt:target { color: #FF0000; font-we
 .CodeMirror-focused .cm-matchhighlight { background: rgba(0, 255, 64, 0.40); }
 
 .editor-ruler { border-left: 1px solid #CCCCCC; }
+
+.cm-selectedline {background: #FFFFCC;}
