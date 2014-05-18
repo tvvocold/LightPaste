@@ -218,27 +218,6 @@ $(document).ready(function() {
 	$("#fullscreen_checkbox").change(function() {
 		toggleFullscreenEditor();
 	});
-	$("#tabsize_selector").keyup(function() {
-		var tabsize = parseInt($(this).val());
-		if(tabsize > 30) {
-			tabsize = 30;
-		} else if(tabsize < 0) {
-			tabsize = 0;
-		}
-		editor.setOption("tabSize", tabsize);
-		setCookie("editor_tab_size", tabsize, "Mon, 1 Jan 2040 08:00:00 UTC");
-	});
-	$("#blinkrate_editor").keyup(function() {
-		var blinkrate = $(this).val();
-		editor.setOption("cursorBlinkRate", parseInt(blinkrate));
-		setCookie("editor_cursor_blinkrate", blinkrate, "Mon, 1 Jan 2040 08:00:00 UTC");
-	});
-	$("#editor_fontsize_selector").change(function() {
-		var size = $(this).find(":selected").val();
-		$(".CodeMirror").css("font-size", size + "px");
-		editor.refresh();
-		setCookie("editor_font_size", size, "Mon, 1 Jan 2040 08:00:00 UTC");
-	});
 	$("#editor_fontselector").change(function() {
 		var font = $(this).find(":selected").text();
 		$(".CodeMirror").css("font-family", font);

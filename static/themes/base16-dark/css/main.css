@@ -418,3 +418,15 @@ body select {
 	background: #2E2E2E;
 	padding: 5px;
 }
+
+.editor-slider {
+	margin-left: 10px;
+	width: 110px;
+	display: inline-block;
+}
+
+.slider-text {
+	display: inline-block;
+	width: 20px;
+	text-align: center;
+}

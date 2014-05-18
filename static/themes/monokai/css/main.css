@@ -422,3 +422,15 @@ body input[type="checkbox"] {
 	background: #36372F;
 	padding: 5px;
 }
+
+.editor-slider {
+	margin-left: 10px;
+	width: 110px;
+	display: inline-block;
+}
+
+.slider-text {
+	display: inline-block;
+	width: 20px;
+	text-align: center;
+}

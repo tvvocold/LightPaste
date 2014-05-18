@@ -120,27 +120,16 @@
 	<table>
 		<tr>
 			<td><label for="tabsize_selector">Tab size</label></td>
-			<td><input type="text" id="tabsize_selector" value="{{@editor_tab_size}}" /></td>
+			<td><div id="tabsize-text" class="slider-text">{{@editor_tab_size}}</div><div id="tabsize-slider" class="editor-slider"><div></td>
 		</tr>
 		<tr>
 			<td><label for="blinkrate_editor">Blink rate</label></td>
-			<td><input type="text" id="blinkrate_editor" value="{{@editor_cursor_blinkrate}}" /></td>
+			<td><div id="blinkrate-text" class="slider-text">{{@editor_cursor_blinkrate}}</div><div id="blinkrate-slider" class="editor-slider"><div></td>
 		</tr>
 		<tr>
 			<td><label for="editor_fontsize_selector">Font size</label></td>
 			<td>
-				<select id="editor_fontsize_selector">
-					<repeat group="{{@editor_font_sizes}}" key="{{@k}}" value="{{@v}}">
-						<check if="{{@v}} == {{@editor_font_size}}">
-							<true>
-					<option value="{{@v}}" selected="selected">{{@v}}</option>
-							</true>
-							<false>
-					<option value="{{@v}}">{{@v}}</option>
-							</false>
-						</check>
-					</repeat>
-				</select>
+				<div id="fontsize-text" class="slider-text">{{@editor_font_size}}</div><div id="fontsize-slider" class="editor-slider"><div>
 			</td>
 		</tr>
 		<tr>
@@ -162,3 +151,45 @@
 		</tr>
 	</table>
 </div>
+<script type="text/javascript">
+	$("#tabsize-slider").slider({
+		value: {{@editor_tab_size}},
+		min: 0,
+		max: 30,
+		slide: function(event, ui) {
+			var value = ui.value;
+			$("#tabsize-text").text(value);
+			editor.setOption("tabSize", value);
+			setCookie("editor_tab_size", value, "Mon, 1 Jan 2040 08:00:00 UTC");
+		},
+		stop: function() {
+			editor.focus();
+		}
+	});
+	$("#blinkrate-slider").slider({
+		value: {{@editor_cursor_blinkrate}},
+		min: 0,
+		max: 530,
+		slide: function(event, ui) {
+			var value = ui.value;
+			$("#blinkrate-text").text(value);
+			editor.setOption("cursorBlinkRate", value);
+			setCookie("editor_cursor_blinkrate", value, "Mon, 1 Jan 2040 08:00:00 UTC");
+		},
+		stop: function() {
+			editor.focus();
+		}
+	});
+	$("#fontsize-slider").slider({
+		value: {{@editor_font_size}},
+		min: 10,
+		max: 28,
+		slide: function(event, ui) {
+			var value = ui.value;
+			$("#fontsize-text").text(value);
+			$(".CodeMirror").css("font-size", value + "px");
+			editor.refresh();
+			setCookie("editor_font_size", value, "Mon, 1 Jan 2040 08:00:00 UTC");
+		}
+	});
+</script>

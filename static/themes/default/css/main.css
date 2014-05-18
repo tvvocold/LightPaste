@@ -433,3 +433,15 @@ body select {
 	-moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
 	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
 }
+
+.editor-slider {
+	margin-left: 10px;
+	width: 110px;
+	display: inline-block;
+}
+
+.slider-text {
+	display: inline-block;
+	width: 20px;
+	text-align: center;
+}
