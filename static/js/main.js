@@ -137,11 +137,13 @@ $(document).ready(function() {
 	$("<img/>")[0].src = site_static + "/themes/" + site_theme + "/images/expand.png";
 	$("<img/>")[0].src = site_static + "/themes/" + site_theme + "/images/collapse.png";
 	$("#languages").change(function() {
+		var mode = $(this).find(":selected").data("mode");
 		if($(this).find(":selected").data("modecomplex")) {
-			toggleLanguage($(this).find(":selected").data("mode"), $(this).find(":selected").data("modecomplex"));
+			toggleLanguage(mode, $(this).find(":selected").data("modecomplex"));
 		} else {
-			toggleLanguage($(this).find(":selected").data("mode"));
+			toggleLanguage(mode);
 		}
+		$(".CodeMirror").attr("id", "CodeMirror-mode-" + mode);
 	});
 	$("#linenumbers_checkbox").change(function() {
 		if($(this).is(":checked")) {

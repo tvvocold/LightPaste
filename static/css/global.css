@@ -1,0 +1,11 @@
+#CodeMirror-mode-colorforth {background: #000000 !important;}
+#CodeMirror-mode-colorforth .editor-ruler {border-left: 1px solid #FFFFFF !important;}
+#CodeMirror-mode-colorforth .CodeMirror-gutters {background: #000000 !important; border-right: none !important; padding-right: 10px;}
+#CodeMirror-mode-colorforth .CodeMirror-linenumber {color: #FFFFFF !important;}
+#CodeMirror-mode-colorforth .CodeMirror-cursor {border-left: 1px solid #FFFFFF !important;}
+
+#CodeMirror-mode-colorforth .cm-define {color: red;}
+#CodeMirror-mode-colorforth .cm-compile {color: #00FF00;}
+#CodeMirror-mode-colorforth .cm-execute {color: yellow;}
+#CodeMirror-mode-colorforth .cm-comment_ {color: white;}
+#CodeMirror-mode-colorforth .cm-hide {color: black;}

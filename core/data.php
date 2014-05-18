@@ -19,6 +19,12 @@
 			"file_extension" => "cs",
 			"mode" => "text/x-csharp"
 		),
+		"colorForth" => array(
+			"name" => "colorForth",
+			"website" => "http://www.colorforth.com/cf.htm",
+			"file_extension" => "fs",
+			"mode" => "colorforth"
+		),
 		"php" => array(
 			"name" => "PHP",
 			"website" => "http://php.net/",
