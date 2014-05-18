@@ -8,4 +8,4 @@
 #CodeMirror-mode-colorforth .cm-compile {color: #00FF00;}
 #CodeMirror-mode-colorforth .cm-execute {color: yellow;}
 #CodeMirror-mode-colorforth .cm-comment_ {color: white;}
-#CodeMirror-mode-colorforth .cm-hide {color: black;}
+#CodeMirror-mode-colorforth .cm-hide {position: absolute; visibility: hidden;}
