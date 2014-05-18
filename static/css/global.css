@@ -4,8 +4,8 @@
 #CodeMirror-mode-colorforth .CodeMirror-linenumber {color: #FFFFFF !important;}
 #CodeMirror-mode-colorforth .CodeMirror-cursor {border-left: 1px solid #FFFFFF !important;}
 
-#CodeMirror-mode-colorforth .cm-define {color: red;}
-#CodeMirror-mode-colorforth .cm-compile {color: #00FF00;}
-#CodeMirror-mode-colorforth .cm-execute {color: yellow;}
-#CodeMirror-mode-colorforth .cm-comment_ {color: white;}
+#CodeMirror-mode-colorforth .cm-define {color: red; font-weight: bold;}
+#CodeMirror-mode-colorforth .cm-compile {color: #00FF00; font-weight: bold;}
+#CodeMirror-mode-colorforth .cm-execute {color: yellow; font-weight: bold;}
+#CodeMirror-mode-colorforth .cm-comment_ {color: white; font-weight: bold;}
 #CodeMirror-mode-colorforth .cm-hide {position: absolute; visibility: hidden;}
