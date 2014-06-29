@@ -133,6 +133,12 @@
 			</td>
 		</tr>
 		<tr>
+			<td><label for="editor_fontsize_selector">VBar Pos</label></td>
+			<td>
+				<div id="vbarpos-text" class="slider-text">{{@editor_vbarpos}}</div><div id="vbarpos-slider" class="editor-slider"><div>
+			</td>
+		</tr>
+		<tr>
 			<td><label for="editor_fontselector">Font</label></td>
 			<td>
 				<select id="editor_fontselector">
@@ -152,6 +158,7 @@
 	</table>
 </div>
 <script type="text/javascript">
+	editor_vbarpos = {{@editor_vbarpos}};
 	$("#tabsize-slider").slider({
 		value: {{@editor_tab_size}},
 		min: 0,
@@ -190,6 +197,19 @@
 			$(".CodeMirror").css("font-size", value + "px");
 			editor.refresh();
 			setCookie("editor_font_size", value, "Mon, 1 Jan 2040 08:00:00 UTC");
+		}
+	});
+	$("#vbarpos-slider").slider({
+		value: {{@editor_vbarpos}},
+		min: 1,
+		max: 90,
+		slide: function(event, ui) {
+			var value = ui.value;
+			editor_vbarpos = value;
+			$("#vbarpos-text").text(value);
+			editor.setOption("rulers", [{column: value, className: "editor-ruler"}]);
+			editor.refresh();
+			setCookie("editor_vbarpos", value, "Mon, 1 Jan 2040 08:00:00 UTC");
 		}
 	});
 </script>

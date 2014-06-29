@@ -152,6 +152,19 @@
 			} else {
 				$f3->set("editor_font", $DATA_FONTS[$f3->get("EDITOR_DEFAULT_FONT")]);
 			}
+			if(isset($_COOKIE["editor_vbarpos"])) {
+				$pos = intval($_COOKIE["editor_vbarpos"]);
+				$min = $f3->get("EDITOR_MINIMUM_VBARPOS");
+				$max = $f3->get("EDITOR_MAXIMUM_VBARPOS");
+				if($pos > $max) {
+					$pos = $max;
+				} elseif($pos < $min) {
+					$pos = $min;
+				}
+				$f3->set("editor_vbarpos", $pos);
+			} else {
+				$f3->set("editor_vbarpos", $f3->get("EDITOR_DEFAULT_VBARPOS"));
+			}
 			// set stite theme
 			if(isset($_COOKIE["site_theme"])) {
 				if(array_key_exists($_COOKIE["site_theme"], $DATA_THEMES)) {

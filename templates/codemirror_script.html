@@ -30,7 +30,7 @@ var editor = CodeMirror.fromTextArea(document.getElementById("text-editor"), {
 </check>
 <check if="{{ @editor_vertical_ruler == 'true' }}">
 	<true>
-	rulers: [{column: 90, className: "editor-ruler"}],
+	rulers: [{column: {{@editor_vbarpos}}, className: "editor-ruler"}],
 	</true>
 	<false>
 	rulers: false,
