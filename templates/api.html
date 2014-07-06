@@ -12,16 +12,23 @@
 					Creating a Paste
 				</div>
 				<div class="content-section-body">
-					To create a new paste, send a POST request to <strong>http://lightpaste.com/api/paste</strong>. 
-					Light Paste will check the request for the following data:
+					To create a new paste, send a <strong>POST</strong> request to <strong>http://lightpaste.com/api/paste</strong>. 
+					Light Paste will check the request for the following parameters:
 					<table class="datatable">
-						<tr><th>Key</th><th>Value</th><th>Required</th></tr>
-						<tr><td>text</td><td>Contents of the paste</td><td>Yes</td></tr>
-						<tr><td>language</td><td>Paste language</td><td>No</td></tr>
-						<tr><td>visibility</td><td>Visibility of the paste</td><td>No</td></tr>
-						<tr><td>expiration</td><td>When the paste should expire</td><td>No</td></tr>
+						<tr><th>Name</th><th>Type</th><th>Description</th><th>Required</th></tr>
+						<tr><td>text</td><td>string</td><td>Contents of the paste</td><td>Yes</td></tr>
+						<tr><td>language</td><td>string</td><td>Paste language</td><td>No</td></tr>
+						<tr><td>visibility</td><td>string</td><td>Visibility of the paste</td><td>No</td></tr>
+						<tr><td>expiration</td><td>string</td><td>When the paste should expire</td><td>No</td></tr>
 					</table>
-					If the paste was successfully created, Light Paste will send a response in the following format:
+					The following table contains possible values for the parameters listed above:
+					<table class="datatable">
+						<tr><th>Parameter</th><th>Possible Values</th><th>Default</th></tr>
+						<tr><td>language</td><td><repeat group="{{@api_languages}}" key="{{@key}}" value="{{@value}}"><div class="list-inlineblock">{{@key}}</div></repeat></td><td>none</td></tr>
+						<tr><td>visibility</td><td><div class="list-inlineblock">public</div><div class="list-inlineblock">private</div></td><td>public</td></tr>
+						<tr><td>expiration</td><td><repeat group="{{@api_expirations}}" key="{{@key}}" value="{{@value}}"><div class="list-inlineblock">{{@key}}</div></repeat></td><td>none</td></tr>
+					</table>
+					If an optional parameter is supplied with an invalid value, or is not listed in the request, the parameter will use its default value as listed above. If the paste was successfully created, Light Paste will send a response in the following format:
 					<div class="databox">
 						HTTP/1.1 201 Created<br/>
 						Content-Type: application/json; charset=utf-8<br/><br/>
@@ -34,15 +41,15 @@
 					Retrieving a Paste
 				</div>
 				<div class="content-section-body">
-					To retrieve a paste, send a GET request to <strong>http://lightpaste.com/api/paste/*paste_id*</strong> 
-					and replace <strong>*paste_id*</strong> with the id of the paste that you are looking for.
+					To retrieve a paste, send a <strong>GET</strong> request to <strong>http://lightpaste.com/api/paste/**paste_id**</strong> 
+					and replace <strong>**paste_id**</strong> with the id of the paste that you are looking for.
 					If the request was successful, Light Paste will send a response in the following format:
 					<div class="databox">
 						HTTP/1.1 200 OK<br/>
 						Content-Type: application/json; charset=utf-8<br/><br/>
 						{<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;"id", "ZxMo14a2"<br/>
-						&nbsp;&nbsp;&nbsp;&nbsp;"text", "**encoded text**"<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;"text", "VGVzdCBwYXN0ZQ=="<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;"language", "lua"<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;"time", "1393114519"<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;"views", "10"<br/>

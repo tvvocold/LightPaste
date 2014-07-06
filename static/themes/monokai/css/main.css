@@ -434,3 +434,11 @@ body input[type="checkbox"] {
 	width: 20px;
 	text-align: center;
 }
+
+.list-inlineblock {
+	width: 100px;
+	padding: 5px;
+	display: inline-block;
+	text-align: center;
+	margin-bottom: 5px;
+}
