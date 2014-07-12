@@ -1,5 +1,10 @@
 <?php
 
+	/*
+		Light Paste
+		Copyright (c) 2014 Kenny Shields
+	*/
+	
 	$DATA_LANGUAGES = array(
 		"c" => array(
 			"name" => "C",

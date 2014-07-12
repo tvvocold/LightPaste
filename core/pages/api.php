@@ -1,5 +1,10 @@
 <?php
 	
+	/*
+		Light Paste
+		Copyright (c) 2014 Kenny Shields
+	*/
+	
 	$f3->route("GET /api", function($f3) {
 		global $DATA_LANGUAGES;
 		global $DATA_EXPIRATIONS;

@@ -1,5 +1,10 @@
 <?php
 
+	/*
+		Light Paste
+		Copyright (c) 2014 Kenny Shields
+	*/
+	
 	// load f3
 	$f3 = require("lib/base.php");
 	$f3->config("config.ini");
