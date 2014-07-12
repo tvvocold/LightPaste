@@ -47,16 +47,17 @@
 			// insert the new paste into the database using a prepared statement
 			database::query(array("INSERT INTO pastes(access_id, text, 
 				time, language, md5, sha1, private, ipaddress, expiration) 
-				VALUES(?, ?, UNIX_TIMESTAMP(), ?, ?, ?, ?, ?, ?)"), 
+				VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"), 
 				array(array(
 					1 => $access_id, 
 					2 => $text,
-					3 => $language,
-					4 => $md5,
-					5 => $sha1,
-					6 => $private,
-					7 => $f3->get("IP"),
-					8 => $expiration
+					3 => time(),
+					4 => $language,
+					5 => $md5,
+					6 => $sha1,
+					7 => $private,
+					8 => $f3->get("IP"),
+					9 => $expiration
 				))
 			);
 			return $access_id;
@@ -226,7 +227,7 @@
 					database::query(array("INSERT INTO iplogs (ipaddress, $type) VALUES(?, ?);"), array(array(1 => $ip, 2 => ($time + $modifier))));
 				}
 			}
-			database::query("DELETE FROM iplogs WHERE paste_time < UNIX_TIMESTAMP() AND report_time < UNIX_TIMESTAMP();");
+			database::query("DELETE FROM iplogs WHERE paste_time < :time AND report_time < :time;", array(":time" => time()));
 		}
 		
 		/*=======================================================
