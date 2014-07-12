@@ -12,12 +12,10 @@
 		static function connect()
 		{
 			global $f3;
-			$host = $f3->get("DATABASE_HOST");
-			$port = $f3->get("DATABASE_PORT");
-			$name = $f3->get("DATABASE_NAME");
+			$dsn = $f3->get("DATABASE_DSN");
 			$user = $f3->get("DATABASE_USER");
 			$pass = $f3->get("DATABASE_PASS");
-			self::$connection = new DB\SQL("mysql:host=$host;port=$port;dbname=$name", $user, $pass);
+			self::$connection = new DB\SQL($dsn, $user, $pass);
 		}
 		
 		static function query($sql, $args = NULL)
