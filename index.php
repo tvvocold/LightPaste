@@ -20,6 +20,7 @@
 	$f3->set("editor_font_sizes", $DATA_FONTSIZES);
 	$f3->set("editor_fonts", $DATA_FONTS);
 	$f3->set("site_themes", $DATA_THEMES);
+	$f3->set("SITE_STATIC", $f3->get("BASE") . $f3->get("SITE_STATIC"));
 	
 	// main page route
 	$f3->route("GET /",
@@ -57,7 +58,7 @@
 		util::countView($f3->get("PARAMS.id"));
 		$result = util::getPaste($f3->get("PARAMS.id"));
 		if(count($result) == 0) {
-			header("location: /");
+			$f3->reroute("/");
 			exit();
 		}
 		$f3->set("page_title", "Light Paste / " . $f3->get("PARAMS.id"));
@@ -77,7 +78,7 @@
 		}
 		if($result[0]["expiration"] != 0) {
 			if(time() > $result[0]["expiration"]) {
-				header("location: /");
+				$f3->reroute("/");
 				exit();
 			}
 		}
@@ -102,12 +103,12 @@
 		database::connect();
 		$result = util::getPaste($f3->get("PARAMS.id"));
 		if(count($result) == 0) {
-			header("location: /");
+			$f3->reroute("/");
 			exit();
 		}
 		if($result[0]["expiration"] != 0) {
 			if(time() > $result[0]["expiration"]) {
-				header("location: /");
+				$f3->reroute("/");
 				exit();
 			}
 		}
@@ -136,20 +137,20 @@
 			exit();
 		} elseif($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "copy") {
 			$f3->set("SESSION.copy_text", $result[0]["text"]);
-			header("location: /");
+			$f3->reroute("/");
 			exit();
 		} elseif($f3->get("PARAMS.mode") and $f3->get("PARAMS.mode") == "report") {
 			$logcheck = util::checkIPLogs($f3->get("IP"), "report_time");
 			if(gettype($logcheck) != "boolean") {
 				$f3->set("SESSION.error", "You must wait $logcheck seconds before reporting another paste.");
-				header("location: /paste/" . $f3->get("PARAMS.id"));
+				$f3->reroute("/paste/" . $f3->get("PARAMS.id"));
 				exit();
 			}
 			util::logIP($f3->get("IP"), "report_time", $f3->get("REPORT_DELAY"));
 			database::query(array("UPDATE pastes SET reported = '1' WHERE access_id = ?;"), array(array(1 => $f3->get("PARAMS.id"))));
 			$f3->set("SESSION.message", "The paste you specified has been reported.");
 			$f3->set("SESSION.message_title", "Success");
-			header("location: /paste/" . $f3->get("PARAMS.id"));
+			$f3->reroute("/paste/" . $f3->get("PARAMS.id"));
 			exit();
 		} else {
 			$f3->error(404);
@@ -161,9 +162,9 @@
 		$result = util::processNewPasteData($f3);
 		if(gettype($result) == "array") {
 			$f3->set("SESSION.error", $result[1]);
-			header("location: /");
+			$f3->reroute("/");
 		} else {
-			header("location: /paste/$result");
+			$f3->reroute("/paste/$result");
 		}
 	});
 	
