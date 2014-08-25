@@ -224,6 +224,12 @@
 			"website" => "http://en.wikipedia.org/wiki/Shell_script",
 			"file_extension" => "sh",
 			"mode" => "shell"
+		),
+		"nginx" => array(
+			"name" => "NGINX",
+			"website" => "http://nginx.org/",
+			"file_extension" => "conf",
+			"mode" => "nginx"
 		)
 	);
 	
