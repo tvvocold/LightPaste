@@ -171,7 +171,7 @@
 			} else {
 				$f3->set("editor_vbarpos", $f3->get("EDITOR_DEFAULT_VBARPOS"));
 			}
-			// set stite theme
+			// set site theme
 			if(isset($_COOKIE["site_theme"])) {
 				if(array_key_exists($_COOKIE["site_theme"], $DATA_THEMES)) {
 					$f3->set("site_theme", $_COOKIE["site_theme"]);
@@ -232,7 +232,7 @@
 		
 		/*=======================================================
 			func: checkIPLogs($ip, $field)
-			desc: chekcs the ip logs for relevant data
+			desc: checks the ip logs for relevant data
 		=======================================================*/
 		static function checkIPLogs($ip, $field)
 		{
