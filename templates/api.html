@@ -12,7 +12,7 @@
 					Creating a Paste
 				</div>
 				<div class="content-section-body">
-					To create a new paste, send a <strong>POST</strong> request to <strong>http://lightpaste.com/api/paste</strong>. 
+					To create a new paste, send a <strong>POST</strong> request to <strong>http://{{@_SERVER.SERVER_NAME}}{{@BASE}}/api/paste</strong>. 
 					Light Paste will check the request for the following parameters:
 					<table class="datatable">
 						<tr><th>Name</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -41,7 +41,7 @@
 					Retrieving a Paste
 				</div>
 				<div class="content-section-body">
-					To retrieve a paste, send a <strong>GET</strong> request to <strong>http://lightpaste.com/api/paste/**paste_id**</strong> 
+					To retrieve a paste, send a <strong>GET</strong> request to <strong>http://{{@_SERVER.SERVER_NAME}}{{@BASE}}/api/paste/**paste_id**</strong> 
 					and replace <strong>**paste_id**</strong> with the id of the paste that you are looking for.
 					If the request was successful, Light Paste will send a response in the following format:
 					<div class="databox">
