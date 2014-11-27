@@ -40,7 +40,7 @@
 			"name" => "Lua",
 			"website" => "http://lua.org/",
 			"file_extension" => "lua",
-			"mode" => "lua"
+			"mode" => "text/x-lua"
 		),
 		"javascript" => array(
 			"name" => "JavaScript",
