@@ -1,0 +1,27 @@
+CREATE TABLE IF NOT EXISTS `iplogs` (
+  `ipaddress` text NOT NULL,
+  `paste_time` int(11) NOT NULL,
+  `report_time` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `pastes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `access_id` varchar(15) NOT NULL,
+  `text` mediumtext CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `time` int(11) NOT NULL,
+  `language` varchar(30) NOT NULL,
+  `md5` char(32) NOT NULL,
+  `sha1` char(40) NOT NULL,
+  `views` int(11) NOT NULL,
+  `private` int(11) NOT NULL,
+  `reported` int(11) NOT NULL,
+  `ipaddress` text NOT NULL,
+  `expiration` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `viewlogs` (
+  `hash` char(64) NOT NULL,
+  `time` int(11) NOT NULL,
+  PRIMARY KEY (`hash`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

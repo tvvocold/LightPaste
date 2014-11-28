@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>Light Paste / Database Setup</title>
+	</head>
+	<body>
+		<strong>MySQL</strong>
+		<div style="padding: 5px; margin: 10px; font-size: 14px;">
+			<strong>General</strong>:
+			<ul style="margin: 5px;">
+				<li>Make sure your installation of PHP supports MySQL functionality</li>
+			</ul>
+			<strong>config.ini</strong>:
+			<ul style="margin: 5px;">
+				<li>Set <i>DATABASE_DSN</i> to </i>"mysql:host=localhost;port=3306;dbname=lightpaste"</i> and replace each value where necessary</li>
+				<li>Set <i>DATABASE_USER</i> to the username that you want Light Paste to use when accessing the database</li>
+				<li>Set <i>DATABASE_PASSWORD</i> to the password used by <i>DATABASE_USER</i></li>
+			</ul>
+		</div>
+		<hr>
+		<strong>SQLite</strong>
+		<div style="padding: 5px; margin: 10px; font-size: 14px;">
+			<strong>General</strong>:
+			<ul>
+				<li>Make sure your installation of PHP supports SQLite functionality</li>
+			</ul>
+			<strong>config.ini</strong>:
+			<ul>
+				<li>Set <i>DATABASE_DSN</i> to a location that your installation of PHP has read and right access to. For example: </i>"sqlite:/path/to/database.sqlite"</i></li>
+			</ul>
+		</div>
+		<hr>
+		After following the steps listed above, you can create a database for your installation of Light Paste by clicking the button below:
+		<br/><br/>
+		<form action="/dbsetup" method="post">
+			<input type="submit" value="Create Database" />
+		</form>
+	</body>
+</html>

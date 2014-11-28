@@ -1,0 +1,14 @@
+CREATE TABLE pastes (
+  id integer PRIMARY KEY AUTOINCREMENT,
+  access_id text,
+  text text,
+  time integer,
+  language text,
+  md5 text,
+  sha1 text,
+  views integer,
+  private integer,
+  reported integer,
+  ipaddress text,
+  expiration integer
+);
