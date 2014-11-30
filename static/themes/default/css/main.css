@@ -318,6 +318,7 @@ body select {
 	display: none;
 	position: absolute;
 	z-index: 1000001;
+	font-size: 12px;
 }
 
 #editor-fullscreen-infobox div {

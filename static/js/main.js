@@ -33,11 +33,11 @@ function adjustSidePanel()
 function adjustEditorFullscreenInfobox()
 {
 	var panel = $("#editor-fullscreen-infobox");
-	panel.css("top", "10px");
+	panel.css("top", "0px");
 	if($(".CodeMirror-lines").height() > $(".CodeMirror-scroll").height()) {
 		panel.css("right", "26px");
 	} else {
-		panel.css("right", "10px");
+		panel.css("right", "0px");
 	}
 }
 
