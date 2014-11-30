@@ -236,6 +236,12 @@
 			"website" => "http://www.docker.com/",
 			"file_extension" => "",
 			"mode" => "dockerfile"
+		),
+		"perl" => array(
+			"name" => "Perl",
+			"website" => "http://www.perl.org/",
+			"file_extension" => "pl",
+			"mode" => "perl"
 		)
 	);
 	
