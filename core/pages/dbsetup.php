@@ -29,7 +29,7 @@
 			exit();
 		}
 		database::connect();
-		if(strpos($f3->get("DATABASE_DSN"), "sqlite") !== -1) {
+		if(strpos($f3->get("DATABASE_DSN"), "sqlite") !== false) {
 			$files = scandir("core/schemas/sqlite");
 			foreach($files as $value) {
 				if($value != "." and $value != "..") {
@@ -37,7 +37,7 @@
 				}
 			}
 		} else {
-			database::test(file_get_contents("core/schemas/mysql.txt"));
+			database::query(file_get_contents("core/schemas/mysql.txt"));
 		}
 		header("location: /dbsetup/success");
 	});
