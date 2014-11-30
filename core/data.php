@@ -230,6 +230,12 @@
 			"website" => "http://nginx.org/",
 			"file_extension" => "conf",
 			"mode" => "nginx"
+		),
+		"dockerfile" => array(
+			"name" => "Dockerfile",
+			"website" => "http://www.docker.com/",
+			"file_extension" => "",
+			"mode" => "dockerfile"
 		)
 	);
 	
