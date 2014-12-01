@@ -24,9 +24,7 @@
 	$f3->set("SITE_STATIC", $f3->get("BASE") . $f3->get("SITE_STATIC"));
 	
 	// main page route
-	$f3->route("GET /",
-		function($f3)
-		{
+	$f3->route("GET /", function($f3) {
 			global $DATA_LANGUAGES;
 			global $DATA_EXPIRATIONS;
 			$langs = array();
