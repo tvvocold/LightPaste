@@ -242,6 +242,12 @@
 			"website" => "http://www.perl.org/",
 			"file_extension" => "pl",
 			"mode" => "perl"
+		),
+		"rust" => array(
+			"name" => "Rust",
+			"website" => "http://www.rust-lang.org/",
+			"file_extension" => "rs",
+			"mode" => "rust"
 		)
 	);
 	
