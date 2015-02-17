@@ -13,12 +13,13 @@
 					<option value="none">None</option>
 					<repeat group="{{@languages}}" key="{{@k}}" value="{{@v}}">
 						<check if="{{isset(@v[mode_complex])}}">
-						<true>
-							<option value="{{@k}}" data-mode="{{@v[mode]}}" data-modecomplex="{{@v[mode_complex]}}">{{@v[name]}}</option>
-						</true>
-						<false>
-							<option value="{{@k}}" data-mode="{{@v[mode]}}">{{@v[name]}}</option>
-						</false>
+                            <true>
+                                <option value="{{@k}}" data-mode="{{@v[mode]}}" data-modecomplex="{{@v[mode_complex]}}">{{@v[name]}}</option>
+                            </true>
+                            <false>
+                                <option value="{{@k}}" data-mode="{{@v[mode]}}">{{@v[name]}}</option>
+                            </false>
+                        </check>
 					</repeat>
 				</select>
 			</td>
