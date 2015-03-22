@@ -4,11 +4,11 @@
 		Light Paste
 		Copyright (c) 2014 Kenny Shields
 	*/
-	
+
 	// load f3
 	$f3 = require("lib/base.php");
 	$f3->config("config.ini");
-	
+
 	require("core/data.php");
 	require("core/classes/third-party/hashids.php");
 	require("core/classes/database.php");
@@ -17,12 +17,12 @@
 	require("core/pages/about.php");
 	require("core/pages/api.php");
 	require("core/pages/dbsetup.php");
-	
+
 	$f3->set("editor_font_sizes", $DATA_FONTSIZES);
 	$f3->set("editor_fonts", $DATA_FONTS);
 	$f3->set("site_themes", $DATA_THEMES);
 	$f3->set("SITE_STATIC", $f3->get("BASE") . $f3->get("SITE_STATIC"));
-	
+
 	// main page route
 	$f3->route("GET /", function($f3) {
 			global $DATA_LANGUAGES;
@@ -49,18 +49,25 @@
 			util::clearCommonSessionData();
 		}
 	);
-	
+
 	// paste route
 	$f3->route("GET /paste/@id", function($f3) {
 		database::connect();
 		global $DATA_LANGUAGES;
-		util::countView($f3->get("PARAMS.id"));
-		$result = util::getPaste($f3->get("PARAMS.id"));
+		$paste_id = $f3->get("PARAMS.id");
+		util::countView($paste_id);
+		$result = util::getPaste($paste_id);
 		if(count($result) == 0) {
-			$f3->reroute("/");
-			exit();
+			$f3->error(404);
 		}
-		$f3->set("page_title", "Light Paste / " . $f3->get("PARAMS.id"));
+        if($result[0]["snap"] == 1) {
+			if($result[0]["hits"] == 2)
+				util::deletePasteText($paste_id);
+			if($result[0]["hits"] == 3) {
+            	$f3->error(404);
+			}
+        }
+		$f3->set("page_title", "Light Paste / $paste_id");
 		util::getClientSettings($f3);
 		if($result[0]["language"] != "") {
 			$language_data = $DATA_LANGUAGES[$result[0]["language"]];
@@ -77,8 +84,7 @@
 		}
 		if($result[0]["expiration"] != 0) {
 			if(time() > $result[0]["expiration"]) {
-				$f3->reroute("/");
-				exit();
+				$f3->error(404);
 			}
 		}
 		$f3->set("paste_date", date("M d, Y", $result[0]["time"]));
@@ -95,7 +101,7 @@
 		echo $template->render("templates/paste.html");
 		util::clearCommonSessionData();
 	});
-	
+
 	// paste mode route
 	$f3->route("GET /paste/@id/@mode", function($f3) {
 		global $DATA_LANGUAGES;
@@ -155,7 +161,7 @@
 			$f3->error(404);
 		}
 	});
-	
+
 	// new paste route
 	$f3->route("POST /new", function($f3) {
 		$result = util::processNewPasteData($f3);
@@ -166,7 +172,7 @@
 			$f3->reroute("/paste/$result");
 		}
 	});
-	
+
 	// error handler
 	$f3->set("ONERROR", function($f3) {
 		if(substr($f3->get("SERVER.REQUEST_URI"), 0, 5) == "/api/") {
@@ -179,7 +185,7 @@
 			echo $template->render("templates/error.html");
 		}
 	});
-	
+
 	$f3->run();
-	
+
 ?>

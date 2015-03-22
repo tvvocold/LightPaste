@@ -4,7 +4,7 @@
 		Light Paste
 		Copyright (c) 2014 Kenny Shields
 	*/
-	
+
 	class util {
 		/*=======================================================
 			func: formatDataSize($bytes)
@@ -28,12 +28,12 @@
 			}
 			return $bytes;
 		}
-		
+
 		/*=======================================================
-			func: insertPaste($text, $language, $private, $expiration)
+			func: insertPaste($text, $language, $private, $expiration, $snap)
 			desc: inserts a new paste into the database
 		=======================================================*/
-		static function insertPaste($text, $language, $private, $expiration)
+		static function insertPaste($text, $language, $private, $expiration, $snap)
 		{
 			global $f3;
 			$result = database::query("SELECT MAX(id) AS id FROM pastes;");
@@ -45,36 +45,39 @@
 			$md5 = md5($text);
 			$sha1 = sha1($text);
 			// insert the new paste into the database using a prepared statement
-			database::query(array("INSERT INTO pastes(access_id, text, 
-				time, language, md5, sha1, private, ipaddress, expiration) 
-				VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"), 
+			database::query(array("INSERT INTO pastes(access_id, text,
+				time, language, md5, sha1, views, private, reported, ipaddress,
+				expiration, snap) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"),
 				array(array(
-					1 => $access_id, 
+					1 => $access_id,
 					2 => $text,
 					3 => time(),
 					4 => $language,
 					5 => $md5,
 					6 => $sha1,
-					7 => $private,
-					8 => $f3->get("IP"),
-					9 => $expiration
+					7 => 0,
+					8 => $private,
+					9 => 0,
+					10 => $f3->get("IP"),
+					11 => $expiration,
+					12 => $snap
 				))
 			);
 			return $access_id;
 		}
-		
+
 		/*=======================================================
 			func: getPaste($id)
 			desc: gets a paste from the database
 		=======================================================*/
 		static function getPaste($id)
 		{
-			return database::query(array("SELECT access_id, text, 
+			return database::query(array("SELECT access_id, text,
 				language, time, views, md5, sha1, views, private,
-				expiration FROM pastes WHERE access_id = ?"),
+				expiration, snap, hits FROM pastes WHERE access_id = ?"),
 				array(array(1 => $id)));
 		}
-		
+
 		/*=======================================================
 			func: generatePasteID($id)
 			desc: generate a new paste id
@@ -85,7 +88,7 @@
 			$hashids = new Hashids\Hashids($salt, 8);
 			return $hashids->encrypt($id);
 		}
-		
+
 		/*=======================================================
 			func: readSetting($setting)
 			desc: reads a setting that is expected to have a
@@ -104,7 +107,7 @@
 				$f3->set($setting, "true");
 			}
 		}
-		
+
 		/*=======================================================
 			func: getClientSettings($f3)
 			desc: gets settings stored in client cookies
@@ -185,7 +188,7 @@
 				$f3->set("editor_theme", "lightpaste");
 			}
 		}
-		
+
 		/*=======================================================
 			func: countView($paste_id)
 			desc: increments the total number of views for a
@@ -199,19 +202,23 @@
 			$time = time();
 			database::query(array("DELETE FROM viewlogs WHERE ? > time + ?;"), array(array(1 => $time, 2 => $delay)));
 			if(gettype($paste) == "array") {
+				if($paste[0]["snap"] == 1 and $paste[0]["hits"] == 3) {
+					return;
+				}
+				database::query("UPDATE pastes SET hits = ? WHERE access_id = ?;", array(1 => $paste[0]["hits"] + 1, 2 => $paste_id));
 				$hash = hash("sha256", $paste_id . $_SERVER["REMOTE_ADDR"]);
 				$logrows = database::query(array("SELECT time FROM viewlogs WHERE hash = ?;"), array(array(1=> $hash)));
 				if(count($logrows) == 1) {
 					return;
 				}
-				database::query(array("UPDATE pastes SET views = views + 1 WHERE access_id = ?;", 
-					"INSERT INTO viewlogs (hash, time) VALUES(?, ?);"), 
-					array(array(1 => $paste_id), 
+				database::query(array("UPDATE pastes SET views = views + 1 WHERE access_id = ?;",
+					"INSERT INTO viewlogs (hash, time) VALUES(?, ?);"),
+					array(array(1 => $paste_id),
 					array(1 => $hash, 2 => $time))
 				);
 			}
 		}
-		
+
 		/*=======================================================
 			func: logIP($ip, $type, $modifier)
 			desc: logs an action performed by the client
@@ -229,7 +236,7 @@
 			}
 			database::query("DELETE FROM iplogs WHERE paste_time < :time AND report_time < :time;", array(":time" => time()));
 		}
-		
+
 		/*=======================================================
 			func: checkIPLogs($ip, $field)
 			desc: checks the ip logs for relevant data
@@ -245,10 +252,10 @@
 			}
 			return true;
 		}
-		
+
 		/*=======================================================
 			func: clearCommonSessionData()
-			desc: clears common data stored in the client's 
+			desc: clears common data stored in the client's
 				  session
 		=======================================================*/
 		static function clearCommonSessionData()
@@ -259,10 +266,10 @@
 			$f3->clear("SESSION.message");
 			$f3->clear("SESSION.message_title");
 		}
-		
+
 		/*=======================================================
 			func: processNewPasteData($f3)
-			desc: processes new paste data received from the 
+			desc: processes new paste data received from the
 				  client
 		=======================================================*/
 		static function processNewPasteData($f3)
@@ -279,6 +286,7 @@
 				$language = "";
 				$private = 0;
 				$expiration = 0;
+				$snap = 0;
 				if($f3->get("POST.language")) {
 					if(array_key_exists($f3->get("POST.language"), $DATA_LANGUAGES)) {
 						$language = $f3->get("POST.language");
@@ -294,7 +302,12 @@
 						$expiration = time() + $DATA_EXPIRATIONS[$f3->get("POST.expiration")];
 					}
 				}
-				$result = util::insertPaste($text, $language, $private, $expiration);
+				if($f3->get("POST.snap")) {
+					if($f3->get("POST.snap") == "true") {
+						$snap = 1;
+					}
+				}
+				$result = util::insertPaste($text, $language, $private, $expiration, $snap);
 				if(gettype($result) == "string") {
 					util::logIP($f3->get("IP"), "paste_time", $f3->get("PASTE_DELAY"));
 					return $result;
@@ -305,6 +318,11 @@
 				return array("400 Bad Request", "No paste text was specified");
 			}
 		}
+
+		static function deletePasteText($paste_id)
+		{
+			database::query("UPDATE pastes SET text = '' WHERE access_id = ?;", array(1 => $paste_id));
+		}
 	}
-	
+
 ?>
