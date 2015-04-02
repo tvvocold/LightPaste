@@ -276,46 +276,82 @@
 		{
 			global $DATA_LANGUAGES;
 			global $DATA_EXPIRATIONS;
+			// connect to the database
 			database::connect();
+			// flood prevention
 			$logcheck = util::checkIPLogs($f3->get("IP"), "paste_time");
 			if(gettype($logcheck) != "boolean") {
 				return array("403 Forbidden", "You must wait $logcheck seconds before creating another paste");
 			}
+			// paste data variables
+			$text = "";
+			$language = "";
+			$private = 0;
+			$expiration = 0;
+			$snap = 0;
+			// get paste text
 			if($f3->get("POST.text")) {
 				$text = $f3->get("POST.text");
-				$language = "";
-				$private = 0;
-				$expiration = 0;
-				$snap = 0;
-				if($f3->get("POST.language")) {
-					if(array_key_exists($f3->get("POST.language"), $DATA_LANGUAGES)) {
-						$language = $f3->get("POST.language");
-					}
+			}
+			// get paste settings
+			if($f3->get("POST.language")) {
+				if(array_key_exists($f3->get("POST.language"), $DATA_LANGUAGES)) {
+					$language = $f3->get("POST.language");
 				}
-				if($f3->get("POST.visibility")) {
-					if($f3->get("POST.visibility") == "private") {
-						$private = 1;
-					}
+			}
+			if($f3->get("POST.visibility")) {
+				if($f3->get("POST.visibility") == "private") {
+					$private = 1;
 				}
-				if($f3->get("POST.expiration")) {
-					if(array_key_exists($f3->get("POST.expiration"), $DATA_EXPIRATIONS)) {
-						$expiration = time() + $DATA_EXPIRATIONS[$f3->get("POST.expiration")];
-					}
+			}
+			if($f3->get("POST.expiration")) {
+				if(array_key_exists($f3->get("POST.expiration"), $DATA_EXPIRATIONS)) {
+					$expiration = time() + $DATA_EXPIRATIONS[$f3->get("POST.expiration")];
 				}
-				if($f3->get("POST.snap")) {
-					if($f3->get("POST.snap") == "true") {
-						$snap = 1;
-					}
+			}
+			if($f3->get("POST.snap")) {
+				if($f3->get("POST.snap") == "true") {
+					$snap = 1;
 				}
-				$result = util::insertPaste($text, $language, $private, $expiration, $snap);
-				if(gettype($result) == "string") {
-					util::logIP($f3->get("IP"), "paste_time", $f3->get("PASTE_DELAY"));
-					return $result;
+			}
+			// check for file upload
+			$file_data = $f3->get("FILES");
+			if($file_data != null and $f3->get("SITE_FILE_UPLOAD_ENABLED")) {
+				$file = $file_data["file"];
+				if($file["error"] === 0) {
+					// get the file's extension
+					$extension = pathinfo($file["name"], PATHINFO_EXTENSION);
+					// get the contents of the file
+					$text = file_get_contents($file["tmp_name"]);
+					if($text !== false) {
+						// if a language was not already specified,
+						// then set the language based on the file extension
+						if($extension != "" and $language == "") {
+							foreach($DATA_LANGUAGES as $key=>$value) {
+								if($value["file_extension"] == $extension) {
+									$language = $key;
+								}
+							}
+						}
+					} else {
+						return array("500 Internal Server Error", "Could not read file contents");
+					}
 				} else {
-					return array("500 Internal Server Error", "An error occurred while trying to create a new paste");
+					if($file["error"] != 4) {
+						return array("500 Internal Server Error", "An error occurred while trying to create a new paste");
+					}
 				}
-			} else {
+			}
+			if($text == "") {
 				return array("400 Bad Request", "No paste text was specified");
+			}
+			// insert the paste into the database
+			$result = util::insertPaste($text, $language, $private, $expiration, $snap);
+			if(gettype($result) == "string") {
+				util::logIP($f3->get("IP"), "paste_time", $f3->get("PASTE_DELAY"));
+				return $result;
+			} else {
+				return array("500 Internal Server Error", "An error occurred while trying to create a new paste");
 			}
 		}
 

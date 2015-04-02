@@ -53,6 +53,18 @@
 				</select>
 			</td>
 		</tr>
+        <check if="{{@SITE_FILE_UPLOAD_ENABLED}}">
+            <true>
+                <tr>
+                    <td colspan="2"><label for="paste-file-input">From file:</label></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="file" name="file" form="paste_form" id="paste-file-input">
+                    </td>
+                </tr>
+            </true>
+        </check>
 		<tr><td colspan="2"><input type="submit" value="Post" form="paste_form" /></td></tr>
 	</table>
 </div>

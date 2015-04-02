@@ -18,7 +18,7 @@
 				<include href="templates/site_options.html" />
 			</div>
 		</div>
-		<form action="{{@BASE}}/new" method="post" id="paste_form">
+		<form action="{{@BASE}}/new" method="post" id="paste_form" enctype="multipart/form-data">
 			<check if="isset({{@SESSION.copy_text}})">
 				<true>
 					<textarea id="text-editor" name="text">{{@SESSION.copy_text}}</textarea>

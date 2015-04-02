@@ -27,7 +27,7 @@ body select {
 /*==========================================================
 	-- container/content --
 ==========================================================*/
-#container { 
+#container {
 	margin-top: 45px;
 }
 
@@ -222,6 +222,10 @@ body select {
 
 .side-panel-section a:hover {
 	text-decoration: underline !important;
+}
+
+.side-panel-section input[type="file"] {
+	width: 200px;
 }
 
 /*==========================================================

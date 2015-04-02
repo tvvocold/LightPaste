@@ -33,7 +33,7 @@ body input[type="checkbox"] {
 /*==========================================================
 	-- container/content --
 ==========================================================*/
-#container { 
+#container {
 	margin-top: 45px;
 }
 
@@ -220,6 +220,10 @@ body input[type="checkbox"] {
 
 .side-panel-section a:hover {
 	text-decoration: underline !important;
+}
+
+.side-panel-section input[type="file"] {
+	width: 200px;
 }
 
 /*==========================================================
