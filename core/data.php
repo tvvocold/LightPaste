@@ -4,7 +4,7 @@
 		Light Paste
 		Copyright (c) 2014 Kenny Shields
 	*/
-	
+
 	$DATA_LANGUAGES = array(
 		"c" => array(
 			"name" => "C",
@@ -248,9 +248,15 @@
 			"website" => "http://www.rust-lang.org/",
 			"file_extension" => "rs",
 			"mode" => "rust"
+		),
+		"cmake" => array(
+			"name" => "CMake",
+			"website" => "http://www.cmake.org/",
+			"file_extension" => "cmake",
+			"mode" => "text/x-cmake"
 		)
 	);
-	
+
 	$DATA_FONTSIZES = array(
 		10,
 		11,
@@ -272,7 +278,7 @@
 		27,
 		28
 	);
-	
+
 	$DATA_FONTS = array(
 		"Arial" => "Arial, Helvetica, sans-serif",
 		"Courier New" => "'Courier New', monospace",
@@ -283,7 +289,7 @@
 		"Trebuchet MS" => "'Trebuchet MS', sans-serif",
 		"Verdana" => "Verdana, Geneva, sans-serif"
 	);
-	
+
 	$DATA_THEMES = array(
 		"default" => array(
 			"name" => "Default",
@@ -298,7 +304,7 @@
 			"editor_theme" => "base16-dark"
 		)
 	);
-	
+
 	$DATA_EXPIRATIONS = array(
 		"5 minutes" => 300,
 		"10 minutes" => 600,
